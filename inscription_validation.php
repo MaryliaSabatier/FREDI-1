@@ -4,7 +4,7 @@
     $email=isset($_POST['email']) ? $_POST['email'] :  "";
     $password=isset($_POST['password']) ? $_POST['password'] :  "";
     $password2=isset($_POST['password2']) ? $_POST['password2'] :  "";
-    $ligue=isset($_POST['ligue']) ? $_POST['ligue'] : '';
+    $club=isset($_POST['clun']) ? $_POST['club'] : '';
     $submit=isset($_POST['submit']);
     //Si l'user a cliqué sur submit
     if ($submit) {
@@ -15,7 +15,7 @@
                 //Si 2 mdp identiques
                 if($password==$password2) {
                     //Lecture du pseudo et du mail dans la BDD pour comparer si ceux-ci existent déjà ou non
-                    $sql="SELECT pseudo, mail FROM user WHERE pseudo LIKE :pseudo OR mail lIKE :email";
+                    $sql="SELECT pseudo, mail FROM utilisateur WHERE pseudo LIKE :pseudo OR mail lIKE :email";
                     try {
                         $sth = $dbh->prepare($sql);
                         $sth->execute(array(
@@ -32,7 +32,7 @@
                         //On crypte le mdp
                         $password=password_hash($password, PASSWORD_BCRYPT);
                         //On insère les champs saisis dans la BDD avec la requête SQL
-                        $sql = "INSERT INTO user (pseudo, mdp, mail, id_usertype, id_ligue) VALUES (:pseudo, :password, :mail, :id_usertype,:id_ligue)";
+                        $sql = "INSERT INTO utilisateur (pseudo, mdp, mail, id_usertype, id_club) VALUES (:pseudo, :password, :mail, :id_usertype,:id_club)";
                         //Insertion des infos de l'user dans la BDD
                         try {
                             $sth = $dbh->prepare($sql);
