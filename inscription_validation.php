@@ -35,7 +35,7 @@
                         //On crypte le mdp
                         $password=password_hash($password, PASSWORD_BCRYPT);
                         //On insère les champs saisis dans la BDD avec la requête SQL
-                        $sql = "INSERT INTO utilisateur (pseudo, mdp, mail, id_usertype, id_club) VALUES (:pseudo, :password, :mail, :id_usertype,:id_club)";
+                        $sql = "INSERT INTO utilisateur (pseudo, mdp, mail, nom, prenom, id_utilisateur, id_club, adr1, adr2, adr3)VALUES (:pseudo, :password, :mail, :nom, :prenom,:id_utilisateur,:id_club, :adr1, :adr2, adr3)";
                         //Insertion des infos de l'user dans la BDD
                         try {
                             $sth = $dbh->prepare($sql);
@@ -43,7 +43,12 @@
                                 ':pseudo' => $pseudo,
                                 ':password' => $password,
                                 ':mail' => $email,
-                                ':id_usertype' => 1,
+                                ':nom' => $nom,
+                                ':prenom' => $prenom,
+                                ':id_utilisateur' => 1,
+                                ':adr1' => $adr1,
+                                ':adr2' => $adr2,
+                                ':adr3' => $adr3,
                                 ':id_club' => $ligue
                             ));
                         } //Gestion es erreurs
