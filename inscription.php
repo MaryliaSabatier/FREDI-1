@@ -27,18 +27,6 @@
                     <td><label for="password2">Confirmer le mot de passe* : </label></td>
                     <td><input type="password" id="password2" name="password2"></td>
                 </tr>
-<<<<<<< HEAD
-                <td><label for="club">Club* : </label></td>
-                    <td>
-                        <select name="club" id="club">
-                            <option value="1">Club de Judo Auvergne-Rhône-Alpes</option>
-                            <option value="2">Club de football de Haute-Garonne</option>
-                            <option value="3">Club de footbal d'Aquitaine</option>
-                            <option value="4">Club de tennis de Corse du Sud</option>
-                            <option value="5">Club d'équitation du Var</option>
-                            <option value="6">Club de natation du Quercy</option>
-=======
->>>>>>> 5fa5e23db90fc8c0a57cb10a0df71bf33360f9ea
                     <td><label for="ligue">Ligue* : </label></td>
                     <td>
                         <select name="ligue" id="ligue">

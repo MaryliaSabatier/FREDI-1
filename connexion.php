@@ -12,8 +12,12 @@
           <td><input type="password" name="password" id="password"></td>
         </tr>
         <tr>
-          <td><p><a href="inscription.php">Pas encore inscrit ?</a></p></td>
+         
           <td><input class="button green full" type="submit" name="submit" value="Se connecter" class="box-button"></td>
+        </tr>
+        <tr>
+        <td><p><a href="inscription.php">Pas encore inscrit ?</a></p></td>
+        <td><p> <a href="motpasseoublie.php">mot de passe oublie</a></p></td>
         </tr>
       </table>
     </form>
