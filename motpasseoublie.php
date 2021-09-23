@@ -1,6 +1,9 @@
 <?php
- $active=1; $title = "Accueil"; require('header.php'); require('sql.php');
- echo '<br>';
+$active = 1;
+$title = "Accueil";
+require('header.php');
+require('sql.php');
+echo '<br>';
 
 //recupération des données
 $pseudo = isset($_POST['pseudo']) ? $_POST['pseudo'] : '';
@@ -25,15 +28,15 @@ if ($submit) {
     }
     if ($pseudo == $user["pseudo"] && ($user["mail"])) { //condition et verification de l'adresse mail et speudo
         $id_utilisateur = $user["id_utilisateur"];
-    
-
-        header("Location: mdp.php?id_utilisateur=".$id_utilisateur); //renvois a la ligue 
 
 
+        header("Location: mdp.php?id_utilisateur=" . $id_utilisateur); //renvois a la ligue 
 
-  
-}
-$message = "Pseudo ou email invalide";
+
+
+
+    }
+    $message = "Pseudo ou email invalide";
 }
 
 
@@ -80,11 +83,13 @@ $message = "Pseudo ou email invalide";
 
 
 
-                $active=1; $title = "mot de passe oublié"; require('footer.php'); 
+                $active = 1;
+                $title = "mot de passe oublié";
+                require('footer.php');
 
                 ?>
             </div>
-         
+
 </body>
 
 </html>
