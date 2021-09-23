@@ -7,24 +7,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $title; ?> - M2L</title>
-    <link rel="stylesheet" href="/m2l/css/main.css">
-    <link rel="icon" href="/m2l/img/logo.png">
+    <title><?= $title; ?> - fredi</title>
+    <link rel="stylesheet" href="/fredi/css/main.css">
+    <link rel="icon" href="/fredi/img/logo.png">
 </head>
 <body>
 <div class="navbar">
     <ul>
         <!--Quand on arrive sur le site, seulement accueil visible-->
-        <li class="ligne left"><a class="<?php if($active==1){echo"active";}?>"href="/m2l/index.php">Accueil</a></li>
+        <li class="ligne left"><a class="<?php if($active==1){echo"active";}?>"href="/fredi/index.php">Accueil</a></li>
         <?php
             //Si user connecté alors FAQ et déconnexion visibles
             if(isset($_SESSION['user'])){ ?>
-                <li class="ligne left"><a class="<?php if($active==2){echo"active";}?>" href="/m2l/liste/liste.php">FAQ</a></li>
-                <li class="ligne right"><a class="<?php if($active==4){echo"active";}?>" href="/m2l/liste/deconnexion.php">Déconnexion</a></li>
+                <li class="ligne left"><a class="<?php if($active==2){echo"active";}?>" href="/fredi/liste/liste.php">FAQ</a></li>
+                <li class="ligne right"><a class="<?php if($active==4){echo"active";}?>" href="/fredi/liste/deconnexion.php">Déconnexion</a></li>
             <?php } else { 
             //Si user non connecté alors seulement connexion et inscription visibles ?>
-                <li class="ligne right"><a class="<?php if($active==3){echo"active";}?>" href="/m2l/inscription.php">Inscription</a></li>
-                <li class="ligne right"><a class="<?php if($active==4){echo"active";}?>" href="/m2l/connexion.php">Connexion</a></li>
+                <li class="ligne right"><a class="<?php if($active==3){echo"active";}?>" href="/fredi/inscription.php">Inscription</a></li>
+                <li class="ligne right"><a class="<?php if($active==4){echo"active";}?>" href="/fredi/connexion.php">Connexion</a></li>
             <?php }
         ?>
     </ul>
