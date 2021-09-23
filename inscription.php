@@ -1,6 +1,6 @@
 <?php $active=3; $title = "Inscription"; require('header.php'); ?>
     <div class="center">
-        <h1>S'inscrire</h1>
+        <h1>Inscription</h1>
             <form class="form" action="inscription_validation.php" method="post">
             <table>
                 <tr>
@@ -19,13 +19,16 @@
                     <td><label for="password2">Confirmer le mot de passe* : </label></td>
                     <td><input type="password" id="password2" name="password2"></td>
                 </tr>
-                    <td><label for="ligue">Ligue* : </label></td>
+                    <td><label for="club">Club* : </label></td>
                     <td>
-                        <select name="ligue" id="ligue">
+                        <select name="club" id="club">
                             <option value="2" selected="selected">Ligue de basket</option>
-                            <option value="3">Ligue de volley</option>
-                            <option value="4">Ligue de handball</option>
-                            <option value="5">Ligue de football</option>
+                            <option value="3">Ligue de Judo Auvergne-Rhône-Alpes</option>
+                            <option value="4">Ligue de football de Haute-Garonne</option>
+                            <option value="5">Ligue de footbal d'Aquitaine</option>
+                            <option value="6">Ligue de tennis de Corse du Sud</option>
+                            <option value="7">Ligue d'équitation du Var</option>
+                            <option value="8">Ligue de natation du Quercy</option>
                         </select>
                     </td>
                 </tr>
