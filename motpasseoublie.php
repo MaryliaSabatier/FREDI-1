@@ -1,5 +1,5 @@
 <?php
- $active=1; $title = "Accueil"; require('header.php'); 
+ $active=1; $title = "Accueil"; require('header.php'); require('sql.php');
  echo '<br>';
 
 //recupération des données
@@ -12,7 +12,7 @@ $message = " ";
 
 if ($submit) {
 
-    $sql = "select * from uttilisateur where pseudo=:pseudo and mail=:mail";
+    $sql = "select * from utilisateur where pseudo=:pseudo and mail=:mail";
     try {
         $sth = $dbh->prepare($sql);
         $sth->execute(array(
