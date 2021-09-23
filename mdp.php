@@ -15,14 +15,23 @@
 </head>
 <body>
 
-    <ul>
-           
-        
-    </ul>
+<form class="form" action="inscription_validation.php" method="post">
+            <table>
+            
+                  
+               
+                <tr>
+                    <td><label for="password">Mot de passe* : </label></td>
+                    <td><input type="password" id="password" name="password"></td>
+                </tr>
+                <tr>
+                    <td><label for="password2">Confirmer le mot de passe* : </label></td>
+                    <td><input type="password" id="password2" name="password2"></td>
+                </tr>
   
 
 <div class="marg">
-<p><h2>Votre nouveau mot de passe est M2L</h2></p>
+
 <br><br>
 
 <?php
