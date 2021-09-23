@@ -35,25 +35,16 @@ $id_utilisateur = isset($_GET['id_utilisateurr']) ? $_GET['id_utilisateur'] : nu
                 <td><input type="password" id="password2" name="password2"></td>
                 <input type="submit" name="submit" value="Valider">
             </tr>
-
-
-            <div class="marg">
-
-                <br><br>
-                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-
-
-
-                    <input type="submit" name="submit" value="Valider">
-                    <input type="text" name="id" hidden value="<?= $id_utilisateur ?>">
-                    <! -- renvois de l'id "caché" -->
-                </form>
-
+</table>
+</form>
+           
+              
                 <?php
                 $password = isset($_POST['password']) ? $_POST['password'] :  "";
                 $password2 = isset($_POST['password2']) ? $_POST['password2'] :  "";
+                $id_utilisateur = isset($_POST['id_utilisateur']) ? $_POST['id_utilisateur'] :  "";
                 $submit = isset($_POST['submit']);
-                //Si l'user a cliqué sur submit
+           
                 if ($submit) {
 
 
@@ -65,12 +56,13 @@ $id_utilisateur = isset($_GET['id_utilisateurr']) ? $_GET['id_utilisateur'] : nu
                         //On crypte le mdp
                         $password = password_hash($password, PASSWORD_BCRYPT);
                         //On insère les champs saisis dans la BDD avec la requête SQL
-                        $sql = "update utilisateur set mdp=':mdp' where id_utilisateur=:id_utilisateur ";
+                        $sql = "Update utilisateur set mdp=':mdp' where id_utilisateur=:id_utilisateur ";
                         //Insertion des infos de l'user dans la BDD
                         try {
                             $sth = $dbh->prepare($sql);
                             $sth->execute(array(
-                                ':mdp' => $mdp,
+
+                                ':mdp' => $password,
                                 ':id_utilisateur' => $id_utilisateur
                             ));
                         } //Gestion es erreurs
