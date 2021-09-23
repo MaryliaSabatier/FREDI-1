@@ -8,7 +8,7 @@
         //Si mdp sup à 8 carac.
         if(strlen($password)>=8){
             //On rentre la requête sql dans une variable
-            $sql="SELECT * FROM user WHERE pseudo=:pseudo";
+            $sql="SELECT * FROM utilisateur WHERE pseudo=:pseudo";
             //Lecture du pseudo dans la BDD 
             try {
                 $sth = $dbh->prepare($sql);
