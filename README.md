@@ -1,6 +1,7 @@
 # FREDI
 
 **AP Projet FREDI "Frais de déplacement et remise d'impôt**
+Groupe 2:
 
 Sabatier Marylia
 Dutertre Damien
