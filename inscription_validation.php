@@ -4,10 +4,9 @@
     $email=isset($_POST['email']) ? $_POST['email'] :  "";
     $password=isset($_POST['password']) ? $_POST['password'] :  "";
     $password2=isset($_POST['password2']) ? $_POST['password2'] :  "";
-    $club=isset($_POST['club']) ? $_POST['club'] : '';
-    $club=isset($_POST['adr1']) ? $_POST['adr1'] : '';
-    $club=isset($_POST['adr2']) ? $_POST['adr2'] : '';
-    $club=isset($_POST['adr3']) ? $_POST['adr3'] : '';
+    $nom=isset($_POST['nom']) ? $_POST['nom'] : "";
+    $nom=isset($_POST['premon']) ? $_POST['prenom'] : "";
+    $typeutil=isset($_POST['role']) ? $_POST['role'] : ""; 
     $submit=isset($_POST['submit']);
     //Si l'user a cliqué sur submit
     if ($submit) {
@@ -35,21 +34,17 @@
                         //On crypte le mdp
                         $password=password_hash($password, PASSWORD_BCRYPT);
                         //On insère les champs saisis dans la BDD avec la requête SQL
-                        $sql = "INSERT INTO utilisateur (pseudo, mdp, mail, nom, prenom, id_utilisateur, id_club, adr1, adr2, adr3)VALUES (:pseudo, :password, :mail, :nom, :prenom,:id_utilisateur,:id_club, :adr1, :adr2, adr3)";
+                        $sql = "INSERT INTO utilisateur (pseudo, mdp, mail, nom, prenom, role)VALUES (:pseudo, :password, :mail, :nom, :prenom, :role)";
                         //Insertion des infos de l'user dans la BDD
                         try {
                             $sth = $dbh->prepare($sql);
                             $sth->execute(array(
                                 ':pseudo' => $pseudo,
-                                ':password' => $password,
+                                ':mdp' => $password,
                                 ':mail' => $email,
                                 ':nom' => $nom,
                                 ':prenom' => $prenom,
-                                ':id_utilisateur' => 1,
-                                ':adr1' => $adr1,
-                                ':adr2' => $adr2,
-                                ':adr3' => $adr3,
-                                ':id_club' => $ligue
+                                ':role' => 1,
                             ));
                         } //Gestion es erreurs
                         catch (PDOException $ex) {
