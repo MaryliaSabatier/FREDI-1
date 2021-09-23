@@ -1,5 +1,6 @@
 <?php
-include "inclusion.php";
+ $active=1; $title = "Accueil"; require('header.php'); 
+ echo '<br>';
 
 //recupération des données
 $pseudo = isset($_POST['pseudo']) ? $_POST['pseudo'] : '';
@@ -11,7 +12,7 @@ $message = " ";
 
 if ($submit) {
 
-    $sql = "select * from user where pseudo=:pseudo and mail=:mail";
+    $sql = "select * from uttilisateur where pseudo=:pseudo and mail=:mail";
     try {
         $sth = $dbh->prepare($sql);
         $sth->execute(array(
@@ -24,33 +25,17 @@ if ($submit) {
     }
     if ($pseudo == $user["pseudo"] && ($user["mail"])) { //condition et verification de l'adresse mail et speudo
         $id_utilisateur = $user["id_utilisateur"];
-    }
+    
 
-    $mdp = 'M2L';
-
-
-
-    $mdph = password_hash($mdp, PASSWORD_BCRYPT); //hachage du mot de passe
-
-
-    try {
-        $req = $dbh->prepare('UPDATE user SET mdp =:mdp  where id_utilisateur=:id_utilisateur');
-        $req->execute(array(
-            'mdp' => $mdph,
-            'id_utilisateur' => $id_utilisateur,
-
-        ));
-    } catch (PDOException $ex) { //gestion des erreurs
-        die("Erreur lors de la requête SQL : " . $ex->getMessage());
-    }
+        header("Location: mdp.php?id_utilisateur=".$id_utilisateur); //renvois a la ligue 
 
 
 
-
-    header("Location: mdp.php?id_utilisateur=" . $id_utilisateur); //renvois a la ligue 
-
+  
 }
 $message = "Pseudo ou email invalide";
+}
+
 
 
 ?>
@@ -91,10 +76,15 @@ $message = "Pseudo ou email invalide";
 
                 <?php
                 echo "$message"; //message d'erreur SQL
+
+
+
+
+                $active=1; $title = "mot de passe oublié"; require('footer.php'); 
+
                 ?>
             </div>
-            <! -- haut de page -->
-                <p class="pied">SIO 2020/2021 Marques, Dutertre, Carles</p>
+         
 </body>
 
 </html>
