@@ -5,7 +5,7 @@
     $password=isset($_POST['password']) ? $_POST['password'] :  "";
     $password2=isset($_POST['password2']) ? $_POST['password2'] :  "";
     $nom=isset($_POST['nom']) ? $_POST['nom'] : "";
-    $nom=isset($_POST['premon']) ? $_POST['prenom'] : "";
+    $prenom=isset($_POST['premon']) ? $_POST['prenom'] : "";
     $typeutil=isset($_POST['role']) ? $_POST['role'] : ""; 
     $submit=isset($_POST['submit']);
     //Si l'user a cliqué sur submit
