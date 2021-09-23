@@ -27,7 +27,7 @@
                     <td><label for="password2">Confirmer le mot de passe* : </label></td>
                     <td><input type="password" id="password2" name="password2"></td>
                 </tr>
-                    <td><label for="club">Club* : </label></td>
+                <td><label for="club">Club* : </label></td>
                     <td>
                         <select name="club" id="club">
                             <option value="1">Club de Judo Auvergne-Rhône-Alpes</option>
@@ -39,13 +39,23 @@
                         </select>
                     </td>
                 </tr>
-
-                    <td><p><a href="connexion.php">Déjà inscrit ?</a></p></body></td>
-                    <td><input class="button green full" name="submit" type="submit" value="S'inscrire"></td>
+                <tr>
+                    <td><label for="adresse">Adresse* : </label></td>
+                    <td><input type="text" id="adr1" name="adresse"></td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td><p>* : Champs obligatoires</p></td>
+                    <td><label for="cp">Code Postal* : </label></td>
+                    <td><input type="text" id="adr2" name="cp"></td>
+                </tr>
+                <tr>
+                    <td><label for="ville">Ville* : </label></td>
+                    <td><input type="text" id="adr3" name="ville"></td>
+                </tr>
+                    <td><p><a href="connexion.php">Déjà inscrit ?</a></p></body></td>
+                <td><input class="button green full" name="submit" type="submit" value="S'inscrire"></td>
+                </tr>
+                <tr>
+                    <td colspan=2><p>* : Champs obligatoires</p></td>
                 </tr>
             </table>                
             </form>
