@@ -3,6 +3,14 @@
         <h1>Inscription</h1>
             <form class="form" action="inscription_validation.php" method="post">
             <table>
+            <tr>
+                    <td><label for="nom">Nom* : </label></td>
+                    <td><input type="text" id="nom" name="nom"></td>
+                </tr>
+                <tr>
+                    <td><label for="prenom">Prénom* : </label></td>
+                    <td><input type="text" id="prenom" name="prenom"></td>
+                </tr>
                 <tr>
                     <td><label for="pseudo">Pseudo* : </label></td>
                     <td><input type="text" id="pseudo" name="pseudo"></td>
@@ -22,15 +30,16 @@
                     <td><label for="club">Club* : </label></td>
                     <td>
                         <select name="club" id="club">
-                            <option value="1">Ligue de Judo Auvergne-Rhône-Alpes</option>
-                            <option value="2">Ligue de football de Haute-Garonne</option>
-                            <option value="3">Ligue de footbal d'Aquitaine</option>
-                            <option value="4">Ligue de tennis de Corse du Sud</option>
-                            <option value="5">Ligue d'équitation du Var</option>
-                            <option value="6">Ligue de natation du Quercy</option>
+                            <option value="1">Club de Judo Auvergne-Rhône-Alpes</option>
+                            <option value="2">Club de football de Haute-Garonne</option>
+                            <option value="3">Club de footbal d'Aquitaine</option>
+                            <option value="4">Club de tennis de Corse du Sud</option>
+                            <option value="5">Club d'équitation du Var</option>
+                            <option value="6">Club de natation du Quercy</option>
                         </select>
                     </td>
                 </tr>
+
                     <td><p><a href="connexion.php">Déjà inscrit ?</a></p></body></td>
                     <td><input class="button green full" name="submit" type="submit" value="S'inscrire"></td>
                 </tr>
