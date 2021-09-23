@@ -4,7 +4,10 @@
     $email=isset($_POST['email']) ? $_POST['email'] :  "";
     $password=isset($_POST['password']) ? $_POST['password'] :  "";
     $password2=isset($_POST['password2']) ? $_POST['password2'] :  "";
-    $club=isset($_POST['clun']) ? $_POST['club'] : '';
+    $club=isset($_POST['club']) ? $_POST['club'] : '';
+    $club=isset($_POST['adr1']) ? $_POST['adr1'] : '';
+    $club=isset($_POST['adr2']) ? $_POST['adr2'] : '';
+    $club=isset($_POST['adr3']) ? $_POST['adr3'] : '';
     $submit=isset($_POST['submit']);
     //Si l'user a cliqué sur submit
     if ($submit) {
@@ -41,7 +44,7 @@
                                 ':password' => $password,
                                 ':mail' => $email,
                                 ':id_usertype' => 1,
-                                ':id_ligue' => $ligue
+                                ':id_club' => $ligue
                             ));
                         } //Gestion es erreurs
                         catch (PDOException $ex) {
