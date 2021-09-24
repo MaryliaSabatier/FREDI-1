@@ -22,12 +22,12 @@ if ($submit) {
             'pseudo' => $pseudo,
             'mail' => $email
         ));
-        $user = $sth->fetch(PDO::FETCH_ASSOC);
+        $utilisateur = $sth->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $ex) { //erreur SQL
         die("Erreur lors de la requête SQL : " . $ex->getMessage());
     }
-    if ($pseudo == $user["pseudo"] && ($user["mail"])) { //condition et verification de l'adresse mail et speudo
-        $id_utilisateur = $user["id_utilisateur"];
+    if ($pseudo == $utilisateur["pseudo"] && ($utilisateur["mail"])) { //condition et verification de l'adresse mail et speudo
+        $id_utilisateur = $utilisateur["id_utilisateur"];
 
 
         header("Location: mdp.php?id_utilisateur=" . $id_utilisateur); //renvois a la ligue 
@@ -53,16 +53,7 @@ if ($submit) {
 </head>
 
 <body>
-    <! -- haut de page -->
-        <ul>
-            <li><a href="index.php">Accueil</a></li>
-            <li class="right"><a href="register.php">S'inscrire</a></li>
-            <li class="right"><a class="active" href="login.php">Se connecter</a></li>
-
-        </ul>
-        <! -- corps de la page -->
-            <div class="marg">
-                <h1>M2L</h1>
+  
 
                 <h3>Mot de passe oublié</h3>
                 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
@@ -73,7 +64,7 @@ if ($submit) {
                     <input type="text" name="email" />
                     <br><br>
                     <input type="submit" name="submit" value="valider"> &nbsp;&nbsp;
-                    <input type="hidden" name="id" hidden value="<?= $id_utilisateur ?>">
+                  
                 </form>
                 <br>
 

@@ -4,9 +4,9 @@
     //Le mdp saisi par l'user va dans la variable $password
     $password=isset($_POST['password']) ? $_POST['password'] :  "";
     //Si pseudo sup à 8 carac.
-    if(strlen($pseudo)>=8){
+    if(strlen($pseudo)>=0){
         //Si mdp sup à 8 carac.
-        if(strlen($password)>=8){
+        if(strlen($password)>=0){
             //On rentre la requête sql dans une variable
             $sql="SELECT * FROM utilisateur WHERE pseudo=:pseudo";
             //Lecture du pseudo dans la BDD 

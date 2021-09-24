@@ -17,7 +17,7 @@
                 </tr>
                 <tr>
                     <td><label for="email">Email* : </label></td>
-                    <td><input type="text" id="email" name="email"></td>
+                    <td><input type="text" id="mail" name="mail"></td>
                 </tr>
                 <tr>
                     <td><label for="password">Mot de passe* : </label></td>

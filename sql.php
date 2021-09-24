@@ -1,15 +1,15 @@
 <?php
-  //Permet la connexion à la BDD avec les paramètres
-  $dsn='mysql:host=127.0.0.1;dbname=fredi21';
-  $username="root";
-  $password="";
-  //Crée une connexion PDO
-  try {
-      $dbh = new PDO($dsn, $username, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND=>"SET NAMES utf8"));
-      $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      return $dbh;
-  //Gestion des erreurs
-  } catch (PDOException $ex) {
-    die("Erreur lors de  la requetes SQL : ".$ex->getMessage());
-  }
+ //démmarage de la session
+
+//connextion a la base de donnée
+$dsn = 'mysql:host=localhost;dbname=fredi21'; // contient le nom du serveur et de la base
+$user = 'root';
+$password = '';
+
+try {
+    $dbh = new PDO($dsn, $user, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $ex) { //gestion des erreurs
+    die("Erreur lors de la connexion SQL : " . $ex->getMessage());
+}
 ?>
