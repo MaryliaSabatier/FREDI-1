@@ -24,7 +24,7 @@ if ($submit) {
             //Si 2 mdp identiques
             if ($password == $password2) {
                 //Lecture du pseudo et du mail dans la BDD pour comparer si ceux-ci existent déjà ou non
-                $sql = "SELECT * FROM utilisateur WHERE pseudo LIKE ':pseudo' OR mail lIKE ':mail'";
+                $sql = "SELECT * FROM utilisateur WHERE pseudo = ':pseudo' OR mail = ':mail'";
                 try {
                     $sth = $dbh->prepare($sql);
                     $sth->execute(array(
