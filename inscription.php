@@ -38,16 +38,16 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><label for="adresse">Adresse* : </label></td>
-                    <td><input type="text" id="adr1" name="adresse"></td>
+                    <td><label for="adr1">Adresse* : </label></td>
+                    <td><input type="text" id="adr1" name="adr1"></td>
                 </tr>
                 <tr>
-                    <td><label for="cp">Code Postal* : </label></td>
-                    <td><input type="text" id="adr2" name="cp"></td>
+                    <td><label for="adr2">Code Postal* : </label></td>
+                    <td><input type="text" id="adr2" name="adr2"></td>
                 </tr>
                 <tr>
-                    <td><label for="ville">Ville* : </label></td>
-                    <td><input type="text" id="adr3" name="ville"></td>
+                    <td><label for="adr3">Ville* : </label></td>
+                    <td><input type="text" id="adr3" name="adr3"></td>
                 </tr>
                     <td><p><a href="connexion.php">Déjà inscrit ?</a></p></body></td>
                 <td><input class="button green full" name="submit" type="submit" value="S'inscrire"></td>
