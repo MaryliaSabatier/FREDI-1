@@ -8,6 +8,7 @@ $mail = isset($_POST['mail']) ? $_POST['mail'] :  '';
 $password = isset($_POST['password']) ? $_POST['password'] :  '';
 $password2 = isset($_POST['password2']) ? $_POST['password2'] :  '';
 $nom = isset($_POST['nom']) ? $_POST['nom'] : '';
+$ligue = isset($_POST['ligue']) ? $_POST['ligue'] : '';
 $prenom = isset($_POST['prenom']) ? $_POST['prenom'] : '';
 $adr1 = isset($_POST['adr1']) ? $_POST['adr1'] : '';
 $adr2 = isset($_POST['adr2']) ? $_POST['adr2'] : '';
