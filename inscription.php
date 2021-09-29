@@ -1,4 +1,4 @@
-<?php $active=3; $title = "Inscription"; require('header.php'); ?>
+<?php $active=3; $title = "Inscription"; require('header.php'); $page=$_SERVER['PHP_SELF'];;logToDisk($page);?>
     <div class="center">
         <h1>S'inscrire</h1>
             <form class="form" action="inscription_validation.php" method="post">

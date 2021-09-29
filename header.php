@@ -1,6 +1,7 @@
 <?php
     //Création de la session
     session_start();
+    include 'log/log.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
