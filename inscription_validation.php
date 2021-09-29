@@ -19,11 +19,11 @@ if ($submit) {
     //Si pseudo sup à 8 carac.
     if (strlen($pseudo) >= 0) {
         //Si mdp sup à 8 carac.
-        if (strlen($password) >= 0) {
+        if (strlen($password) >= 8) {
             //Si 2 mdp identiques
             if ($password == $password2) {
                 //Lecture du pseudo et du mail dans la BDD pour comparer si ceux-ci existent déjà ou non
-                $sql = "SELECT pseudo, mail FROM utilisateur WHERE pseudo LIKE ':pseudo' OR mail lIKE ':mail'";
+                $sql = "SELECT * FROM utilisateur WHERE pseudo LIKE ':pseudo' OR mail lIKE ':mail'";
                 try {
                     $sth = $dbh->prepare($sql);
                     $sth->execute(array(
@@ -36,77 +36,58 @@ if ($submit) {
                     die("Erreur lors de la requête SQL : " . $ex->getMessage());
                 }
                 //Si le mail ou le pseudo n'existe pas déjà alors on peut s'inscrire
-          if (!($user['mail'] == $mail || $user['pseudo'] == $pseudo)) {
+                if (!($user['mail'] == $mail || $user['pseudo'] == $pseudo)) {
                     //On crypte le mdp
                     $password = password_hash($password, PASSWORD_BCRYPT);
                     //On insère les champs saisis dans la BDD avec la requête SQL
-                   
 
 
-            
-                   
-                    try {
-                        $req = $dbh->prepare('INSERT INTO  adherent (adr1 ,adr2 ,adr3 )VALUES (:adr1 ,:adr2 ,:adr3) ');
-                        $req->execute(array(
-                            ':adr1' => $adr1,
-                            ':adr2' => $adr2,
-                            ':adr3' => $adr3
-                            
-                        ));
-
-                     
-                    } catch (PDOException $ex) { //gestion des erreurs
-                        die("Erreur lors de la requête SQL : " . $ex->getMessage());
-                    }
-                    
-                    $sql = "update adherent set id_utilisateur=':id_utilisateur' ";
-                    try {
-                        $sth = $dbh->prepare($sql);
-                        $sth->execute(array(":id_utilisateur"=>$rows));
-                        $nb = $sth->rowcount();
-                    } catch (PDOException $e) {
-                        die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
-                    }
-                    try {
-                        $sth = $dbh->prepare('SELECT * FROM `adherent` WHERE adr1 = ":adr1" and adr2 =":adr2" and adr3 =":adr3"');
-                        $sth->execute(array(
-                            ':adr1' => $adr1,
-                            ':adr2' => $adr2,
-                            ':adr3' => $adr3
-                        ));
-                        $rows = $sth->fetch(PDO::FETCH_ASSOC);
-                    } catch (PDOException $ex) {
-                        die("Erreur lors de la requête SQL : " . $ex->getMessage());
-                    }
-                    //affichage du tableau
-                    
-                   
                     try {        //insertion de l'utilsateur   
-                        $req = $dbh->prepare('INSERT INTO utilisateur(pseudo, mdp, mail,nom,prenom ,id_utilisateur) VALUES(:pseudo ,:mdp ,:mail ,:nom,:prenom,:id_adherent)');
+                        $req = $dbh->prepare('INSERT INTO utilisateur(pseudo, mdp, mail,nom,prenom ) VALUES(:pseudo ,:mdp ,:mail ,:nom,:prenom)');
                         $req->execute(array(
                             ':nom' => $nom,
                             ':prenom' => $prenom,
                             ':mdp' => $password,
                             ':mail' =>   $mail,
-                            ':pseudo' => $pseudo,
-                            ':id_adherent' => $rows
+                            ':pseudo' => $pseudo
+
                         ));
-                      
+
                         //revois vers la liste des questions   
-                        echo 'enregistrement effectué !';
-                        header('Location:connexion.php');
+
                     } catch (PDOException $ex) {
                         die("Erreur lors de la requête SQL : " . $ex->getMessage());
                     }
 
 
-
+                    //affichage du tableau
+                    try {
+                        $requser = $dbh->prepare("SELECT * FROM utilisateur WHERE mail = :mail");
+                        $requser->execute(array(":mail" => $mail));
+                        $userinfo = $requser->fetch();
+                    } catch (PDOException $e) {
+                        die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
+                    }
+                    try {
+                        $req = $dbh->prepare('INSERT INTO  adherent (adr1 ,adr2 ,adr3 ,id_utilisateur,id_club)VALUES (:adr1 ,:adr2 ,:adr3,:id_utilisateur,:id_club) ');
+                        $req->execute(array(
+                            ':adr1' => $adr1,
+                            ':adr2' => $adr2,
+                            ':adr3' => $adr3,
+                            ':id_utilisateur' => $userinfo['id_utilisateur'],
+                            ':id_club' => '5'
+                        ));
+                        //  echo 'enregistrement effectué !';
+                        // header('Location:connexion.php');
+                    } catch (PDOException $ex) { //gestion des erreurs
+                        die("Erreur lors de la requête SQL : " . $ex->getMessage());
+                    }
 
                     $_SESSION['messages'] = array(
                         "inscription" => ["green", "Vous vous êtes bien inscrit !"]
                     );
                     header("Location: connexion.php");
-             } //Conditions où la connexion échoue
+                } //Conditions où la connexion échoue
                 else {
                     $_SESSION['messages'] = array("Password" => ["red", "Cet utilisateur ou mail existe déjà."]);
                     header("Location: inscription.php");
