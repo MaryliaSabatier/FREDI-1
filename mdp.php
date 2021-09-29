@@ -45,46 +45,29 @@ $id_utilisateur = isset($_GET['id_utilisateur']) ? $_GET['id_utilisateur'] : nul
 
         echo "<p>entrez votre question</p>";
         //Si 2 mdp identiques
-        if ($password == $password2) {
-            $password = password_hash($password, PASSWORD_BCRYPT);
-            try {
-                $req = $dbh->prepare('UPDATE  utilisateur SET mdp =:mdp  WHERE id_utilisateur=:id_utilisateur');
-                $req->execute(array(
-                    'mdp' => $password,
-                    'id_utilisateur' => $id_utilisateur
-                ));
-                $_SESSION['messages'] = array("inscription" => ["green", "Mot de passe bien modifié !"]);
-                header('Location:connexion.php');  //revois vers la liste des questions   
-            } catch (PDOException $ex) { //gestion des erreurs
-                die("Erreur lors de la requête SQL : " . $ex->getMessage());
+        if (strlen($password) >= 8 && $containsAll == true) {
+            if ($password == $password2) {
+
+                $password = password_hash($password, PASSWORD_BCRYPT);
+                try {
+                    $req = $dbh->prepare('UPDATE  utilisateur SET mdp =:mdp  WHERE id_utilisateur=:id_utilisateur');
+                    $req->execute(array(
+                        'mdp' => $password,
+                        'id_utilisateur' => $id_utilisateur
+                    ));
+                    $_SESSION['messages'] = array("inscription" => ["green", "Mot de passe bien modifié !"]);
+                    header('Location:connexion.php');  //revois vers la liste des questions   
+                } catch (PDOException $ex) { //gestion des erreurs
+                    die("Erreur lors de la requête SQL : " . $ex->getMessage());
+                }
+            } else {
+                $_SESSION['messages'] = array("Password" => ["red", "Les mots de passe ne sont pas identiques"]);
             }
         } else {
-            $_SESSION['messages'] = array("Password" => ["red", "Les mots de passe ne sont pas identiques"]);
+            $_SESSION['messages'] = array("Password" => ["red", "Vous avez rentré un mot de passe trop court ou qui ne contient pas de chiffre ou de lettre ou qui ne contient pas de majuscule"]);
         }
     }
-
     ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     <br>
     </div>
