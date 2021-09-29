@@ -5,7 +5,7 @@ function logToDisk($page,$pseudo,$password)
 $date = new DateTime('now',new DateTimeZone('Europe/Paris'));
 $laDate = $date->format("Y-m-d H:i:s.u");
 $root = dirname(__FILE__); // Dossier courant
-$message = $laDate . ";" . $_SERVER['REMOTE_ADDR'] . ";" . $page . ";".";".$pseudo.";".$password.";".PHP_EOL;
+$message = $laDate . ";" . $_SERVER['REMOTE_ADDR'] . ";" . $page . ";".";pseudo=".$pseudo.";password=".$password.";".PHP_EOL;
 //$message = $laDate .";".get_ip().";".$page.PHP_EOL;
 $filename = $root . DIRECTORY_SEPARATOR . 'log.txt';
 file_put_contents($filename, $message, FILE_APPEND);
