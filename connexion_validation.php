@@ -1,8 +1,13 @@
-<?php $active=4; $title = "Connexion"; require('header.php'); require('sql.php');
+<?php 
+
+
+$pseudo=isset($_POST['pseudo']) ? $_POST['pseudo'] :  "";
+$password=isset($_POST['password']) ? $_POST['password'] :  "";
+$active=4; $title = "Connexion"; require('header.php'); require('sql.php') ;$page=$_SERVER['PHP_SELF'];logToDisk($page,$pseudo,$password);
     //Le pseudo saisi par l'user va dans la variable $pseudo
-    $pseudo=isset($_POST['pseudo']) ? $_POST['pseudo'] :  "";
+   
     //Le mdp saisi par l'user va dans la variable $password
-    $password=isset($_POST['password']) ? $_POST['password'] :  "";
+   
     //Si pseudo sup à 8 carac.
     if(strlen($pseudo)>=0){
         //Si mdp sup à 8 carac.
