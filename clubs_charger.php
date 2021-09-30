@@ -1,7 +1,8 @@
 <?php
-include "init.php"
+include "init.php";
 // Connexion à la base
-$dbh = db_connect();
+require('sql.php');
+
 
 // Import du fichier CSV sous la forme d'un tablau PHP
 $rows = load_from_csv(ROOT . DS . "files" . DS . "clubs.csv", 2);
@@ -14,7 +15,7 @@ $sql .= "INSERT INTO `club`(`id_club`, `lib_club`, `adr1`, `adr2`, `adr3`, `id_l
 foreach ($rows as $row) {
   $sql .= "(";
   $sql .= $dbh->quote( $row[0], PDO::PARAM_STR). ","; // id club
-  //$sql .= $dbh->quote( $row[1]), PDO::PARAM_STR). ", "; // lib club
+  $sql .= $dbh->quote( $row[1]), PDO::PARAM_STR). ", "; // lib club
   $sql .= $dbh->quote( $row[2], PDO::PARAM_STR). ", ";  // adresse 1
   $sql .= $dbh->quote( $row[3], PDO::PARAM_STR). ", ";  // adresse 2
   $sql .= $dbh->quote( $row[4], PDO::PARAM_STR). ", ";  // adresse 3

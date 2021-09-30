@@ -1,16 +1,12 @@
 <?php
-/**
- * ph143b - Europa
- * Liste des pays
- */
 // Initialisations
 include 'init.php';
 
 // Connexion à la base
-$dbh = db_connect();
+require('sql.php');
 
 // Récupère la liste des pays
-$sql = 'select * from pays';
+$sql = 'select * from club';
 try {
   $sth = $dbh->prepare($sql);
   $sth->execute();
@@ -27,42 +23,35 @@ try {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>ph143b - Europa</title>
-  <link rel="stylesheet" href="css/styles.css">
+  <title>Freddi club</title>
+  <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body>
-  <h1>ph143b - Europa</h1>
-  <h2>Liste des pays de l'Union Européenne</h2>
+  <h1>Clubs/h1>
+  <h2>Liste des clubs</h2>
   <?php
-  include "menu.php";
   if (count($rows) > 0) {
   ?>
     <table>
       <tr>
-        <th>ID</th>
-        <th>Nom</th>
-        <th>Date d'adhésion</th>
-        <th>Code</th>
-        <th>Nom local</th>
-        <th>Capitale</th>
-        <th>Langue(s) officielle(s)</th>
-        <th>Monnaie</th>
+        <th>ID Club</th>
+        <th>Libellé </th>
+        <th>adr1</th>
+        <th>adr2</th>
+        <th>adr3l</th>
+        <th>ID Ligues</th>
         <th>&nbsp;</th>
       </tr>
       <?php
       foreach ($rows as $row) {
         echo '<tr>';
-        echo '<td>' . $row['id_pays'] . '</td>';
-        echo '<td>' . $row['nom_fr'] . '</td>';
-        echo '<td>' . $row['date_adhesion'] . '</td>';
-        echo '<td>' . $row['code'] . '</td>';
-        echo '<td>' . $row['nom_local'] . '</td>';
-        echo '<td>' . $row['capitale'] . '</td>';
-        echo '<td>' . $row['langues'] . '</td>';
-        echo '<td>' . $row['monnaie'] . '</td>';
-        echo '<td><a href="pays_modifier.php?id_pays=' . $row['id_pays'] . '">Modifier</a>&nbsp;';
-        echo '<a href="pays_supprimer.php?id_pays=' . $row['id_pays'] . '">Supprimer</a></td>';
+        echo '<td>' . $row['id_club'] . '</td>';
+        echo '<td>' . $row['lib_club'] . '</td>';
+        echo '<td>' . $row['adr1'] . '</td>';
+        echo '<td>' . $row['adr2'] . '</td>';
+        echo '<td>' . $row['adr3'] . '</td>';
+        echo '<td>' . $row['id_ligues'] . '</td>';
         echo "</tr>";
       } ?>
     </table>
@@ -72,7 +61,6 @@ try {
   }
   ?>
   <p><?php echo count($rows); ?> pays(s)</p>
-  <p><a href="pays_ajouter.php">Ajouter</a> un pays</p>
 </body>
 
 </html>
