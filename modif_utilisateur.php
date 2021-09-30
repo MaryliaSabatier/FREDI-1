@@ -7,7 +7,7 @@ include 'sql.php';
 $id_utilisateur = isset($_GET['id_utilisateur']) ? $_GET['id_utilisateur'] : '';
 
 // Lecture du formulaire
-$role = isset($_POST['langues']) ? $_POST['langues'] : '';
+$role = isset($_POST['role']) ? $_POST['role'] : '';
 
 $submit = isset($_POST['submit']);
 
@@ -15,10 +15,10 @@ $submit = isset($_POST['submit']);
 if ($submit) {
     // Formulaire validé : on modifie l'enregistrement
     $id_utilisateur = $_POST['id_utilisateur'];
-    $sql = "update utilisateur set role=:role";
+    $sql = "update utilisateur set role=:role where id_utilisateur=:id_utilisateur";
     try {
         $sth = $dbh->prepare($sql);
-        $sth->execute(array(":role" => $role));
+        $sth->execute(array(":role" => $role, ":id_utilisateur" => $id_utilisateur));
         $nb = $sth->rowcount();
     } catch (PDOException $e) {
         die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
