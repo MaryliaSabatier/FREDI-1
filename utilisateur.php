@@ -49,7 +49,7 @@ try {
         echo '<td>' . $row['nom'] . '</td>';
         echo '<td>' . $row['prenom'] . '</td>';
         echo '<td>' . $row['role'] . '</td>';
-
+        echo '<td><a href="modif_utilisateur.php?id_utilisateur=' . $row['id_utilisateur'] . '">Modifier</a>&nbsp;';
         echo "</tr>";
       } ?>
     </table>
