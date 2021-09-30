@@ -6,7 +6,7 @@ include 'init.php';
 // Import du fichier CSV sous la forme d'un tablau PHP
 $rows = load_from_csv(ROOT . DS . "files" . DS . "clubs.csv", 2);
 // Génération des ordres SQL de réinitialisation de la base (drop/create)
-$sql = file_get_contents(ROOT . DS . "BDD" . DS . "fredi21.sql") . PHP_EOL;
+$sql = file_get_contents(ROOT . DS . "BDD" . DS . "club.sql") . PHP_EOL;
 // Génération de l'ordre SQL "INSERT"
 $sql .= "USE fredi21;" . PHP_EOL;
 $sql .= "INSERT INTO club (id_club, lib_club, adr1, adr2,adr3, id_ligue )  VALUES " . PHP_EOL;
@@ -26,11 +26,12 @@ $sql .= ")," . PHP_EOL;
 $sql = rtrim($sql, PHP_EOL);
 $sql = rtrim($sql, ',');
 // Exécution des ordres SQL
+echo "<pre>";
 echo($sql);
+echo "</pre>";
 try {
 $sth = $dbh->prepare($sql);
 $sth->execute();
 } catch (PDOException $ex) {
 die("Erreur lors de la requête SQL : " . $ex->getMessage());
 }
-?>

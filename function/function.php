@@ -53,13 +53,7 @@ function MailToDisk($to,$subject,$message,$id){
   
   return $ok; 
 }
-?>
 
-
-</body>
-</html>
-?>
-<?php 
 function load_from_csv(string $filename, int $start = 1)
 {
   // Ouverture du fichier
