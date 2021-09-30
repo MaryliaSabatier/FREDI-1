@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 30 sep. 2021 à 14:35
--- Version du serveur :  10.4.18-MariaDB
--- Version de PHP : 8.0.3
+-- Généré le : mer. 22 sep. 2021 à 21:07
+-- Version du serveur : 10.4.20-MariaDB
+-- Version de PHP : 7.4.22
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `fredi21`
 --
+CREATE DATABASE IF NOT EXISTS `fredi21` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `fredi21`;
 
 -- --------------------------------------------------------
 
@@ -27,6 +29,7 @@ SET time_zone = "+00:00";
 -- Structure de la table `adherent`
 --
 
+DROP TABLE IF EXISTS `adherent`;
 CREATE TABLE `adherent` (
   `id_adherent` int(11) NOT NULL,
   `nr_licence` varchar(50) DEFAULT NULL,
@@ -43,6 +46,7 @@ CREATE TABLE `adherent` (
 -- Structure de la table `club`
 --
 
+DROP TABLE IF EXISTS `club`;
 CREATE TABLE `club` (
   `id_club` int(11) NOT NULL,
   `lib_club` varchar(50) DEFAULT NULL,
@@ -58,6 +62,7 @@ CREATE TABLE `club` (
 -- Structure de la table `ligne`
 --
 
+DROP TABLE IF EXISTS `ligne`;
 CREATE TABLE `ligne` (
   `id_ligne` int(11) NOT NULL,
   `dat_ligne` date DEFAULT NULL,
@@ -78,6 +83,7 @@ CREATE TABLE `ligne` (
 -- Structure de la table `ligue`
 --
 
+DROP TABLE IF EXISTS `ligue`;
 CREATE TABLE `ligue` (
   `id_ligue` int(11) NOT NULL,
   `lib_ligue` varchar(50) DEFAULT NULL
@@ -89,6 +95,7 @@ CREATE TABLE `ligue` (
 -- Structure de la table `motif`
 --
 
+DROP TABLE IF EXISTS `motif`;
 CREATE TABLE `motif` (
   `id_motif` int(11) NOT NULL,
   `lib_motif` varchar(50) DEFAULT NULL
@@ -100,6 +107,7 @@ CREATE TABLE `motif` (
 -- Structure de la table `note`
 --
 
+DROP TABLE IF EXISTS `note`;
 CREATE TABLE `note` (
   `id_note` int(11) NOT NULL,
   `est_valide` tinyint(1) DEFAULT NULL,
@@ -116,6 +124,7 @@ CREATE TABLE `note` (
 -- Structure de la table `periode`
 --
 
+DROP TABLE IF EXISTS `periode`;
 CREATE TABLE `periode` (
   `id_periode` int(11) NOT NULL,
   `lib_periode` varchar(50) DEFAULT NULL,
@@ -129,6 +138,7 @@ CREATE TABLE `periode` (
 -- Structure de la table `utilisateur`
 --
 
+DROP TABLE IF EXISTS `utilisateur`;
 CREATE TABLE `utilisateur` (
   `id_utilisateur` int(11) NOT NULL,
   `pseudo` varchar(50) DEFAULT NULL,
@@ -248,7 +258,7 @@ ALTER TABLE `periode`
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `id_utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_utilisateur` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Contraintes pour les tables déchargées
