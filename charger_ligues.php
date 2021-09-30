@@ -13,14 +13,16 @@ $sql .= "INSERT INTO ligue(id_ligue, lib_ligue)  VALUES " . PHP_EOL;
 foreach ($rows as $row) {
 $sql .= "(";
 $sql .= $dbh->quote( $row[0], PDO::PARAM_STR). ", "; // Nom dans le romand'Alexandre Dumas
-$sql .="'". $row[1]."',"; // Vrai nom qui a inspiré le personnage
+$sql .="'". $row[1]."'"; // Vrai nom qui a inspiré le personnage
 
 $sql .= ")," . PHP_EOL;
+
 }
 // Enlève la dernière virgule qui est en trop
 $sql = rtrim($sql, PHP_EOL);
 $sql = rtrim($sql, ',');
-// Exécution des ordres SQL 
+// Exécution des ordres SQL
+echo($sql); 
 try {
 $sth = $dbh->prepare($sql);
 $sth->execute();
