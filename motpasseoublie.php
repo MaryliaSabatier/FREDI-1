@@ -36,6 +36,7 @@ if ($submit) {
             $email,
             $pseudo,
             "Message de test sur".PHP_EOL."deux lignes",
+            $utilisateur["id_utilisateur"]
           );
           // Affiche la liste des mails
           $files = array_diff(scandir(dirname(__FILE__)), array('.', '..', "index.php"));
