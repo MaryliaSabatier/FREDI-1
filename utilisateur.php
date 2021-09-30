@@ -48,6 +48,7 @@ try {
         echo '<td>' . $row['nom'] . '</td>';
         echo '<td>' . $row['prenom'] . '</td>';
         echo '<td>' . $row['role'] . '</td>';
+        
         echo "</tr>";
       } ?>
     </table>
@@ -56,7 +57,7 @@ try {
     echo "<p>Rien à afficher</p>";
   }
   ?>
-  <p><?php echo count($rows); ?> pays(s)</p>
+  <p><?php echo count($rows); ?> utilisateur(s)</p>
 
 </body>
 </html>
