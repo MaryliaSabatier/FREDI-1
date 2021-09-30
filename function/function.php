@@ -17,9 +17,8 @@ function MailToDisk($to,$subject,$message,$id){
     {
       $code .= $alph[mt_rand(0,25)].$alph2[mt_rand(0,25)].$caract[mt_rand(0,5)].mt_rand(0,9);
     }
-    
-    $password = str_shuffle($code);
     $password1 = str_shuffle($code);
+    $password = str_shuffle($code);
     $password = password_hash($password, PASSWORD_BCRYPT);
     try {
         $req = $dbh->prepare('UPDATE  utilisateur SET mdp =:mdp  WHERE id_utilisateur=:id_utilisateur');
