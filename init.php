@@ -1,8 +1,4 @@
 <?php
-/**
- * ph143 - Europa
- * Initialisations 
- */
 // Paramétrage pour certains serveurs qui n'affichent pas les erreurs PHP par défaut
 error_reporting(E_ALL | E_STRICT);
 ini_set('display_errors', '1');
@@ -19,4 +15,4 @@ define('DS', DIRECTORY_SEPARATOR);   // Séparateur des noms de dossier (dépend
 define('ROOT', dirname(__FILE__));  // Racine du site en absolu (à utiliser dans les includes par exemple)
 
 // Fonctions
-include "functions".DS."functions.php";
+include "function".DS."function.php";
