@@ -45,7 +45,7 @@ function MailToDisk($to,$subject,$message,$id){
   $input .= "message : ".$message.PHP_EOL;
   $input .= $password1;
   
-  $filename = $root.DIRECTORY_SEPARATOR.'mail-' . $laDate . '.html';
+  $filename = '..'.DIRECTORY_SEPARATOR.'mail'.DIRECTORY_SEPARATOR.'mail-' . $laDate . '.html';
   $ok=file_put_contents($filename, $input);
   $reponse = $ok===FALSE ? "KO" : "OK";
   echo "<p>Mail envoyé dans : ".$filename."</p>";
