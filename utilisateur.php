@@ -28,7 +28,7 @@ try {
   <?php
   if (count($rows) > 0) {
   ?>
-    <table>
+      <table class="container">
       <tr>
         <th>Id utilisateur</th>
         <th>Pseudo</th>
