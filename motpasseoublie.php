@@ -35,7 +35,7 @@ if ($submit) {
         MailToDisk(
             $email,
             $pseudo,
-            "Message de test sur".PHP_EOL."deux lignes",
+            "votre nouveau mot de passe est :",
             $utilisateur["id_utilisateur"]
           );
           // Affiche la liste des mails

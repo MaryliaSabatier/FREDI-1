@@ -60,7 +60,7 @@ try {
     echo "<p>Rien à afficher</p>";
   }
   ?>
-  <p><?php echo count($rows); ?> pays(s)</p>
+  <p><?php echo count($rows); ?> utilisateur(s)</p>
 </body>
 
 </html>
