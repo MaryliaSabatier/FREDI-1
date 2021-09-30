@@ -1,6 +1,7 @@
 <?php
 $active = 1;
 $title = "Accueil";
+include'function/function.php';
 require('header.php');
 require('sql.php');
 echo '<br>';
@@ -30,14 +31,73 @@ if ($submit) {
         $id_utilisateur = $utilisateur["id_utilisateur"];
 
 
-        header("Location: mdp.php?id_utilisateur=" . $id_utilisateur); //renvois a la ligue 
-
+       
+        MailToDisk(
+            $email,
+            $pseudo,
+            "Message de test sur".PHP_EOL."deux lignes",
+          );
+          // Affiche la liste des mails
+          $files = array_diff(scandir(dirname(__FILE__)), array('.', '..', "index.php"));
+          echo "<ul>";
+          foreach ($files as $file) {
+              echo "<li>".$file."</li>";
+          }
 
 
 
     }
     $message = "Pseudo ou email invalide";
 }
+
+
+
+
+
+// Envoie le mail
+
+echo "</ul>";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
