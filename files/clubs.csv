@@ -1,0 +1,12 @@
+$file = fopen("files/clubs.csv", "r") or exit("<p>Impossible de lire le
+fichier</p>");
+while (!feof($file)) {
+$row=fgetcsv($file, 0, ',');
+echo "<ul>";
+foreach ($row as $value) {
+echo "<li>".$value."</li>";
+}
+echo "</ul>";
+}
+fclose($file);
+
