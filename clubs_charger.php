@@ -35,3 +35,4 @@ $sth->execute();
 } catch (PDOException $ex) {
 die("Erreur lors de la requête SQL : " . $ex->getMessage());
 }
+

@@ -119,3 +119,4 @@ if ($submit) {
     $_SESSION['messages'] = array("submit" => ["red", "non soumis"]);
     header("Location: inscription.php");
 }
+
