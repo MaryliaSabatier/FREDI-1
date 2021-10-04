@@ -57,3 +57,7 @@
 2021-09-30 16:27:42.997982;::1;/fredi/connexion_validation.php;;pseudo=zkroz1ent;password=I50fb%@Q#7JcgM2%;
 2021-09-30 16:33:04.163095;::1;/fredi/inscription.php;;pseudo=;password=;
 2021-09-30 16:33:42.682682;::1;/fredi/inscription.php;;pseudo=;password=;
+2021-10-01 09:18:29.063414;127.0.0.1;/fredi/connexion_validation.php;;pseudo=az;password=az;
+2021-10-01 09:18:32.205739;127.0.0.1;/fredi/inscription.php;;pseudo=;password=;
+2021-10-01 09:20:01.053301;::1;/fredi/connexion_validation.php;;pseudo=damien;password=Damien2001.;
+2021-10-04 14:36:27.017235;::1;/fredi/inscription.php;;pseudo=;password=;
