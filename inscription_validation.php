@@ -86,7 +86,7 @@ if ($submit) {
                             ':adr2' => $adr2,
                             ':adr3' => $adr3,
                             ':id_utilisateur' => $userinfo['id_utilisateur'],
-                            ':id_club' => '5'
+                            ':id_club' => $ligue
                         ));
                         //  echo 'enregistrement effectué !';
                         // header('Location:connexion.php');
