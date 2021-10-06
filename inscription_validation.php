@@ -26,8 +26,8 @@ if ($submit) {
     //Si pseudo sup à 8 carac.
     if (strlen($pseudo) >= 0) {
         //Si mdp sup à 8 carac.
-      
-        if (strlen($password) >= 8 && $containsAll ==true) {
+
+        if (strlen($password) >= 8 && $containsAll == true) {
 
 
 
@@ -86,7 +86,7 @@ if ($submit) {
                             ':adr2' => $adr2,
                             ':adr3' => $adr3,
                             ':id_utilisateur' => $userinfo['id_utilisateur'],
-                            ':id_club' => '5'
+                            ':id_club' => $ligue
                         ));
                         //  echo 'enregistrement effectué !';
                         // header('Location:connexion.php');
@@ -119,4 +119,3 @@ if ($submit) {
     $_SESSION['messages'] = array("submit" => ["red", "non soumis"]);
     header("Location: inscription.php");
 }
-
