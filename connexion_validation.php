@@ -21,7 +21,7 @@
             catch (PDOException $ex) {
                 die("Erreur lors de la requête SQL : " . $ex->getMessage());
             }
-            //Si pseudo et mdp correct alors connecté       password_verify compare le mdp saisi avec le mdp crypté dans la BDD
+            //Si pseudo et mdp correct alors connecté password_verify compare le mdp saisi avec le mdp crypté dans la BDD
             if($pseudo === $user['pseudo'] && password_verify($password,$user['mdp'])){
                 //détruit la variable mdp
                 unset($user["mdp"]);
@@ -44,5 +44,9 @@
     }else{
         $_SESSION['messages']=array("Pseudo" => ["red", "Vous avez rentré un pseudo trop court"]);
         header("Location: connexion.php");
+    }
+
+    if ($utilisateur == 1) {
+        $sql="SELECT ";
     }
 ?>
