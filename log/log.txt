@@ -75,3 +75,6 @@
 2021-10-04 15:00:27.505939;::1;/fredi/inscription.php;;pseudo=;password=;
 2021-10-04 15:05:25.338518;::1;/fredi/inscription.php;;pseudo=;password=;
 2021-10-04 15:05:39.517406;::1;/fredi/inscription.php;;pseudo=;password=;
+2021-10-06 08:10:52.742683;::1;/fredi/inscription.php;;pseudo=;password=;
+2021-10-06 08:11:20.191994;::1;/fredi/inscription.php;;pseudo=;password=;
+2021-10-07 13:18:49.426103;::1;/fredi/inscription.php;;pseudo=;password=;
