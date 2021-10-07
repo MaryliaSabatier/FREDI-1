@@ -97,25 +97,81 @@ if ($submit) {
                     $_SESSION['messages'] = array(
                         "inscription" => ["green", "Vous vous êtes bien inscrit !"]
                     );
+
                     header("Location: connexion.php");
                 } //Conditions où la connexion échoue
                 else {
                     $_SESSION['messages'] = array("Password" => ["red", "Cet utilisateur ou mail existe déjà."]);
+?> <form class="form" action="inscription.php" method="post">
+                        <input type="hidden" name="nom" value="<?php echo $nom; ?>">
+                        <input type="hidden" name="prenom" value="<?php echo $prenom; ?>">
+                        <input type="hidden" name="mail" value="<?php echo $mail; ?>">
+                        <input type="hidden" name="pseudo" value="<?php echo $pseudo; ?>">
+                        <input type="hidden" name="adr1" value="<?php echo $adr1; ?>">
+                        <input type="hidden" name="adr2" value="<?php echo $adr2; ?>">
+                        <input type="hidden" name="adr3" value="<?php echo $adr3; ?>">
+
+                    </form>
+                <?php
                     header("Location: inscription.php");
                 }
             } else {
                 $_SESSION['messages'] = array("Password" => ["red", "Les mots de passe ne sont pas identiques"]);
+                ?> <form class="form" action="inscription.php" method="post">
+
+                    <input type="hidden" name="nom" value="<?php echo $nom; ?>">
+                    <input type="hidden" name="prenom" value="<?php echo $prenom; ?>">
+                    <input type="hidden" name="mail" value="<?php echo $mail; ?>">
+                    <input type="hidden" name="pseudo" value="<?php echo $pseudo; ?>">
+                    <input type="hidden" name="adr1" value="<?php echo $adr1; ?>">
+                    <input type="hidden" name="adr2" value="<?php echo $adr2; ?>">
+                    <input type="hidden" name="adr3" value="<?php echo $adr3; ?>">
+                </form>
+            <?php
                 header("Location: inscription.php");
             }
         } else {
             $_SESSION['messages'] = array("Password" => ["red", "Vous avez rentré un mot de passe trop court ou qui ne contient pas de chiffre ou de lettre ou qui ne contient pas de majuscule"]);
+            ?> <form class="form" action="inscription.php" method="post">
+                <input type="hidden" name="nom" value="<?php echo $nom; ?>">
+                <input type="hidden" name="prenom" value="<?php echo $prenom; ?>">
+                <input type="hidden" name="mail" value="<?php echo $mail; ?>">
+                <input type="hidden" name="pseudo" value="<?php echo $pseudo; ?>">
+                <input type="hidden" name="adr1" value="<?php echo $adr1; ?>">
+                <input type="hidden" name="adr2" value="<?php echo $adr2; ?>">
+                <input type="hidden" name="adr3" value="<?php echo $adr3; ?>">
+
+            </form>
+        <?php
             header("Location: inscription.php");
         }
     } else {
         $_SESSION['messages'] = array("Pseudo" => ["red", "Vous avez rentré un pseudo trop court"]);
+        ?> <form class="form" action="inscription.php" method="post">
+
+            <input type="hidden" name="nom" value="<?php echo $nom; ?>">
+            <input type="hidden" name="prenom" value="<?php echo $prenom; ?>">
+            <input type="hidden" name="mail" value="<?php echo $mail; ?>">
+            <input type="hidden" name="pseudo" value="<?php echo $pseudo; ?>">
+            <input type="hidden" name="adr1" value="<?php echo $adr1; ?>">
+            <input type="hidden" name="adr2" value="<?php echo $adr2; ?>">
+            <input type="hidden" name="adr3" value="<?php echo $adr3; ?>">
+        </form>
+    <?php
         header("Location: inscription.php");
     }
 } else {
     $_SESSION['messages'] = array("submit" => ["red", "non soumis"]);
+    ?> <form class="form" action="inscription.php" method="post">
+
+        <input type="hidden" name="nom" value="<?php echo $nom; ?>">
+        <input type="hidden" name="prenom" value="<?php echo $prenom; ?>">
+        <input type="hidden" name="mail" value="<?php echo $mail; ?>">
+        <input type="hidden" name="pseudo" value="<?php echo $pseudo; ?>">
+        <input type="hidden" name="adr1" value="<?php echo $adr1; ?>">
+        <input type="hidden" name="adr2" value="<?php echo $adr2; ?>">
+        <input type="hidden" name="adr3" value="<?php echo $adr3; ?>">
+    </form>
+<?php
     header("Location: inscription.php");
 }
