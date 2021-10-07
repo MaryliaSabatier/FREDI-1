@@ -12,7 +12,7 @@ START TRANSACTION;
 SET time_zone = "+00:00";
 
 USE `fredi21`;
-
+data bases; 
 --
 -- Structure de la table `club`
 --
