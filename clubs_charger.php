@@ -1,3 +1,7 @@
+
+
+
+
 <?php
 // Initialisations
 include 'sql.php';
@@ -33,13 +37,14 @@ try {
   die("Erreur lors de la requête SQL : " . $ex->getMessage());
 }
 // Exécution des ordres SQL
-echo "<pre>";
-echo($sql);
-echo "</pre>";
+
 try {
 $sth = $dbh->prepare($sql);
 $sth->execute();
 } catch (PDOException $ex) {
 die("Erreur lors de la requête SQL : " . $ex->getMessage());
 }
+
+?>
+
 

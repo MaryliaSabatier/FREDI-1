@@ -114,7 +114,7 @@ $containsSpecial = preg_match('/[^a-zA-Z\d]/', $password);
 
 $containsAll = $containsLetter && $containsDigit && $containsSpecial;
 //Si l'user a cliqué sur submit
-//if ($submit) {
+if ($submit) {
     //Si pseudo sup à 8 carac.
     if (strlen($pseudo) >= 5) {
         //Si mdp sup à 8 carac.
@@ -200,9 +200,9 @@ $containsAll = $containsLetter && $containsDigit && $containsSpecial;
     } else {
         $_SESSION['messages'] = array("Pseudo" => ["red", "Vous avez rentré un pseudo trop court"]);
     }
-//} else {
-  //  $_SESSION['messages'] = array("submit" => ["red", "non soumis"]);
-//}
+} else {
+  
+}
 
 
 ?>
