@@ -10,7 +10,7 @@ $adr1 = isset($_POST['adr1']) ? $_POST['adr1'] : '';
 $adr2 = isset($_POST['adr2']) ? $_POST['adr2'] : '';
 $adr3 = isset($_POST['adr3']) ? $_POST['adr3'] : '';
 $typeutil = isset($_POST['role']) ? $_POST['role'] : '';
-$submit = isset($_POST['submit']);
+$submit = isset($_POST['submit']) ? $_POST['submit'] : '';
 ?>
 <?php $active = 3;
 $title = "Inscription";
@@ -34,7 +34,7 @@ logToDisk($page, '', ''); ?>
                 <td><input type="text" id="pseudo" name="pseudo" value="<?php echo $pseudo; ?>"></td>
             </tr>
             <tr>
-                <td><label for="email">Email* : </label></td>
+                <td><label for="mail">Email* : </label></td>
                 <td><input type="text" id="mail" name="mail" value="<?php echo $mail; ?>"></td>
             </tr>
             <tr>
@@ -84,6 +84,7 @@ logToDisk($page, '', ''); ?>
 <?php require('footer.php'); ?>
 <?php
 $title = "Inscription";
+include 'sql.php';
 $containsLetter  = preg_match('/[a-zA-Z]/',    $password);
 $containsDigit   = preg_match('/\d/',          $password);
 $containsSpecial = preg_match('/[^a-zA-Z\d]/', $password);
@@ -94,11 +95,7 @@ if ($submit) {
     //Si pseudo sup à 8 carac.
     if (strlen($pseudo) >= 0) {
         //Si mdp sup à 8 carac.
-
         if (strlen($password) >= 8 && $containsAll == true) {
-
-
-
             //Si 2 mdp identiques
             if ($password == $password2) {
                 //Lecture du pseudo et du mail dans la BDD pour comparer si ceux-ci existent déjà ou non
@@ -182,7 +179,6 @@ if ($submit) {
     }
 } else {
     $_SESSION['messages'] = array("submit" => ["red", "non soumis"]);
- 
 }
 
 
