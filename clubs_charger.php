@@ -4,7 +4,7 @@ include 'sql.php';
 include 'init.php';
 // Connexion à la base
 // Import du fichier CSV sous la forme d'un tablau PHP
-$rows = load_from_csv(ROOT . DS . "files" . DS . "club.csv", 2);
+$rows = load_from_csv(ROOT . DS . "files" . DS . "club.csv", 1);
 // Génération des ordres SQL de réinitialisation de la base (drop/create)
 $sql = file_get_contents(ROOT . DS . "BDD" . DS . "club.sql") . PHP_EOL;
 // Génération de l'ordre SQL "INSERT"
