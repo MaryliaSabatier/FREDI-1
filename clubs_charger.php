@@ -13,12 +13,12 @@ $sql .= "INSERT INTO club (id_club, lib_club, adr1, adr2,adr3, id_ligue )  VALUE
 
 foreach ($rows as $row) {
 $sql .= "(";
-$sql .= $dbh->quote( $row[0], PDO::PARAM_STR). ",";
-$sql .= $dbh->quote( $row[1], PDO::PARAM_STR). ",";
-$sql .= $dbh->quote( $row[2], PDO::PARAM_STR). ",";
-$sql .= $dbh->quote( $row[3], PDO::PARAM_STR). ",";
-$sql .= $dbh->quote( $row[4], PDO::PARAM_STR). ",";
-$sql .= $dbh->quote( $row[5], PDO::PARAM_STR). ""; 
+$sql .= $dbh->quote( $row[0], PDO::PARAM_STR). ","; // Nom dans le romand'Alexandre Dumas
+$sql .= $dbh->quote( $row[1], PDO::PARAM_STR). ","; // Nom dans le romand'Alexandre Dumas
+$sql .= $dbh->quote( $row[2], PDO::PARAM_STR). ","; // Nom dans le romand'Alexandre Dumas
+$sql .= $dbh->quote( $row[3], PDO::PARAM_STR). ","; // Nom dans le romand'Alexandre Dumas
+$sql .= $dbh->quote( $row[4], PDO::PARAM_STR). ","; // Nom dans le romand'Alexandre Dumas
+$sql .= $dbh->quote( $row[5], PDO::PARAM_STR). ""; // Nom dans le romand'Alexandre Dumas
 $sql .= ")," . PHP_EOL;
 
 }
