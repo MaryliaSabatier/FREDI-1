@@ -1,7 +1,3 @@
-
-
-
-
 <?php
 // Initialisations
 include 'sql.php';
