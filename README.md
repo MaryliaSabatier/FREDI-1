@@ -19,12 +19,12 @@ __4. Test avec données__
 Connexion en adhérent
 * Login: fandefoot1
 * Adresse mail: michel@gmail.com 
-* Mot de passe: michel1234*
+* Mot de passe: Michel1234*
 
 Connexion en administrateur
 * Login: jeremvolley
 * Adresse mail: jeremydurant@fredi.com
-* Mot de passe: jeremy1234*
+* Mot de passe: Jeremy1234*
 
 Connexion en controleur
 * Login: d.dutertre
