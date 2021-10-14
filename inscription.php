@@ -122,20 +122,32 @@ if ($submit) {
             //Si 2 mdp identiques
             if ($password == $password2) {
                 //Lecture du pseudo et du mail dans la BDD pour comparer si ceux-ci existent déjà ou non
-                $sql = "SELECT * FROM utilisateur WHERE pseudo = ':pseudo' OR mail = ':mail'";
+               
                 try {
-                    $sth = $dbh->prepare($sql);
-                    $sth->execute(array(
-                        ":pseudo" => $pseudo,
-                        ":mail" => $mail
-                    ));
-                    $user = $sth->fetch(PDO::FETCH_ASSOC);
+                    $sth = $dbh->prepare("SELECT * FROM utilisateur ");
+                    $sth->execute();
+                    $users = $sth->fetchAll(PDO::FETCH_ASSOC);
                     //Gestion des erreurs
                 } catch (PDOException $ex) {
                     die("Erreur lors de la requête SQL : " . $ex->getMessage());
                 }
                 //Si le mail ou le pseudo n'existe pas déjà alors on peut s'inscrire
-                if (!($user['mail'] == $mail || $user['pseudo'] == $pseudo)) {
+                $verifmail=0 ;
+                $verifpseudo=0 ;
+
+                foreach ($users as $user){
+
+                 if($user['mail'] == $mail){
+
+                    $verifmail=1 ;
+                 }
+                 if($user['pseudo'] ==$pseudo){
+
+                    $verifpseudo=1 ;
+                 }
+
+                }
+                if ( $verifmail == 0 || $verifpseudo == 0 ) {
                     //On crypte le mdp
                     $password = password_hash($password, PASSWORD_BCRYPT);
                     //On insère les champs saisis dans la BDD avec la requête SQL
@@ -152,7 +164,6 @@ if ($submit) {
 
                         ));
 
-                        //revois vers la liste des questions   
 
                     } catch (PDOException $ex) {
                         die("Erreur lors de la requête SQL : " . $ex->getMessage());
