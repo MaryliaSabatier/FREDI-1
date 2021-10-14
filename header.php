@@ -34,9 +34,9 @@ include 'sql.php';
 
                 <?php
 
-                if ($_SESSION['user']['role'] == 1) {
+                if ($_SESSION['user']['role'] == 0) {
 
-
+print_r($_SESSION['user']['nom']);
                 ?>
 
                     <li class="ligne left"><a class=active" href="utilisateur.php">utilisateur</a></li>
