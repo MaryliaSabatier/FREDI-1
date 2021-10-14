@@ -1,4 +1,3 @@
-
 <?php
 
 $pseudo = isset($_POST['pseudo']) ? $_POST['pseudo'] :  '';
@@ -25,7 +24,8 @@ $active = 3;
 $title = "Inscription";
 require('header.php');
 $page = $_SERVER['PHP_SELF'];
-logToDisk($page, '', ''); include 'sql.php';?>
+logToDisk($page, '', '');
+include 'sql.php'; ?>
 
 <div class="center">
     <h1>S'inscrire</h1>
@@ -33,27 +33,27 @@ logToDisk($page, '', ''); include 'sql.php';?>
         <table>
             <tr>
                 <td><label for="nom">Nom* : </label></td>
-                <td><input type="text" id="nom" name="nom" value="<?php echo $nom ; ?>"></td>
+                <td><input type="text" id="nom" name="nom" value="<?php echo $nom; ?>"></td>
             </tr>
             <tr>
                 <td><label for="prenom">Prénom* : </label></td>
-                <td><input type="text" id="prenom" name="prenom" value="<?php echo $prenom ; ?>"></td>
+                <td><input type="text" id="prenom" name="prenom" value="<?php echo $prenom; ?>"></td>
             </tr>
             <tr>
                 <td><label for="pseudo">Pseudo* : </label></td>
-                <td><input type="text" id="pseudo" name="pseudo" value="<?php echo $pseudo ; ?>"></td>
+                <td><input type="text" id="pseudo" name="pseudo" value="<?php echo $pseudo; ?>"></td>
             </tr>
             <tr>
                 <td><label for="mail">Email* : </label></td>
-                <td><input type="text" id="mail" name="mail" value="<?php echo $mail ; ?>"></td>
+                <td><input type="text" id="mail" name="mail" value="<?php echo $mail; ?>"></td>
             </tr>
             <tr>
                 <td><label for="password">Mot de passe* : </label></td>
-                <td><input type="password" id="password" name="password" value="<?php echo $password ; ?>"></td>
+                <td><input type="password" id="password" name="password" value="<?php echo $password; ?>"></td>
             </tr>
             <tr>
                 <td><label for="password2">Confirmer le mot de passe* : </label></td>
-                <td><input type="password" id="password2" name="password2" value="<?php echo $password2 ; ?>"></td>
+                <td><input type="password" id="password2" name="password2" value="<?php echo $password2; ?>"></td>
             </tr>
             <td><label for="ligue">Ligue* : </label></td>
             <td>
@@ -118,7 +118,7 @@ if ($submit) {
     //Si pseudo sup à 8 carac.
     if (strlen($pseudo) >= 5) {
         //Si mdp sup à 8 carac.
-       if (strlen($password) >= 8 && $containsAll == true) {
+        if (strlen($password) >= 8 && $containsAll == true) {
             //Si 2 mdp identiques
             if ($password == $password2) {
                 //Lecture du pseudo et du mail dans la BDD pour comparer si ceux-ci existent déjà ou non
@@ -195,13 +195,12 @@ if ($submit) {
                 $_SESSION['messages'] = array("Password" => ["red", "Les mots de passe ne sont pas identiques"]);
             }
         } else {
-           $_SESSION['messages'] = array("Password" => ["red", "Vous avez rentré un mot de passe trop court ou qui ne contient pas de chiffre ou de lettre ou qui ne contient pas de majuscule"]);
-      }
+            $_SESSION['messages'] = array("Password" => ["red", "Vous avez rentré un mot de passe trop court ou qui ne contient pas de chiffre ou de lettre ou qui ne contient pas de majuscule"]);
+        }
     } else {
         $_SESSION['messages'] = array("Pseudo" => ["red", "Vous avez rentré un pseudo trop court"]);
     }
 } else {
-  
 }
 
 
