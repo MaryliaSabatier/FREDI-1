@@ -17,3 +17,4 @@
 2021-10-07 15:17:51.785115;::1;/fredi/connexion_validation.php;;pseudo=fandevolley1;password=0w$PzHSrV562&&!y;
 2021-10-07 15:18:03.080215;::1;/fredi/connexion_validation.php;;pseudo=fandevolley1;password=@9U#$5EddUM7%a3i;
 2021-10-07 15:18:21.495884;::1;/fredi/connexion_validation.php;;pseudo=basket31;password=0w$PzHSrV562&&!y;
+2021-10-14 16:41:15.819320;::1;/fredi/inscription.php;;pseudo=;password=;
