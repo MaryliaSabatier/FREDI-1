@@ -2,6 +2,8 @@
 $page="modif_notes.php";
 include 'init.php';
 include 'sql.php';
+include 'header.php';
+
 
 // Récupère l'ID passé dans l'URL 
 $id_ligne = isset($_GET['id_ligne']) ? $_GET['id_ligne'] : '';
@@ -84,3 +86,7 @@ if ($submit) {
 </body>
 
 </html>
+
+<?php
+require('footer.php');
+?>
