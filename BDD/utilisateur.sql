@@ -47,8 +47,6 @@ CREATE TABLE IF NOT EXISTS `adherent` (
 -- Déchargement des données de la table `adherent`
 --
 
-INSERT INTO `adherent` (`id_adherent`, `nr_licence`, `adr1`, `adr2`, `adr3`, `id_utilisateur`, `id_club`) VALUES
-
 
 -- --------------------------------------------------------
 
