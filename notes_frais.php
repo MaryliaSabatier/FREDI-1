@@ -5,10 +5,12 @@ include 'sql.php';
 include 'header.php';
 
 // Récupère la liste des lignes
-$sql = 'select * from ligne';
+$sql = 'select * from note , ligne ,utilisateur where note.id_utilisateur=utilisateur.id_utilisateur and ligne.id_note =note.id_note and utilisateur.id_utilisateur=:id;';
+
 try {
   $sth = $dbh->prepare($sql);
-  $sth->execute();
+
+  $sth->execute(array(":id"=>$session['user']['id_utilisateur']));
   $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
   die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");

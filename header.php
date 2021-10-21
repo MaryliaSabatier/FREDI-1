@@ -25,9 +25,7 @@ include 'sql.php';
             <?php
             //Si user connecté alors FAQ et déconnexion visibles
             if (isset($_SESSION['user'])) { ?>
-                <li class="ligne left"><a class="<?php if ($active == 2) {
-                                                        echo "active";
-                                                    } ?>" href="/fredi/liste/liste.php">FAQ</a></li>
+                <li class="ligne left">
                 <li class="ligne right"><a class="<?php if ($active == 4) {
                                                         echo "active";
                                                     } ?>" href="/fredi/liste/deconnexion.php">Déconnexion</a></li>
@@ -36,7 +34,7 @@ include 'sql.php';
 
                 if ($_SESSION['user']['role'] == 1) {
 
-print_r($_SESSION['user']['nom']);
+print_r($_SESSION['user']);
                 ?>
 
                     <li class="ligne left"><a class=active" href="utilisateur.php">utilisateur</a></li>
