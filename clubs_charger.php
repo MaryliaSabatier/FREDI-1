@@ -1,6 +1,12 @@
 
 <body>
-<div id="load">chargement de la base finit</div>
+<div class='load' id="load">chargement de la base fini</div>
+
+<button id="contents"><a href="index.php">retourner sur la page d'accueil</a></button>
+
+
+
+
 </body>
 
 
@@ -53,7 +59,6 @@ die("Erreur lors de la requête SQL : " . $ex->getMessage());
 <link rel="stylesheet" href="css/main.css">
 
 
-
 <script>document.onreadystatechange = function () {
   var state = document.readyState
   if (state == 'interactive') {
@@ -63,6 +68,6 @@ die("Erreur lors de la requête SQL : " . $ex->getMessage());
          document.getElementById('interactive');
          document.getElementById('load').style.visibility="hidden";
          document.getElementById('contents').style.visibility="visible";
-      },1000);
+      },2000);
   }
 }</script>

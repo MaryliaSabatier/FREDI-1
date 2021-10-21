@@ -1,3 +1,15 @@
+
+<body>
+<div class='load' id="load">chargement de la base fini</div>
+
+<button id="contents"><a href="index.php">retourner sur la page d'accueil</a></button>
+
+
+
+
+</body>
+
+
 <?php
 // Initialisations
 include 'sql.php';
@@ -31,4 +43,27 @@ $sth->execute();
 } catch (PDOException $ex) {
 die("Erreur lors de la requête SQL : " . $ex->getMessage());
 }
+?>
+<link rel="stylesheet" href="css/main.css">
+
+
+
+<script>document.onreadystatechange = function () {
+  var state = document.readyState
+  if (state == 'interactive') {
+       document.getElementById('contents').style.visibility="hidden";
+  } else if (state == 'complete') {
+      setTimeout(function(){
+         document.getElementById('interactive');
+         document.getElementById('load').style.visibility="hidden";
+         document.getElementById('contents').style.visibility="visible";
+      },2000);
+  }
+}</script>
+
+
+
+<?php
+
+
 ?>

@@ -40,6 +40,7 @@ print_r($_SESSION['user']['nom']);
                 ?>
 
                     <li class="ligne left"><a class=active" href="utilisateur.php">utilisateur</a></li>
+                    <li class="ligne left"><a class=active" href="clubs_charger.php">charger club</a></li>
                     <li class="ligne left"><a class=active" href="charger_ligues.php">charger ligue</a></li>
                     <li class="ligne left"><a class=active" href="notes_frais.php">Notes de frais</a></li>
 
