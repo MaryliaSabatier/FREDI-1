@@ -24,7 +24,7 @@ $sql = rtrim($sql, PHP_EOL);
 $sql = rtrim($sql, ',');
 $sql .=" ;SET FOREIGN_KEY_CHECKS = 1;";
 // Exécution des ordres SQL
-echo($sql); 
+
 try {
 $sth = $dbh->prepare($sql);
 $sth->execute();

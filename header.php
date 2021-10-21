@@ -34,7 +34,7 @@ include 'sql.php';
 
                 <?php
 
-                if ($_SESSION['user']['role'] == 0) {
+                if ($_SESSION['user']['role'] == 1) {
 
 print_r($_SESSION['user']['nom']);
                 ?>
