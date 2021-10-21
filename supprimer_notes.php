@@ -6,7 +6,7 @@ include 'sql.php';
 include 'header.php';
 
 // Connexion à la base
-$dbh = db_connect();
+require('sql.php');
 
 // Récupère l'ID passé dans l'URL 
 $id = isset($_GET['id_ligne']) ? $_GET['id_ligne'] : '';
@@ -85,7 +85,7 @@ if ($submit) {
   </p>
   <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
     <p>Date<br /><input name="dat_ligne" id="dat_ligne" type="date" value="<?= $dat_ligne ?>" disabled /></p>
-    <p>Motif<br /><input name="id_motif" id="id_motif" type="date" value="<?= $id_motif ?>" disabled /></p>
+    <p>Motif<br /><input name="id_motif" id="id_motif" type="text" value="<?= $id_motif ?>" disabled /></p>
     <p>Trajet<br /><input name="lib_trajet" id="lib_trajet" type="text" value="<?= $lib_trajet ?>" disabled /></p>
     <p>Kms parcourus<br /><input name="nb_km" id="nb_km" type="text" value="<?= $nb_km ?>" disabled /></p>
     <p>Total frais Kms<br /><input name="mt_km" id="mt_km" type="text" value="<?= $mt_km ?>" disabled /></p>

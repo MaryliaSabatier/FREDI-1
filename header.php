@@ -40,7 +40,10 @@ print_r($_SESSION['user']['nom']);
                 ?>
 
                     <li class="ligne left"><a class=active" href="utilisateur.php">utilisateur</a></li>
-                    <li class="ligne left"><a class=active" href="charger_ligues.php">charger ligue</a></li><?php
+                    <li class="ligne left"><a class=active" href="charger_ligues.php">charger ligue</a></li>
+                    <li class="ligne left"><a class=active" href="notes_frais.php">Notes de frais</a></li>
+
+                    <?php
                                                                                                             }
                                                                                                                 ?>
 
@@ -54,6 +57,7 @@ print_r($_SESSION['user']['nom']);
                 <li class="ligne right"><a class="<?php if ($active == 4) {
                                                         echo "active";
                                                     } ?>" href="/fredi/connexion.php">Connexion</a></li>
+                
             <?php }
             ?>
         </ul>
