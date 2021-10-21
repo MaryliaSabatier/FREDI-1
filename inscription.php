@@ -40,7 +40,7 @@ include 'sql.php'; ?>
                 <td><input type="text" id="prenom" name="prenom" value="<?php echo $prenom; ?>"></td>
             </tr>
             <tr>
-                <td><label for="pseudo">Pseudo* : </label></td>
+                <td><label for="pseudo">Pseudo * <br> au moins 8 char : </label></td>
                 <td><input type="text" id="pseudo" name="pseudo" value="<?php echo $pseudo; ?>"></td>
             </tr>
             <tr>
@@ -48,7 +48,8 @@ include 'sql.php'; ?>
                 <td><input type="text" id="mail" name="mail" value="<?php echo $mail; ?>"></td>
             </tr>
             <tr>
-                <td><label for="password">Mot de passe* : </label></td>
+            
+                <td><label for="password">Mot de passe* : <br> au moins 8 char , 1  MAJ , un chiffre 1 char special</label></td>
                 <td><input type="password" id="password" name="password" value="<?php echo $password; ?>"></td>
             </tr>
             <tr>
