@@ -2,6 +2,17 @@
 include 'init.php';
 include 'sql.php';
 
+
+ $active=4; $title = "Connexion"; require('header.php'); require('sql.php') ;$page=$_SERVER['PHP_SELF'];
+    //Le pseudo saisi par l'user va dans la variable $pseudo
+   
+    //Le mdp saisi par l'user va dans la variable $password
+   
+  //  logToDisk($page,$pseudo,$password);
+
+
+
+
 // Récupère la liste des pays
 $sql = 'select * from utilisateur';
 try {
@@ -24,7 +35,7 @@ try {
     <title>Freddi</title>
 </head>
 <body>
-    <h1>Affichage des utlisateurs</h1>
+    <h1>Affichage des utilisateurs</h1>
   <?php
   if (count($rows) > 0) {
   ?>
@@ -37,7 +48,7 @@ try {
         <th>Nom</th>
         <th>Prénom</th>
         <th>Rôle</th>
-        <th>&nbsp;</th>
+        <th>modifier</th>
       </tr>
       <?php
       foreach ($rows as $row) {
@@ -49,7 +60,7 @@ try {
         echo '<td>' . $row['nom'] . '</td>';
         echo '<td>' . $row['prenom'] . '</td>';
         echo '<td>' . $row['role'] . '</td>';
-        echo '<td><a href="modif_utilisateur.php?id_utilisateur=' . $row['id_utilisateur'] . '">Modifier</a>&nbsp;';
+        echo '<td><a href="modif_utilisateur.php?id_utilisateur=' . $row['id_utilisateur'] . '">Modifier</a>';
         echo "</tr>";
       } ?>
     </table>

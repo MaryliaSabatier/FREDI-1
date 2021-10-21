@@ -1,6 +1,6 @@
 # Projet Fredi
 
-## Groupe 2
+## Groupe 1
 Sabatier Marylia  
 Damien Dutertre  
 Achille Monteil  
