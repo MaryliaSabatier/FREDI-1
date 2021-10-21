@@ -7,10 +7,10 @@ Achille Monteil
 
 ## Installation du projet : 
 __1. La base de données__
-* La base de donnée se trouve dans le fichier sql au chemin FREDI/fredi21.sql
+* La base de donnée se trouve dans le fichier sql au chemin FREDI/BDD/fredi21.sql
 
 __2. Jeux de données__  
-// mettre les insert dans un script sql 
+Les utilisateurs sont a rajouter depuis le fichier BDD UTILISATEUR.SQL
 
 __3. CSV__
 Les fichiers CSV sont disponibles dans le dossier FREDI/files/...  
