@@ -31,6 +31,9 @@ Connexion en controleur
 * Adresse mail: damien.dutertre@fredi.com
 * Mot de passe: Damien1234*
 
+Rôles dans la base utilisateur : 
+* Administrateur: 1
+* Contrôleur: 2
 # 5. Le projet FREDI  web  
 
 Le site FREDI consiste à saisir des bordereaux ( lignes de frais ) sur un site web une fois authentifié. 4 acteurs sont présents, l'adhérent, le responsable légal, le trésorier et le responsable du CRIB.
