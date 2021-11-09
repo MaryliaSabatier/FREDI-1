@@ -4,33 +4,23 @@ include 'init.php';
 include 'sql.php';
 include 'header.php';
 
+
+$id=$_SESSION['user']['id_utilisateur'];
+echo '<br>';
+echo '<br>';
+echo '<br>';
+echo $id ;
 // Récupère la liste des lignes
-$sql = 'select * from note , ligne ,utilisateur where note.id_utilisateur=utilisateur.id_utilisateur and ligne.id_note =note.id_note and utilisateur.id_utilisateur=:id;';
+$sql = 'select * from note  ,utilisateur where note.id_utilisateur=utilisateur.id_utilisateur and utilisateur.id_utilisateur=:id;';
 
 try {
   $sth = $dbh->prepare($sql);
 
-  $sth->execute(array(":id"=>$session['user']['id_utilisateur']));
+  $sth->execute(array(":id"=>$id));
   $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
   die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
 }
-
-?>
-<?php
-// Instanciation de l'objet FDPF
-$pdf = new FPDF();
-
-// Création d'une page
-$pdf->AddPage();
-
-// Création d'un texte 
-$pdf->SetFont('Arial','B',16);
-$pdf->Cell(40,10,'Bonjour le monde');  // 40=largeur en mm; 10 = hauteur
-
-// Génération du document PDF dans le dossier outfiles
-$pdf->Output('outfiles/notes_frais.pdf','f');  // f=fichier local
-header('Location: notes_frais.php');
 ?>
 
 
@@ -47,8 +37,8 @@ header('Location: notes_frais.php');
 <h1>Affichage de la note de frais</h1>
     <img src="img/logo.png">
     <?php
-     echo'<p>Je sousigné()e'.$session['user']['nom'].$session['prenom'].'</p>';
-     echo'<p>Demeurant'.$session['user']['adr1'].$session['adr2'].$session['adr3'].'</p>';
+     echo'<p>Je sousigné()e'.$_SESSION['user']['nom'].$_SESSION['prenom'].'</p>';
+     echo'<p>Demeurant'.$_SESSION['user']['adr1'].$_SESSION['adr2'].$_SESSION['adr3'].'</p>';
      echo'<p>Certifie renoncer au remboursement des frais ci dessous et les laisser à l association (mettre le nom + adresse) en tant que don </p>';
     ?>
 
@@ -89,8 +79,6 @@ header('Location: notes_frais.php');
       <p>Il y a <?php echo count($rows); ?> ligne(s) de frais</p>
       <p><a href="lignes_frais_ajouter.php">Ajouter</a> une ligne nouvelle ligne de frais</p>
       <p><a href="notes_frais.pdf.php">Télécharger</a> le PDF</p>
-      </body>
-</html>
 
 <?php
 require('footer.php');

@@ -39,7 +39,7 @@ if ($submit) {
   }
   $message = "$nb film(s) créé(s)";
 } else {
-  $message = "Veuillez saisir un film SVP";
+  $message = "Veuillez saisir une note de frais";
 }
 // Affichage
 ?>
