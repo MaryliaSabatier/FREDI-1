@@ -73,4 +73,8 @@ print_r($_SESSION['user']);
             unset($_SESSION['messages']);
             echo "</div>";
         }
+
+        echo '<br>';
+       
+
         ?>
