@@ -44,50 +44,51 @@ $mt_km = isset($_POST['mt_km']) ? $_POST['mt_km'] : '';
 $mt_peage = isset($_POST['mt_peage']) ? $_POST['mt_peage'] : '';
 $mt_repas = isset($_POST['mt_repas']) ? $_POST['mt_repas'] : '';
 $mt_hebergement = isset($_POST['mt_hebergement']) ? $_POST['mt_hebergement'] : '';
-$id_utilisateur= $_SESSION['user']['id_utilisateur'];
+$id_utilisateur = $_SESSION['user']['id_utilisateur'];
 $submit = isset($_POST['submit']);
-$num =random_int(0,99999999999) ;
+$num = random_int(0, 99999999999);
 // Ajout dans la base
 if ($submit) {
 
-  $sql="INSERT INTO note (id_periode, id_utilisateur , dat_remise,nr_ordre) VALUES (:id_periode ,:id_utilisateur ,:dat_remise,:nr_ordre)";
+  $sql = "INSERT INTO note (id_periode, id_utilisateur , dat_remise,nr_ordre) VALUES (:id_periode ,:id_utilisateur ,:dat_remise,:nr_ordre)";
   try {
-      $sth = $dbh->prepare($sql);
-      $sth->execute(array( ":id_periode" => $periode,
-      ":id_utilisateur" => $_SESSION['user']['id_utilisateur'],':dat_remise'=> $dat_ligne,':nr_ordre'=>$num));
+    $sth = $dbh->prepare($sql);
+    $sth->execute(array(
+      ":id_periode" => $periode,
+      ":id_utilisateur" => $_SESSION['user']['id_utilisateur'], ':dat_remise' => $dat_ligne, ':nr_ordre' => $num
+    ));
   } catch (PDOException $e) {
-      die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
+    die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
   }
 
   $sql = 'select * from note where id_utilisateur =:id_utilisateur and id_periode = :periode;';
 
   try {
     $sth = $dbh->prepare($sql);
-  
-    $sth->execute(array(":id_utilisateur"=> $id_utilisateur, ":periode"=>$periode ));
+
+    $sth->execute(array(":id_utilisateur" => $id_utilisateur, ":periode" => $periode));
     $roows = $sth->fetchAll(PDO::FETCH_ASSOC);
   } catch (PDOException $e) {
     die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
   }
 
-foreach($roows as $row){
+  foreach ($roows as $row) {
 
-$id_note=$row['id_note'];
-
-}
+    $id_note = $row['id_note'];
+  }
 
   $sql = "INSERT INTO ligne(  `id_motif` , `id_note`,mt_hebergement ,dat_ligne,lib_trajet,nb_km,mt_km,mt_peage,mt_repas) VALUES (:id_motif ,:id_note,:mt_hebergement,:dat_ligne,:lib_trajet,:nb_km,:mt_km,:mt_peage,:mt_repas)";
   $params = array(
-  ":lib_trajet" => $lib_trajet,
-  ":nb_km"=> $nb_km,
-  ":mt_km"=> $mt_km,
-  ":mt_repas"=> $mt_repas,
-  ":mt_peage"=> $mt_peage,
+    ":lib_trajet" => $lib_trajet,
+    ":nb_km" => $nb_km,
+    ":mt_km" => $mt_km,
+    ":mt_repas" => $mt_repas,
+    ":mt_peage" => $mt_peage,
     ":id_motif" => $id_motif,
-    ":dat_ligne" => $dat_ligne ,
+    ":dat_ligne" => $dat_ligne,
     ":mt_hebergement" => $mt_hebergement,
     ":id_note" => $id_note
-    
+
   );
 
   try {
@@ -97,8 +98,6 @@ $id_note=$row['id_note'];
   } catch (PDOException $e) {
     die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
   }
-  
- 
 } else {
   $message = "Veuillez saisir une note de frais";
 }
@@ -119,7 +118,7 @@ $id_note=$row['id_note'];
 <body>
   <h1>Ajout de la nouvelle ligne de frais</h1>
   </p><a href="notes_frais.php">Retour à la liste des notes</a></p>
-  
+
   </p>
   <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 
@@ -128,7 +127,7 @@ $id_note=$row['id_note'];
     echo '<select id="periode" name="periode" >';
     echo '   <option value="0"> choix</option>';
     foreach ($tableaux as $tableau) {
-      echo '   <option value="' . $tableau['id_periode'] . '">' . $tableau['lib_periode'].$tableau['id_periode']  . '</option>';
+      echo '   <option value="' . $tableau['id_periode'] . '">' . $tableau['lib_periode'] . $tableau['id_periode']  . '</option>';
     }
     echo '</select>';
     echo '<p>Date<br /><input name="dat_ligne" id="dat_ligne" type="date" value="" /></p>';
