@@ -48,12 +48,7 @@ try {
 }
 // Exécution des ordres SQL
 
-try {
-$sth = $dbh->prepare($sql);
-$sth->execute();
-} catch (PDOException $ex) {
-die("Erreur lors de la requête SQL : " . $ex->getMessage());
-}
+echo'<pre>'.var_dump($sql).'</pre>';
 
 ?>
 <link rel="stylesheet" href="css/main.css">

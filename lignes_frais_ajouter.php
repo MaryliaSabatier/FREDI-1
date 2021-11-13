@@ -5,6 +5,18 @@ include 'init.php';
 include 'sql.php';
 include 'header.php';
 
+$sql = 'select * from motif ;';
+
+try {
+  $sth = $dbh->prepare($sql);
+
+  $sth->execute(array());
+  $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+  die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
+}
+
+
 
 // Lecture du formulaire
 $dat_ligne = isset($_POST['dat_ligne']) ? $_POST['dat_ligne'] : '';
@@ -63,6 +75,21 @@ if ($submit) {
   <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
     <p>Date<br /><input name="dat_ligne" id="dat_ligne" type="date" value="" /></p>
     <p>Motif<br /><input name="id_motif" id="id_motif" type="text" value="" /></p>
+    <?php
+ echo    '<select name="motif" id="motif">';
+    foreach ($rows as $row){
+  
+  
+  
+ echo '  <option value="row["lib_motif"]">'.row["lib_motif"].'</option></br>';
+  
+echo '</select>' ;
+
+
+    }
+    ?>
+
+
     <p>Trajet<br /><input name="lib_trajet" id="lib_trajet" type="text" value="" /></p>
     <p>Nombre de km(s)<br /><input name="nb_km" id="nb_km" type="text" value="" /></p>
     <p>Montant péage<br /><input name="mt_peage" id="mt_peage" type="text" value="" /></p>
