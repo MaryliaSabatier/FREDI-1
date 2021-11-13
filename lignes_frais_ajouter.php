@@ -59,12 +59,22 @@ if ($submit) {
       die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
   }
 
+  $sql = 'select * from note where id_utilisateur =:id_utilisateur and id_periode = :periode;';
 
+  try {
+    $sth = $dbh->prepare($sql);
+  
+    $sth->execute(array(":id_utilisateur"=> $id_utilisateur, ":periode"=>$periode ));
+    $roows = $sth->fetchAll(PDO::FETCH_ASSOC);
+  } catch (PDOException $e) {
+    die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
+  }
 
+foreach($roows as $row){
 
+$id_note=$row['id_note'];
 
-
-
+}
 
   $sql = "INSERT INTO ligne(  `id_motif` , `id_note`,mt_hebergement ,dat_ligne,lib_trajet,nb_km,mt_km,mt_peage,mt_repas) VALUES (:id_motif ,:id_note,:mt_hebergement,:dat_ligne,:lib_trajet,:nb_km,:mt_km,:mt_peage,:mt_repas)";
   $params = array(
@@ -76,7 +86,7 @@ if ($submit) {
     ":id_motif" => $id_motif,
     ":dat_ligne" => $dat_ligne ,
     ":mt_hebergement" => $mt_hebergement,
-    ":id_note" => '80'
+    ":id_note" => $id_note
     
   );
 
