@@ -1,6 +1,6 @@
 <?php
 // Initialisations
-$page="lignes_frais_notes.php";
+$page = "lignes_frais_notes.php";
 include 'init.php';
 include 'sql.php';
 include 'header.php';
@@ -20,7 +20,7 @@ try {
 
 // Lecture du formulaire
 $dat_ligne = isset($_POST['dat_ligne']) ? $_POST['dat_ligne'] : '';
-$id_motif = isset($_POST['id_motif']) ? $_POST['id_motif'] : '';
+$id_motif = isset($_POST['motif']) ? $_POST['motif'] : '';
 $lib_trajet = isset($_POST['lib_trajet']) ? $_POST['lib_trajet'] : '';
 $nb_km = isset($_POST['nb_km']) ? $_POST['nb_km'] : '';
 $mt_peage = isset($_POST['mt_peage']) ? $_POST['mt_peage'] : '';
@@ -74,21 +74,17 @@ if ($submit) {
   </p>
   <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
     <p>Date<br /><input name="dat_ligne" id="dat_ligne" type="date" value="" /></p>
-    <p>Motif<br /><input name="id_motif" id="id_motif" type="text" value="" /></p>
     <?php
- echo    '<select name="motif" id="motif">';
-    foreach ($rows as $row){
-  
-  
-  
- echo '  <option value="row["lib_motif"]">'.row["lib_motif"].'</option></br>';
-  
-echo '</select>' ;
 
-
+    echo '<label for="motif"> motif : </label>';
+    echo '<select id="motif" name="motif" >';
+    echo '   <option value="0"> choix</option>';
+    foreach ($rows as $row) {
+      echo '   <option value="' . $row['id_motif'] . '">' . $row['lib_motif'] . '</option>';
     }
-    ?>
+    echo '</select>';
 
+    ?>
 
     <p>Trajet<br /><input name="lib_trajet" id="lib_trajet" type="text" value="" /></p>
     <p>Nombre de km(s)<br /><input name="nb_km" id="nb_km" type="text" value="" /></p>
