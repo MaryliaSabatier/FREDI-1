@@ -38,11 +38,13 @@ $id_motif = isset($_POST['motif']) ? $_POST['motif'] : '';
 echo '<br><br>';
 echo $periode = isset($_POST['periode']) ? $_POST['periode'] : '';
 $lib_trajet = isset($_POST['lib_trajet']) ? $_POST['lib_trajet'] : '';
+
 $nb_km = isset($_POST['nb_km']) ? $_POST['nb_km'] : '';
+$mt_km = isset($_POST['mt_km']) ? $_POST['mt_km'] : '';
 $mt_peage = isset($_POST['mt_peage']) ? $_POST['mt_peage'] : '';
 $mt_repas = isset($_POST['mt_repas']) ? $_POST['mt_repas'] : '';
 $mt_hebergement = isset($_POST['mt_hebergement']) ? $_POST['mt_hebergement'] : '';
-
+$id_utilisateur= $_SESSION['user']['id_utilisateur'];
 $submit = isset($_POST['submit']);
 
 // Ajout dans la base
@@ -60,48 +62,22 @@ if ($submit) {
 
 
 
- 
-  $sql = 'SELECT * FROM note WHERE id_utilisateur = :id_utilsateur and id_periode = :periode order by id_note desc';
-  try {
-      $sth = $dbh->prepare($sql);
-      $sth->execute(array( ":id_periode" => $periode,
-      ":id_utilisateur" => $_SESSION['user']['id_utilisateur']));
-      $tableaux = $sth->fetchAll(PDO::FETCH_ASSOC);
-  } catch (PDOException $e) {
-      die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
-  }
 
 
 
 
-
-
-
-
-
-/*
-  $sql = "SELECT * FROM periode WHERE est_active ='1' ;";
-  
-  try {
-    $sth = $dbh->prepare($sql);
-  
-    $sth->execute(array());
-    $tableaux = $sth->fetchAll(PDO::FETCH_ASSOC);
-  } catch (PDOException $e) {
-    die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
-  }
-/*
-
-  $sql = "INSERT INTO ligne( `dat_ligne`, `id_motif`, `lib_trajet`, `nb_km`, `mt_km`, `mt_peage`, `mt_repas`, `mt_hebergement`, `id_note`) VALUES (:dat_ligne, :id_motif, :lib_trajet, :nb_km, :mt_peage, :mt_repas, :mt_hebergement,:id_note)";
+  $sql = "INSERT INTO ligne(  `id_motif` , `id_note`,mt_hebergement ,dat_ligne,lib_trajet,nb_km,mt_km,mt_peage,mt_repas) VALUES (:id_motif ,:id_note,:mt_hebergement,:dat_ligne,:lib_trajet,:nb_km,:mt_km,:mt_peage,:mt_repas)";
   $params = array(
-    ":dat_ligne" => $dat_ligne,
+  ":lib_trajet" => $lib_trajet,
+  ":nb_km"=> $nb_km,
+  ":mt_km"=> $mt_km,
+  ":mt_repas"=> $mt_repas,
+  ":mt_peage"=> $mt_peage,
     ":id_motif" => $id_motif,
-    ":lib_trajet" => $lib_trajet,
-    ":nb_km" => $nb_km,
-    ":mt_peage" => $mt_peage,
-    ":mt_repas" => $mt_repas,
+    ":dat_ligne" => $dat_ligne ,
     ":mt_hebergement" => $mt_hebergement,
-    ":id_note" =>$rof['id_note']
+    ":id_note" => '80'
+    
   );
 
   try {
@@ -111,7 +87,7 @@ if ($submit) {
   } catch (PDOException $e) {
     die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
   }
-  */
+  
  
 } else {
   $message = "Veuillez saisir une note de frais";
@@ -159,6 +135,7 @@ if ($submit) {
 
     <p>Trajet<br /><input name="lib_trajet" id="lib_trajet" type="text" value="" /></p>
     <p>Nombre de km(s)<br /><input name="nb_km" id="nb_km" type="text" value="" /></p>
+    <p>Montant du km(s)<br /><input name="mt_km" id="mt_km" type="text" value="" /></p>
     <p>Montant péage<br /><input name="mt_peage" id="mt_peage" type="text" value="" /></p>
     <p>Montant repas<br /><input name="mt_repas" id="mt_repas" type="text" value="" /></p>
     <p>Montant hébergement<br /><input name="mt_hebergement" id="mt_hebergement" type="text" value="" /></p>
