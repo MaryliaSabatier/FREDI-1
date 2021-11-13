@@ -11,7 +11,7 @@ echo '<br>';
 echo '<br>';
 echo $id ;
 // Récupère la liste des lignes
-$sql = 'select * from note  , utilisateur where note.id_utilisateur=utilisateur.id_utilisateur and utilisateur.id_utilisateur=:id;';
+$sql = 'select * from ligue  ,utilisateur where ligne.id_utilisateur=utilisateur.id_utilisateur and utilisateur.id_utilisateur=:id;';
 
 try {
   $sth = $dbh->prepare($sql);
@@ -27,43 +27,9 @@ try {
   $sth = $dbh->prepare($sql);
 
   $sth->execute(array(":id"=>$id));
-  $tableau = $sth->fetch(PDO::FETCH_ASSOC);
+  $tableau = $sth->fetchall(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
   die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
-}
-
-$sql = 'select * from note where id_utilisateur =:id_utilisateur and id_periode = :periode;';
-
-try {
-  $sth = $dbh->prepare($sql);
-
-  $sth->execute(array(":id_utilisateur"=> $id_utilisateur, ":periode"=>$periode ));
-  $roows = $sth->fetchAll(PDO::FETCH_ASSOC);
-} catch (PDOException $e) {
-  die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
-}
-
-foreach($roows as $row){
-
-$id_note=$row['id_note'];
-
-}
-
-$sql = 'select * from ligne where id_note =:note ;';
-
-try {
-  $sth = $dbh->prepare($sql);
-
-  $sth->execute(array(":note"=>$id_note ));
-  $rooows = $sth->fetchAll(PDO::FETCH_ASSOC);
-} catch (PDOException $e) {
-  die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
-}
-
-foreach($roows as $row){
-
-$id_note=$row['id_note'];
-
 }
 ?>
 
@@ -91,27 +57,32 @@ $id_note=$row['id_note'];
         <table class="container">
         <tr>
           <th>Date</th>
-          <th>numero_ordre	 </th>
-          <th>montant_total	 </th>
-          <th>date de remise	 </th>
-            <th>est_valide	 </th>
-         
-	
+          <th>Motif</th>
+          <th>Trajet</th>
+          <th>Kms parcourus</th>
+          <th>Total frais kms</th>
+          <th>Cout péages</th>
+          <th>Cout repas</th>
+          <th>Cout hébergement</th>
+          <th>Total</th>
           <th>&nbsp;</th>
         </tr>
 
         <?php
         foreach ($rows as $row) {
           echo '<tr>';
-          echo '<td>'. $row['mt_total'] .'</td>';
-          echo '<td>' . $row['dat_remise'] . '</td>';
-          echo '<td>' . $row['est_valide'] . '</td>';
+          echo '<td>'. $row['dat_ligne'] .'</td>';
+          echo '<td>' . $row['id_motif'] . '</td>';
+          echo '<td>' . $row['lib_trajet'] . '</td>';
+          echo '<td>' . $row['nb_km'] . '</td>';
+          echo '<td>' . $row['mt_km'] . '</td>';
+          echo '<td>' . $row['mt_peage'] . '</td>';
+          echo '<td>' . $row['mt_repas'] . '</td>';
+          echo '<td>' . $row['mt_hebergement'] . '</td>';
+          echo '<td>' . $row['mt_total'] . '</td>';
           echo '<td><a href="modif_notes.php?id_ligne=' . $row['id_ligne'] . '">Modifier</a>&nbsp;';
           echo '<td><a href="supprimer_notes.php?id_ligne=' . $row['id_ligne'] . '">Supprimer</a>;';
           echo "</tr>";
-
-          
-
         }?>
       </table>
 
