@@ -40,3 +40,7 @@
 2021-11-13 14:19:16.808414;::1;/fredi/inscription.php;;pseudo=;password=;
 2021-11-13 14:19:49.844584;::1;/fredi/inscription.php;;pseudo=;password=;
 2021-11-13 14:19:58.903874;::1;/fredi/connexion_validation.php;;pseudo=damien1234;password=Azertyuiop1234.;
+2021-11-13 14:39:08.457817;::1;/fredi/inscription.php;;pseudo=;password=;
+2021-11-13 14:39:38.943879;::1;/fredi/inscription.php;;pseudo=;password=;
+2021-11-13 14:39:48.740876;::1;/fredi/connexion_validation.php;;pseudo=damien1234;password=Azertyuiop1234.;
+2021-11-13 14:40:12.878427;::1;/fredi/connexion_validation.php;;pseudo=damien1234;password=Azertyuiop1234.;

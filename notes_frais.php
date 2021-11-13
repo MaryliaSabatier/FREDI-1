@@ -17,18 +17,17 @@ try {
   $sth = $dbh->prepare($sql);
 
   $sth->execute(array(":id"=>$id));
-  $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
+  $rows = $sth->fetch(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
   die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
 }
-
-$sql = 'select * from note  ,utilisateur where note.id_utilisateur=utilisateur.id_utilisateur and utilisateur.id_utilisateur=:id;';
+$sql = 'select * from adherent ,utilisateur where adherent.id_utilisateur=utilisateur.id_utilisateur and utilisateur.id_utilisateur=:id;';
 
 try {
   $sth = $dbh->prepare($sql);
 
   $sth->execute(array(":id"=>$id));
-  $row1s = $sth->fetchAll(PDO::FETCH_ASSOC);
+  $tableau = $sth->fetch(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
   die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
 }
@@ -48,8 +47,8 @@ try {
 <h1>Affichage de la note de frais</h1>
     <img src="img/logo.png">
     <?php
-     echo'<p>Je sousigné(e) '.$_SESSION['user']['nom'].$_SESSION['prenom'].'</p>';
-     echo'<p>Demeurant'.$row1['adr1'].$_SESSION['adr2'].$_SESSION['adr3'].'</p>';
+     echo'<p>Je sousigné(e) '.$_SESSION['user']['nom'].' '.$_SESSION['user']['prenom'].'</p>';
+     echo'<p>Demeurant au '.$tableau['adr1'].$tableau['adr2'].$tableau['adr3'].'</p>';
      echo'<p>Certifie renoncer au remboursement des frais ci dessous et les laisser à l association (mettre le nom + adresse) en tant que don </p>';
     ?>
 
