@@ -34,18 +34,19 @@ include 'sql.php';
 
                 if ($_SESSION['user']['role'] == 1) {
 
-print_r($_SESSION['user']);
+
                 ?>
 
                     <li class="ligne left"><a class=active" href="utilisateur.php">utilisateur</a></li>
                     <li class="ligne left"><a class=active" href="clubs_charger.php">charger club</a></li>
                     <li class="ligne left"><a class=active" href="charger_ligues.php">charger ligue</a></li>
-                    <li class="ligne left"><a class=active" href="notes_frais.php">Notes de frais</a></li>
 
-                    <?php
-                                                                                                            }
-                                                                                                                ?>
 
+                <?php
+                }
+
+                ?>
+                <li class="ligne left"><a class=active" href="notes_frais.php">Notes de frais</a></li>
 
             <?php } else {
                 //Si user non connecté alors seulement connexion et inscription visibles 
@@ -56,7 +57,7 @@ print_r($_SESSION['user']);
                 <li class="ligne right"><a class="<?php if ($active == 4) {
                                                         echo "active";
                                                     } ?>" href="/fredi/connexion.php">Connexion</a></li>
-                
+
             <?php }
             ?>
         </ul>
@@ -75,6 +76,6 @@ print_r($_SESSION['user']);
         }
 
         echo '<br>';
-       
+
 
         ?>
