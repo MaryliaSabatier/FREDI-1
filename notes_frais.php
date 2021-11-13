@@ -6,6 +6,7 @@ include 'header.php';
 
 
 $id=$_SESSION['user']['id_utilisateur'];
+$id_utilisateur= $_SESSION['user']['id_utilisateur'];
 echo '<br>';
 echo '<br>';
 echo '<br>';
@@ -90,24 +91,39 @@ $id_note=$row['id_note'];
 
         <table class="container">
         <tr>
-          <th>Date</th>
+         
           <th>numero_ordre	 </th>
           <th>montant_total	 </th>
           <th>date de remise	 </th>
-            <th>est_valide	 </th>
+          <th>est_valide	 </th>
          
-	
-          <th>&nbsp;</th>
+            
+          <th>action</th>
         </tr>
 
         <?php
         foreach ($rows as $row) {
           echo '<tr>';
+          echo '<td>'. $row['nr_ordre'] .'</td>';
           echo '<td>'. $row['mt_total'] .'</td>';
           echo '<td>' . $row['dat_remise'] . '</td>';
           echo '<td>' . $row['est_valide'] . '</td>';
-          echo '<td><a href="modif_notes.php?id_ligne=' . $row['id_ligne'] . '">Modifier</a>&nbsp;';
-          echo '<td><a href="supprimer_notes.php?id_ligne=' . $row['id_ligne'] . '">Supprimer</a>;';
+
+          
+
+          $sql = 'select id_ligne from ligne where id_note =:note ;';
+
+          try {
+            $sth = $dbh->prepare($sql);
+          
+            $sth->execute(array(":note"=>$row['id_note'] ));
+            $rooows = $sth->fetch(PDO::FETCH_ASSOC);
+          } catch (PDOException $e) {
+            die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
+          }
+
+          echo '<td><a href="modif_notes.php?id_ligne=' . $rooows['id_ligne'] . '">Modifier</a>&nbsp;';
+          echo '&nbsp;<a href="supprimer_notes.php?id_ligne=' . $rooows['id_ligne'] . '">Supprimer</a></td>';
           echo "</tr>";
 
           

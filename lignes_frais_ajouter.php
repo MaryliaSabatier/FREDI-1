@@ -46,15 +46,15 @@ $mt_repas = isset($_POST['mt_repas']) ? $_POST['mt_repas'] : '';
 $mt_hebergement = isset($_POST['mt_hebergement']) ? $_POST['mt_hebergement'] : '';
 $id_utilisateur= $_SESSION['user']['id_utilisateur'];
 $submit = isset($_POST['submit']);
-
+$num =random_int(0,99999999999) ;
 // Ajout dans la base
 if ($submit) {
 
-  $sql="INSERT INTO note (id_periode, id_utilisateur) VALUES (:id_periode ,:id_utilisateur)";
+  $sql="INSERT INTO note (id_periode, id_utilisateur , dat_remise,nr_ordre) VALUES (:id_periode ,:id_utilisateur ,:dat_remise,:nr_ordre)";
   try {
       $sth = $dbh->prepare($sql);
       $sth->execute(array( ":id_periode" => $periode,
-      ":id_utilisateur" => $_SESSION['user']['id_utilisateur']));
+      ":id_utilisateur" => $_SESSION['user']['id_utilisateur'],':dat_remise'=> $dat_ligne,':nr_ordre'=>$num));
   } catch (PDOException $e) {
       die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
   }
