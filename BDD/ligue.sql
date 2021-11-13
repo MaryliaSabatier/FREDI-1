@@ -1,8 +1,10 @@
 USE `fredi21`; 
-
 ALTER TABLE fredi21.club DROP FOREIGN KEY IF EXISTS fk_id_ligue ;
 
-DROP TABLE IF EXISTS `ligue`;
+
+
+
+DROP TABLE if EXISTS ligue ;
 CREATE TABLE `ligue` (
   `id_ligue` int(11) NOT NULL,
   `lib_ligue` varchar(50) DEFAULT NULL
@@ -15,4 +17,6 @@ CREATE TABLE `ligue` (
 ALTER TABLE `ligue`
   MODIFY `id_ligue` int(11) NOT NULL AUTO_INCREMENT;
 
-ALTER TABLE `fredi21`.`club` DROP INDEX `fk_id_ligue`, ADD INDEX `fk_id_ligue` (`id_ligue`) USING BTREE;
+
+
+ALTER TABLE `ligue` ADD CONSTRAINT `fk_id_ligue` FOREIGN KEY (`id_ligue`) REFERENCES `club`(`id_ligue`) ;

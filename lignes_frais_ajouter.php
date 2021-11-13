@@ -15,12 +15,23 @@ try {
 } catch (PDOException $e) {
   die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
 }
+$sql = "SELECT * FROM periode WHERE est_active ='1' ;";
 
+try {
+  $sth = $dbh->prepare($sql);
+
+  $sth->execute(array());
+  $tableaux = $sth->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+  die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
+}
 
 
 // Lecture du formulaire
 $dat_ligne = isset($_POST['dat_ligne']) ? $_POST['dat_ligne'] : '';
 $id_motif = isset($_POST['motif']) ? $_POST['motif'] : '';
+echo '<br><br>';
+echo $periode = isset($_POST['periode']) ? $_POST['periode'] : '';
 $lib_trajet = isset($_POST['lib_trajet']) ? $_POST['lib_trajet'] : '';
 $nb_km = isset($_POST['nb_km']) ? $_POST['nb_km'] : '';
 $mt_peage = isset($_POST['mt_peage']) ? $_POST['mt_peage'] : '';
@@ -31,15 +42,12 @@ $submit = isset($_POST['submit']);
 
 // Ajout dans la base
 if ($submit) {
-  $sql = "INSERT INTO ligne(dat_ligne, id_motif, lib_trajet, nb_km, mt_peage, mt_repas, mt_hebergement) VALUES (:dat_ligne, :id_motif, :lib_trajet, :nb_km, :mt_peage, :mt_repas, :mt_hebergement)";
+
+
+  $sql = "INSERT INTO `note`(`id_periode`, `id_utilisateur`) VALUES (:id_periode , :id_utilisateur)";
   $params = array(
-    ":dat_ligne" => $dat_ligne,
-    ":id_motif" => $id_motif,
-    ":lib_trajet" => $lib_trajet,
-    ":nb_km" => $nb_km,
-    ":mt_peage" => $mt_peage,
-    ":mt_repas" => $mt_repas,
-    ":mt_hebergement" => $mt_hebergement
+    ":id_periode" => $periode,
+    ":id_utilisateur" => $_SESSION['user']['id_utilisateur']
   );
 
   try {
@@ -49,6 +57,58 @@ if ($submit) {
   } catch (PDOException $e) {
     die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
   }
+  $message = "$nb note de frais créé(s)";
+
+
+echo $_SESSION['user']['id_utilisateur'] ;
+
+
+  $sql = 'SELECT id_note FROM note WHERE id_note = (SELECT max(id_note) FROM note ) and id_utilisateur = :id_utilsateur and id_periode=:periode ;';
+  try {
+      $sth = $dbh->prepare($sql);
+      $sth->execute(array(
+        ':id_utilisateur'=>$_SESSION['user']['id_utilisateur'],
+        ':periode'=>$periode
+      ));
+      $row = $sth->fetch(PDO::FETCH_ASSOC);
+  } catch (PDOException $e) {
+      die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
+  }
+
+
+/*
+  $sql = "SELECT * FROM periode WHERE est_active ='1' ;";
+  
+  try {
+    $sth = $dbh->prepare($sql);
+  
+    $sth->execute(array());
+    $tableaux = $sth->fetchAll(PDO::FETCH_ASSOC);
+  } catch (PDOException $e) {
+    die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
+  }
+/*
+
+  $sql = "INSERT INTO ligne( `dat_ligne`, `id_motif`, `lib_trajet`, `nb_km`, `mt_km`, `mt_peage`, `mt_repas`, `mt_hebergement`, `id_note`) VALUES (:dat_ligne, :id_motif, :lib_trajet, :nb_km, :mt_peage, :mt_repas, :mt_hebergement,:id_note)";
+  $params = array(
+    ":dat_ligne" => $dat_ligne,
+    ":id_motif" => $id_motif,
+    ":lib_trajet" => $lib_trajet,
+    ":nb_km" => $nb_km,
+    ":mt_peage" => $mt_peage,
+    ":mt_repas" => $mt_repas,
+    ":mt_hebergement" => $mt_hebergement,
+    ":id_note" =>$rof['id_note']
+  );
+
+  try {
+    $sth = $dbh->prepare($sql);
+    $sth->execute($params);
+    $nb = $sth->rowcount();
+  } catch (PDOException $e) {
+    die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
+  }
+  */
   $message = "$nb film(s) créé(s)";
 } else {
   $message = "Veuillez saisir une note de frais";
@@ -73,8 +133,16 @@ if ($submit) {
   <p><?php echo $message; ?>
   </p>
   <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-    <p>Date<br /><input name="dat_ligne" id="dat_ligne" type="date" value="" /></p>
+
     <?php
+    echo '<label for="periode"> periode : </label>';
+    echo '<select id="periode" name="periode" >';
+    echo '   <option value="0"> choix</option>';
+    foreach ($tableaux as $tableau) {
+      echo '   <option value="' . $tableau['id_periode'] . '">' . $tableau['lib_periode'].$tableau['id_periode']  . '</option>';
+    }
+    echo '</select>';
+    echo '<p>Date<br /><input name="dat_ligne" id="dat_ligne" type="date" value="" /></p>';
 
     echo '<label for="motif"> motif : </label>';
     echo '<select id="motif" name="motif" >';
