@@ -5,6 +5,7 @@ include 'init.php';
 include 'sql.php';
 include 'header.php';
 
+//permet de rechercher les motifs
 $sql = 'select * from motif ;';
 
 try {
@@ -15,6 +16,9 @@ try {
 } catch (PDOException $e) {
   die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
 }
+
+//permet de prendre toute les periode est_active
+
 $sql = "SELECT * FROM periode WHERE est_active ='1' ;";
 
 try {
@@ -27,7 +31,8 @@ try {
 }
 
 
-// Lecture du formulaire
+// recuperation de toute les variable saisie dans le formulaire
+
 $dat_ligne = isset($_POST['dat_ligne']) ? $_POST['dat_ligne'] : '';
 $id_motif = isset($_POST['motif']) ? $_POST['motif'] : '';
 echo '<br><br>';
@@ -43,37 +48,35 @@ $submit = isset($_POST['submit']);
 // Ajout dans la base
 if ($submit) {
 
-
-  $sql = "INSERT INTO `note`(`id_periode`, `id_utilisateur`) VALUES (:id_periode , :id_utilisateur)";
-  $params = array(
-    ":id_periode" => $periode,
-    ":id_utilisateur" => $_SESSION['user']['id_utilisateur']
-  );
-
-  try {
-    $sth = $dbh->prepare($sql);
-    $sth->execute($params);
-    $nb = $sth->rowcount();
-  } catch (PDOException $e) {
-    die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
-  }
-  $message = "$nb note de frais créé(s)";
-
-
-echo $_SESSION['user']['id_utilisateur'] ;
-
-
-  $sql = 'SELECT id_note FROM note WHERE id_note = (SELECT max(id_note) FROM note ) and id_utilisateur = :id_utilsateur and id_periode=:periode ;';
+  $sql="INSERT INTO note (id_periode, id_utilisateur) VALUES (:id_periode ,:id_utilisateur)";
   try {
       $sth = $dbh->prepare($sql);
-      $sth->execute(array(
-        ':id_utilisateur'=>$_SESSION['user']['id_utilisateur'],
-        ':periode'=>$periode
-      ));
-      $row = $sth->fetch(PDO::FETCH_ASSOC);
+      $sth->execute(array( ":id_periode" => $periode,
+      ":id_utilisateur" => $_SESSION['user']['id_utilisateur']));
   } catch (PDOException $e) {
       die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
   }
+
+
+
+
+ 
+  $sql = 'SELECT * FROM note WHERE id_utilisateur = :id_utilsateur and id_periode = :periode order by id_note desc';
+  try {
+      $sth = $dbh->prepare($sql);
+      $sth->execute(array( ":id_periode" => $periode,
+      ":id_utilisateur" => $_SESSION['user']['id_utilisateur']));
+      $tableaux = $sth->fetchAll(PDO::FETCH_ASSOC);
+  } catch (PDOException $e) {
+      die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
+  }
+
+
+
+
+
+
+
 
 
 /*
@@ -109,7 +112,7 @@ echo $_SESSION['user']['id_utilisateur'] ;
     die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
   }
   */
-  $message = "$nb film(s) créé(s)";
+ 
 } else {
   $message = "Veuillez saisir une note de frais";
 }
@@ -130,7 +133,7 @@ echo $_SESSION['user']['id_utilisateur'] ;
 <body>
   <h1>Ajout de la nouvelle ligne de frais</h1>
   </p><a href="notes_frais.php">Retour à la liste des notes</a></p>
-  <p><?php echo $message; ?>
+  
   </p>
   <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 
