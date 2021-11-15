@@ -110,7 +110,7 @@ foreach ($roows as $row) {
         die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
       }
 
-      echo '<td><a href="modif_notes.php?id_ligne=' . $rooows['id_ligne'] . '">Modifier</a>&nbsp;';
+      echo '<td><a href="lignes_frais_modifier.php?id_ligne=' . $rooows['id_ligne'] . '">Modifier</a>&nbsp;';
       echo '&nbsp;<a href="supprimer_notes.php?id_ligne=' . $rooows['id_ligne'] . '">Supprimer</a></td>';
       echo "</tr>";
     } ?>
