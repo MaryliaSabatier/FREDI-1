@@ -171,7 +171,7 @@ if ($submit) {
       echo '   <option value="' . $tableau['id_periode'] . '">' . $tableau['lib_periode'] . $tableau['id_periode']  . '</option>';
     }
     echo '</select>';
-    echo '<p>Date<br /><input name="dat_ligne" id="dat_ligne" type="date" value="" /></p>';
+    echo '<p>Date<br /><input name="dat_ligne" id="dat_ligne" type="date" value="'.$dat_ligne.'" /></p>';
 
     echo '<label for="motif"> motif : </label>';
     echo '<select id="motif" name="motif" >';
