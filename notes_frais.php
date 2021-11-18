@@ -49,9 +49,6 @@ foreach ($roows as $row) {
   $id_note = $row['id_note'];
 }
 
-
-
-
 ?>
 
 
@@ -96,8 +93,6 @@ foreach ($roows as $row) {
       echo '<td>' . $row['mt_total'] . '</td>';
       echo '<td>' . $row['dat_remise'] . '</td>';
       echo '<td>' . $row['est_valide'] . '</td>';
-
-
 
       $sql = 'select id_ligne from ligne where id_note =:note ;';
 
