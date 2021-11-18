@@ -1,6 +1,5 @@
-
 <?php
-$page="supprimer_notes.php";
+$page = "supprimer_notes.php";
 include 'init.php';
 include 'sql.php';
 include 'header.php';
@@ -17,11 +16,49 @@ $submit = isset($_POST['submit']);
 // Suppression dans la base
 if ($submit) {
   // Formulaire validé : on supprime l'enregistrement
-  $id = $_POST['id_ligne'];
+  $sql = "select * from ligne where id_ligne=:id_ligne";
+  $params = array(
+    ":id_ligne" => $id
+  );
+  try {
+    $sth = $dbh->prepare($sql);
+    $sth->execute($params);
+    $row = $sth->fetch(PDO::FETCH_ASSOC);
+  } catch (PDOException $e) {
+    die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
+  }
+
+  $id_note = $row['id_note'];
+  $sql = "select * from note where id_note=:id_note";
+  $params = array(
+    ":id_note" => $id_note
+  );
+  try {
+    $sth = $dbh->prepare($sql);
+    $sth->execute($params);
+    $row = $sth->fetch(PDO::FETCH_ASSOC);
+  } catch (PDOException $e) {
+    die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
+  }
+
+
+
+
   // Suppression de la ligne
   $sql = "delete from ligne where id_ligne=:id_ligne";
   $params = array(
-    ":id_ligne" => $id_ligne
+    ":id_ligne" => $id
+  );
+  try {
+    $sth = $dbh->prepare($sql);
+    $sth->execute($params);
+    $nb = $sth->rowcount();
+  } catch (PDOException $e) {
+    die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
+  }
+  $sql = "delete from note where id_note=:id_note";
+  $params = array(
+    ":id_note" => $id_note
   );
   try {
     $sth = $dbh->prepare($sql);
@@ -31,12 +68,12 @@ if ($submit) {
     die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
   }
   $dat_ligne = "";
-  $id_motif = ""; 
+  $id_motif = "";
   $lib_trajet = "";
   $nb_km = "";
   $mt_km = "";
   $mt_peage = "";
-  $mt_repas	 = "";
+  $mt_repas   = "";
   $mt_hebergement = "";
   $mt_total = "";
   $message = "$nb ligne supprimé";
@@ -44,7 +81,7 @@ if ($submit) {
   // Formulaire non encore validé : on affiche l'enregistrement
   $sql = "select * from ligne where id_ligne=:id_ligne";
   $params = array(
-    ":id_ligne" => $id_ligne
+    ":id_ligne" => $id
   );
   try {
     $sth = $dbh->prepare($sql);
@@ -80,10 +117,10 @@ if ($submit) {
 <body>
   <h1>Suppression</h1>
   <h2>Suppression de la ligne de frais</h2>
-  <li><a href="lignes_notes_frais.php">Retour aux lignes de fraisccueil</a></li>
+  <li><a href="notes_frais.php">Retour aux lignes de frais accueil</a></li>
   <p><?php echo $message; ?>
   </p>
-  <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+  <form action="<?php echo $_SERVER['PHP_SELF'] . "?id_ligne=" . $id; ?>" method="post">
     <p>Date<br /><input name="dat_ligne" id="dat_ligne" type="date" value="<?= $dat_ligne ?>" disabled /></p>
     <p>Motif<br /><input name="id_motif" id="id_motif" type="text" value="<?= $id_motif ?>" disabled /></p>
     <p>Trajet<br /><input name="lib_trajet" id="lib_trajet" type="text" value="<?= $lib_trajet ?>" disabled /></p>
