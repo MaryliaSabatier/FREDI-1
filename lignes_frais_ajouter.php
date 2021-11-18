@@ -31,6 +31,8 @@ try {
 }
 
 
+
+
 // recuperation de toute les variable saisie dans le formulaire
 
 $dat_ligne = isset($_POST['dat_ligne']) ? $_POST['dat_ligne'] : '';
@@ -76,12 +78,16 @@ if ($submit) {
 
     $id_note = $row['id_note'];
   }
+  foreach ($tableaux as $tableau) {
 
+    $tableau = $tableau['mt_km'];
+  }
+ echo $tableaux['mt_km'];
   $sql = "INSERT INTO ligne(  `id_motif` , `id_note`,mt_hebergement ,dat_ligne,lib_trajet,nb_km,mt_km,mt_peage,mt_repas) VALUES (:id_motif ,:id_note,:mt_hebergement,:dat_ligne,:lib_trajet,:nb_km,:mt_km,:mt_peage,:mt_repas)";
   $params = array(
     ":lib_trajet" => $lib_trajet,
     ":nb_km" => $nb_km,
-    ":mt_km" => $mt_km,
+    ":mt_km" => $tableau,
     ":mt_repas" => $mt_repas,
     ":mt_peage" => $mt_peage,
     ":id_motif" => $id_motif,
