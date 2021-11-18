@@ -1,7 +1,9 @@
 <?php $active=4; $title ="Connexion"; require('header.php');?>
+
   <div class="center">
     <h1>Se connecter</h1>
     <form class="form" action="connexion_validation.php" method="post">
+      <!-- Formulaire permettant de se connecter -->
       <table>
         <tr>
           <td><label for="pseudo">Pseudo :</label></td>

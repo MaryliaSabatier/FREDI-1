@@ -8,6 +8,7 @@
         <h1>Contact</h1>
 
         <form action="#" method="post">
+          <!-- Formulaire de contact -->
           <p>
             <label for="nom">Nom</label>
             <input type="text" name="nom" id="nom" placeholder="Nom" required>
