@@ -4,7 +4,6 @@ session_start();
 include 'log/log.php';
 include 'sql.php';
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -27,27 +26,41 @@ include 'sql.php';
             //Si user connecté alors FAQ et déconnexion visibles
             if (isset($_SESSION['user'])) { ?>
                 <li class="ligne left">
-                <li class="ligne right"><a class="<?php if ($active == 4) { echo "active"; } ?>" href="/fredi/liste/deconnexion.php">Déconnexion</a></li>
+                <li class="ligne right"><a class="<?php if ($active == 4) {
+                                                        echo "active";
+                                                    } ?>" href="/fredi/liste/deconnexion.php">Déconnexion</a></li>
 
                 <?php
+
                 if ($_SESSION['user']['role'] == 1) {
+
+
                 ?>
 
-                <li class="ligne left"><a class=active" href="utilisateur.php">utilisateur</a></li>
-                <li class="ligne left"><a class=active" href="clubs_charger.php">charger club</a></li>
-                <li class="ligne left"><a class=active" href="charger_ligues.php">charger ligue</a></li>
+                    <li class="ligne left"><a class=active" href="utilisateur.php">utilisateur</a></li>
+                    <li class="ligne left"><a class=active" href="clubs_charger.php">charger club</a></li>
+                    <li class="ligne left"><a class=active" href="charger_ligues.php">charger ligue</a></li>
+
+
+                <?php
+                }
+
+                ?>
                 <li class="ligne left"><a class=active" href="notes_frais.php">Notes de frais</a></li>
 
-            <?php 
-            } else {
-            //Si user non connecté alors seulement connexion et inscription visibles 
+            <?php } else {
+                //Si user non connecté alors seulement connexion et inscription visibles 
             ?>
-                <li class="ligne right"><a class="<?php if ($active == 3) { echo "active"; } ?>" href="/fredi/inscription.php">Inscription</a></li>
-                <li class="ligne right"><a class="<?php if ($active == 4) {echo "active"; } ?>" href="/fredi/connexion.php">Connexion</a></li>
+                <li class="ligne right"><a class="<?php if ($active == 3) {
+                                                        echo "active";
+                                                    } ?>" href="/fredi/inscription.php">Inscription</a></li>
+                <li class="ligne right"><a class="<?php if ($active == 4) {
+                                                        echo "active";
+                                                    } ?>" href="/fredi/connexion.php">Connexion</a></li>
+
             <?php }
             ?>
         </ul>
-
     </div>
     <div class="marge">
         <?php
@@ -61,6 +74,7 @@ include 'sql.php';
             unset($_SESSION['messages']);
             echo "</div>";
         }
+
         echo '<br>';
 
 
