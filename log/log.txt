@@ -44,3 +44,8 @@
 2021-11-13 14:39:38.943879;::1;/fredi/inscription.php;;pseudo=;password=;
 2021-11-13 14:39:48.740876;::1;/fredi/connexion_validation.php;;pseudo=damien1234;password=Azertyuiop1234.;
 2021-11-13 14:40:12.878427;::1;/fredi/connexion_validation.php;;pseudo=damien1234;password=Azertyuiop1234.;
+2021-11-18 13:15:02.996782;::1;/fredi/inscription.php;;pseudo=;password=;
+2021-11-18 13:16:03.795588;::1;/fredi/connexion_validation.php;;pseudo=d.dutertre;password=$2y$10$KBYotb6pbZVHo61QqdYrQez3CEtJmN2kESm6hcgmkdWmj40r59odK;
+2021-11-18 13:16:14.871488;::1;/fredi/connexion_validation.php;;pseudo=d.dutertre;password=damien123;
+2021-11-18 13:16:20.807374;::1;/fredi/connexion_validation.php;;pseudo=d.dutertre;password=Damien123;
+2021-11-18 13:17:00.937036;::1;/fredi/connexion_validation.php;;pseudo=d.dutertre;password=x33R#kM##J4!k3Om;
