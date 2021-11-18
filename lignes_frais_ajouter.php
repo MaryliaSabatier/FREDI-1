@@ -42,7 +42,6 @@ echo $periode = isset($_POST['periode']) ? $_POST['periode'] : '';
 $lib_trajet = isset($_POST['lib_trajet']) ? $_POST['lib_trajet'] : '';
 
 $nb_km = isset($_POST['nb_km']) ? $_POST['nb_km'] : '';
-$mt_km = isset($_POST['mt_km']) ? $_POST['mt_km'] : '';
 $mt_peage = isset($_POST['mt_peage']) ? $_POST['mt_peage'] : '';
 $mt_repas = isset($_POST['mt_repas']) ? $_POST['mt_repas'] : '';
 $mt_hebergement = isset($_POST['mt_hebergement']) ? $_POST['mt_hebergement'] : '';
@@ -82,7 +81,7 @@ if ($submit) {
 
     $tableau = $tableau['mt_km'];
   }
- echo $tableaux['mt_km'];
+ 
   $sql = "INSERT INTO ligne(  `id_motif` , `id_note`,mt_hebergement ,dat_ligne,lib_trajet,nb_km,mt_km,mt_peage,mt_repas) VALUES (:id_motif ,:id_note,:mt_hebergement,:dat_ligne,:lib_trajet,:nb_km,:mt_km,:mt_peage,:mt_repas)";
   $params = array(
     ":lib_trajet" => $lib_trajet,
@@ -150,7 +149,7 @@ if ($submit) {
 
     <p>Trajet<br /><input name="lib_trajet" id="lib_trajet" type="text" value="" /></p>
     <p>Nombre de km(s)<br /><input name="nb_km" id="nb_km" type="text" value="" /></p>
-    <p>Montant du km(s)<br /><input name="mt_km" id="mt_km" type="text" value="" /></p>
+    <p>Montant du km(s)<br /><input name="mt_km" id="mt_km" type="text" value="<?=$tableau['mt_km']?>"disabled /></p>
     <p>Montant péage<br /><input name="mt_peage" id="mt_peage" type="text" value="" /></p>
     <p>Montant repas<br /><input name="mt_repas" id="mt_repas" type="text" value="" /></p>
     <p>Montant hébergement<br /><input name="mt_hebergement" id="mt_hebergement" type="text" value="" /></p>
