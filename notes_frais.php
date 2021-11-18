@@ -10,7 +10,7 @@ $id_utilisateur = $_SESSION['user']['id_utilisateur'];
 echo '<br>';
 echo '<br>';
 echo '<br>';
-echo $id;
+
 // Récupère la liste des lignes
 $sql = 'select * from note  , utilisateur where note.id_utilisateur=utilisateur.id_utilisateur and utilisateur.id_utilisateur=:id;';
 

@@ -53,7 +53,7 @@ $submit = isset($_POST['submit']);
 
 // Ajout dans la base
 if ($submit) {
-  $id_ligne = $id_ligne ;
+  $id_ligne = $id_ligne;
   $dat_ligne = isset($_POST['dat_ligne']) ? $_POST['dat_ligne'] : '';
   $id_motif = isset($_POST['motif']) ? $_POST['motif'] : '';
   echo '<br><br>';
@@ -97,11 +97,11 @@ if ($submit) {
 
     $id_note = $row['id_note'];
   }
-echo $id_ligne ;
-  
+  echo $id_ligne;
+
 
   try {
-    $sth = $dbh->prepare("update  ligne set  id_motif =:id_motif, id_note=:id_note ,mt_hebergement =:mt_hebergement ,dat_ligne =:dat_ligne ,lib_trajet =:lib_trajet , nb_km =:nb_km ,mt_km =:mt_km ,mt_peage = :mt_peage,mt_repas=:mt_repas  where id_ligne =:id_ligne;");
+    $sth = $dbh->prepare("update  ligne set  id_motif =:id_motif ,mt_hebergement =:mt_hebergement ,dat_ligne =:dat_ligne ,lib_trajet =:lib_trajet , nb_km =:nb_km ,mt_km =:mt_km ,mt_peage = :mt_peage,mt_repas=:mt_repas  where id_ligne =:id_ligne;");
     $sth->execute(array(
       ":lib_trajet" => $lib_trajet,
       ":nb_km" => $nb_km,
@@ -111,8 +111,9 @@ echo $id_ligne ;
       ":id_motif" => $id_motif,
       ":dat_ligne" => $dat_ligne,
       ":mt_hebergement" => $mt_hebergement,
-      ":id_note" => $id_note ,
-  ":id_ligne" => $id_ligne));
+     
+      ":id_ligne" => $id_ligne
+    ));
     $nb = $sth->rowcount();
   } catch (PDOException $e) {
     die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
@@ -165,18 +166,19 @@ echo $id_ligne ;
     <?php
     echo '<label for="periode"> periode : </label>';
     echo '<select id="periode" name="periode" >';
-    echo '   <option value="0"> choix</option>';
+   
     foreach ($tableaux as $tableau) {
       echo '   <option value="' . $tableau['id_periode'] . '">' . $tableau['lib_periode'] . $tableau['id_periode']  . '</option>';
     }
     echo '</select>';
-    echo '<p>Date<br /><input name="dat_ligne" id="dat_ligne" type="date" value="" /></p>';
+    echo '<p>Date<br /><input name="dat_ligne" id="dat_ligne" type="date" value="'.$dat_ligne.'" /></p>';
 
     echo '<label for="motif"> motif : </label>';
     echo '<select id="motif" name="motif" >';
-    echo '   <option value="0"> choix</option>';
+   
     foreach ($rows as $row) {
-      echo '   <option value="' . $row['id_motif'] . '">' . $row['lib_motif'] . '</option>';
+      echo '   <option value="'.$row['id_motif'].'"> '. $row['lib_motif'] .'</option>';
+     
     }
     echo '</select>';
 
@@ -188,7 +190,7 @@ echo $id_ligne ;
     echo "                   <p>Montant péage<br /><input name='mt_peage' id='mt_peage' type='text' value='" . $roows1['mt_peage'] . "' /></p>";
     echo "                   <p>Montant repas<br /><input name='mt_repas' id='mt_repas' type='text' value='" . $roows1['mt_repas'] . "' /></p>";
     echo "   <p>Montant hébergement<br /><input name='mt_hebergement' id='mt_hebergement' type='text' value='" . $roows1['mt_hebergement'] . "'/></p>";
-    echo "                                                                    <input  type='hidden' name='id_ligne' id='id_ligne' value='".$id_ligne  . "'> ";
+    echo "                                                                    <input  type='hidden' name='id_ligne' id='id_ligne' value='" . $id_ligne  . "'> ";
     echo "      <p><input type='submit' name='submit' value='Envoyer' />&nbsp;<input type='reset' value='Réinitialiser' /></p>";
 
 

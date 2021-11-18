@@ -9,7 +9,7 @@ $id=$_SESSION['user']['id_utilisateur'];
 echo '<br>';
 echo '<br>';
 echo '<br>';
-echo $id ;
+
 // Récupère la liste des lignes
 $sql = 'select * from ligue  ,utilisateur where ligne.id_utilisateur=utilisateur.id_utilisateur and utilisateur.id_utilisateur=:id;';
 
