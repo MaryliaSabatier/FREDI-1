@@ -16,9 +16,9 @@ try {
 }
 // Affichage
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,7 +30,9 @@ try {
 <body>
   <h1>Clubs/h1>
   <h2>Liste des clubs</h2>
+
   <?php
+  // Affichage du tableau la liste des clubs
   if (count($rows) > 0) {
   ?>
     <table>
@@ -55,12 +57,14 @@ try {
         echo "</tr>";
       } ?>
     </table>
+
   <?php
   } else {
     echo "<p>Rien à afficher</p>";
   }
   ?>
-  <p><?php echo count($rows); ?> utilisateur(s)</p>
+  <!-- Compte le nombre d'utilisateur -->
+  <p><?php echo count($rows);  ?> utilisateur(s)</p>
 </body>
 
 </html>

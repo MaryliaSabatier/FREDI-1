@@ -13,13 +13,6 @@ $adr3 = isset($_POST['adr3']) ? $_POST['adr3'] : '';
 $typeutil = isset($_POST['role']) ? $_POST['role'] : '';
 
 
-
-
-
-
-
-
-
 $active = 3;
 $title = "Inscription";
 require('header.php');
