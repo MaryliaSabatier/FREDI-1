@@ -1,5 +1,7 @@
+
 <?php 
 include "fpdf/fpdf.php";
+include "funciton/pdf_requete.php"
 
 // Instanciation de l'objet FPDF
 $pdf = new FPDF();
@@ -24,7 +26,7 @@ $pdf->Cell(40,10,'Bonjour le monde');  // 40=largeur en mm; 10 = hauteur
 $pdf->SetFont('Arial','B',16);
 $pdf->Cell(0,10,utf8_decode('Notes de frais des bénévoles'),1,1,'L');  // utf8_decode=convertit en ASCII une chaine UTF8
 // Création du texte a droite
-$pdf->Cell(0,10,utf8_decode('Année Civil')($periode->get_id_pays(),1,1,'R');
+$pdf->Cell(0,10,utf8_decode('Année Civil')($periode["lib_periode"]),1,1,'R');
 
 // Définit l'alias du nombre de pages {nb}
 $pdf->AliasNbPages();
