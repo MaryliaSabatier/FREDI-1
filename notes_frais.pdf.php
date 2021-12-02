@@ -28,37 +28,38 @@ $pdf->SetDrawColor(0,0,0);
 // Création du titre
 $pdf->SetFont('Times', 'B', 15);
 $pdf->Cell(80,10,utf8_decode('Notes de frais des bénévoles'),0,0,'L');  // utf8_decode=convertit en ASCII une chaine UTF8
-$pdf->Ln(10); // revient à la ligne
-
 //Création de la période
-$pdf->Cell(0,10,utf8_decode('Année Civil '.$periode["lib_periode"]),0,0,'R');
+$pdf->SetFillColor(211,211,211);
+$pdf->Cell(0,10,utf8_decode('Année Civil '.$periode["lib_periode"]),0,0,'R', true);
 
 $pdf->Ln(10); // saut de ligne
 $pdf->SetFont('Times', '', 12);
 // Création du nom et prénom du user
 $pdf->Cell(80,10,utf8_decode('Je soussigné(e)'),0,0,'L');
 $pdf->Ln(10);
-$pdf->Cell(0,10,utf8_decode($utilisateur["nom"]." ".$utilisateur["prenom"]),0,0,'C');
+$pdf->SetFillColor(211,211,211);
+$pdf->Cell(0,10,utf8_decode($utilisateur["nom"]." ".$utilisateur["prenom"]),0,0,'C',true);
 
 //Création de l'adresse
 $pdf->Ln(10); // saut de ligne
 $pdf->Cell(80,10,utf8_decode('demeurant'),0,0,'L');
 $pdf->Ln(10);
-$pdf->Cell(0,10,utf8_decode($adherent["adr1"]." - ".$adherent["adr3"]." - ".$adherent["adr2"]),0,0,'C');
+$pdf->SetFillColor(211,211,211);
+$pdf->Cell(0,10,utf8_decode($adherent["adr1"]." - ".$adherent["adr3"]." - ".$adherent["adr2"]),0,0,'C',true);
 $pdf->Ln(10); // saut de ligne
 
 $pdf->Cell(80,10,utf8_decode('certifie renoncer au remboursement des frais ci-dessous et les laisser à l association'),0,0,'L');
 $pdf->Ln(10); // saut de ligne
 
 //Adresse club
-$pdf->Cell(0,10,utf8_decode($club["lib_club"]),0,0,'C');
-$pdf->Ln(10); // saut de ligne
-$pdf->Cell(0,10,utf8_decode($club["adr1"]." - ".$club["adr2"]." - ".$club["adr3"]),0,0,'C');
+$pdf->SetFillColor(211,211,211);
+$pdf->Cell(0,10,utf8_decode($club["lib_club"]),0,0,'C',true);
+$pdf->Ln(7); // saut de ligne
+$pdf->Cell(0,10,utf8_decode($club["adr1"]." - ".$club["adr2"]." - ".$club["adr3"]),0,0,'C',true);
 $pdf->Ln(10);
 
 $pdf->Cell(80,10,utf8_decode('En tant que dons.'),0,0,'L');
-$pdf->Ln(10); // saut de ligne
-
+$pdf->Ln(8); // saut de ligne
 // Boucle des lignes
 $pdf->SetFont('Times', '', 10);
 $pdf->SetTextColor(0, 0, 0); // Noir
