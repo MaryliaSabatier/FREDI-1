@@ -54,5 +54,18 @@ try {
   die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
 }
 
+// Requete pour afficher l'adresse des clubs
+$sql = 'select lib_club, club.adr1 as adr1, club.adr2 as adr2, club.adr3 as adr3 from club ,adherent where adherent.id_club=club.id_club and id_utilisateur=:id_utilisateur';
+echo($sql);
+try {
+  $sth = $dbh->prepare($sql);
+
+  $sth->execute(array( 
+    ":id_utilisateur" => $_SESSION["user"]["id_utilisateur"]
+));
+  $club = $sth->fetch(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+  die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
+}
 
 ?>
