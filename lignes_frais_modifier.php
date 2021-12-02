@@ -186,7 +186,7 @@ if ($submit) {
 
     echo "                      <p>Trajet<br /><input name='lib_trajet' id='lib_trajet' type='text' value='" . $roows1['lib_trajet'] . "' /></p>";
     echo "                       <p>Nombre de km(s)<br /><input name='nb_km' id='nb_km' type='text' value='" . $roows1['nb_km'] . "' /></p>";
-    echo "                      <p>Montant du km(s)<br /><input name='mt_km' id='mt_km' type='text' value='" . $roows1['mt_km'] . "' /></p>";
+    echo "                      <p>Montant du km(s)<br /><input name='mt_km' id='mt_km' type='text' value='" . $roows1['mt_km'] . "' disabled /></p>";
     echo "                   <p>Montant péage<br /><input name='mt_peage' id='mt_peage' type='text' value='" . $roows1['mt_peage'] . "' /></p>";
     echo "                   <p>Montant repas<br /><input name='mt_repas' id='mt_repas' type='text' value='" . $roows1['mt_repas'] . "' /></p>";
     echo "   <p>Montant hébergement<br /><input name='mt_hebergement' id='mt_hebergement' type='text' value='" . $roows1['mt_hebergement'] . "'/></p>";
