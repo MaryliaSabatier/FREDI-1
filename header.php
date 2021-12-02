@@ -11,8 +11,8 @@ include 'sql.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $title; ?> - fredi</title>
-    <link rel="stylesheet" href="/fredi/css/main.css">
-    <link rel="icon" href="/fredi/img/logo.png">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="icon" href="img/logo.png">
 </head>
 
 <body>
@@ -21,14 +21,14 @@ include 'sql.php';
             <!--Quand on arrive sur le site, seulement accueil visible-->
             <li class="ligne left"><a class="<?php if ($active == 1) {
                                                     echo "active";
-                                                } ?>" href="/fredi/index.php">Accueil</a></li>
+                                                } ?>" href="index.php">Accueil</a></li>
             <?php
             //Si user connecté alors FAQ et déconnexion visibles
             if (isset($_SESSION['user'])) { ?>
                 <li class="ligne left">
                 <li class="ligne right"><a class="<?php if ($active == 4) {
                                                         echo "active";
-                                                    } ?>" href="/fredi/liste/deconnexion.php">Déconnexion</a></li>
+                                                    } ?>" href="liste/deconnexion.php">Déconnexion</a></li>
 
                 <?php
 
@@ -53,10 +53,10 @@ include 'sql.php';
             ?>
                 <li class="ligne right"><a class="<?php if ($active == 3) {
                                                         echo "active";
-                                                    } ?>" href="/fredi/inscription.php">Inscription</a></li>
+                                                    } ?>" href="inscription.php">Inscription</a></li>
                 <li class="ligne right"><a class="<?php if ($active == 4) {
                                                         echo "active";
-                                                    } ?>" href="/fredi/connexion.php">Connexion</a></li>
+                                                    } ?>" href="connexion.php">Connexion</a></li>
 
             <?php }
             ?>

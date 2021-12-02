@@ -1,5 +1,0 @@
-date : 20210930-1414-06
-to : az
-subject : az
-message : Message de test sur
-deux lignes
