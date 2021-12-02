@@ -15,7 +15,7 @@ $pdf->AddPage();
 // Définit l'alias du nombre de pages {nb}
 $pdf->AliasNbPages();
 
-$pdf->SetMargins(20,10,20); // Nouvelles marges en mm
+$pdf->SetMargins(10,10,20); // Nouvelles marges en mm
 $pdf->SetDrawColor(0,0,0); // Tracé Noir
 // Marge du bas et saut automatique
 $pdf->SetAutoPageBreak(true,10);
@@ -23,9 +23,10 @@ $pdf->SetAutoPageBreak(true,10);
 // Affichage d'une image
 $pdf->Image('img/test.png',10,6,0,10);
 $pdf->Ln(10); // revient à la ligne
+$pdf->SetDrawColor(0,0,0);
 
 // Création du titre
-$pdf->SetFont('Times', '', 12);
+$pdf->SetFont('Times', 'B', 15);
 $pdf->Cell(80,10,utf8_decode('Notes de frais des bénévoles'),0,0,'L');  // utf8_decode=convertit en ASCII une chaine UTF8
 $pdf->Ln(10); // revient à la ligne
 
@@ -33,7 +34,7 @@ $pdf->Ln(10); // revient à la ligne
 $pdf->Cell(0,10,utf8_decode('Année Civil '.$periode["lib_periode"]),0,0,'R');
 
 $pdf->Ln(10); // saut de ligne
-
+$pdf->SetFont('Times', '', 12);
 // Création du nom et prénom du user
 $pdf->Cell(80,10,utf8_decode('Je soussigné(e)'),0,0,'L');
 $pdf->Ln(10);
@@ -41,10 +42,20 @@ $pdf->Cell(0,10,utf8_decode($utilisateur["nom"]." ".$utilisateur["prenom"]),0,0,
 
 //Création de l'adresse
 $pdf->Ln(10); // saut de ligne
-$pdf->Cell(80,10,utf8_decode('Demeurant'),0,0,'L');
+$pdf->Cell(80,10,utf8_decode('demeurant'),0,0,'L');
 $pdf->Ln(10);
 $pdf->Cell(0,10,utf8_decode($adherent["adr1"]." - ".$adherent["adr3"]." - ".$adherent["adr2"]),0,0,'C');
 $pdf->Ln(10); // saut de ligne
+
+$pdf->Cell(80,10,utf8_decode('certifie renoncer au remboursement des frais ci-dessous et les laisser à l association'),0,0,'L');
+$pdf->Ln(10); // saut de ligne
+
+//Adresse club
+$pdf->Cell(0,10,utf8_decode($club["lib_club"]),0,0,'C');
+$pdf->Ln(10); // saut de ligne
+$pdf->Cell(0,10,utf8_decode($club["adr1"]." - ".$club["adr2"]." - ".$club["adr3"]),0,0,'C');
+$pdf->Ln(10);
+
 $pdf->Cell(80,10,utf8_decode('En tant que dons.'),0,0,'L');
 $pdf->Ln(10); // saut de ligne
 
@@ -68,6 +79,7 @@ $pdf->Cell(16, 8, utf8_decode("Total"), 1,1,"C",true);
 foreach ($lignes as $ligne) {
     $pdf->SetFont('', '');
     $pdf->SetX(2.5);
+    $pdf->SetFillColor(211,211,211);
     $pdf->Cell(31,10, utf8_decode($ligne["dat_ligne"]),1,0,"C");   
     $pdf->Cell(18,10, utf8_decode($ligne["lib_trajet"]),1,0,"C");
     $pdf->Cell(30,10, utf8_decode($ligne["nb_km"]),1,0,"C"); 
@@ -83,13 +95,12 @@ $pdf->SetFont('Times', '', 12);
 $pdf->Ln(10); // saut de ligne
 $pdf->Cell(80,10,utf8_decode('Je suis licencié sous le n°'),0,0,'L');
 $pdf->Ln(10);
-$pdf->Cell(0,10,utf8_decode($adherent["adr1"]." - ".$adherent["adr3"]." - ".$adherent["adr2"]),0,0,'C');
-
+$pdf->Cell(0,10,utf8_decode(),0,0,'C');
 //Montant dons
 $pdf->Ln(10); // saut de ligne
 $pdf->Cell(80,10,utf8_decode('Montant total des dons'),0,0,'L');
 $pdf->Ln(10);
-$pdf->Cell(0,10,utf8_decode($adherent["mt_total"]),0,0,'C');
+$pdf->Cell(0,10,utf8_decode($ligne["mt_total"]),0,0,'C');
 
 //Signature 
 $pdf->Ln(10); // saut de ligne
@@ -98,7 +109,6 @@ $pdf->Cell(80,10,utf8_decode('Pour bénéficer du reçu de dons. Cette note de f
 $pdf->Output('outfiles/notes_frais.pdf','f');  // f=fichier local
 header('Location: notes_frais.php');
 
-$this->Cell(50, 8, 'Page ' . $this->PageNo() . '/{nb}', 'T', 0, 'R');
 
 ?>
 
