@@ -20,8 +20,12 @@ $pdf->SetDrawColor(0,0,0); // Tracé Noir
 // Marge du bas et saut automatique
 $pdf->SetAutoPageBreak(true,10);
 
+// Affichage d'une image
+$pdf->Image('img/test.png',10,6,0,10);
+$pdf->Ln(10); // revient à la ligne
+
 // Création du titre
-$pdf->SetFont('Arial','B',16);
+$pdf->SetFont('Times', '', 12);
 $pdf->Cell(80,10,utf8_decode('Notes de frais des bénévoles'),0,0,'L');  // utf8_decode=convertit en ASCII une chaine UTF8
 $pdf->Ln(10); // revient à la ligne
 
@@ -45,33 +49,35 @@ $pdf->Cell(80,10,utf8_decode('En tant que dons.'),0,0,'L');
 $pdf->Ln(10); // saut de ligne
 
 // Boucle des lignes
-$pdf->SetFont('Times', '', 12);
+$pdf->SetFont('Times', '', 10);
 $pdf->SetTextColor(0, 0, 0); // Noir
+$pdf->Ln(10); // saut de ligne
 // Entête
 $pdf->SetFont('', 'B');
-$pdf->SetX(20);
+$pdf->SetX(2.5);
 $pdf->SetFillColor(211,211,211);
-$pdf->Cell(30, 5, utf8_decode("Date jj/mm/aaaa"), 1,0,"C",true);
-$pdf->Cell(50, 5, utf8_decode("Motif"), 1,0,"C",true);
-$pdf->Cell(50, 5, utf8_decode("Kms parcourus"), 1,0,"C",true);
-$pdf->Cell(50, 5, utf8_decode("Total frais Kms"), 1,0,"C",true);
-$pdf->Cell(50, 5, utf8_decode("Coût péages"), 1,0,"C",true);
-$pdf->Cell(50, 5, utf8_decode("Coût repas"), 1,0,"C",true);
-$pdf->Cell(50, 5, utf8_decode("Coût hébergement"), 1,0,"C",true);
-$pdf->Cell(50, 5, utf8_decode("Total"), 1,1,"C",true);
-// service
+$pdf->Cell(31, 8, utf8_decode("Date jj/mm/aaaa"), 1,0,"C",true);
+$pdf->Cell(18, 8, utf8_decode("Motif"), 1,0,"C",true);
+$pdf->Cell(30, 8, utf8_decode("Kms parcourus"), 1,0,"C",true);
+$pdf->Cell(30, 8, utf8_decode("Total frais Kms"), 1,0,"C",true);
+$pdf->Cell(25, 8, utf8_decode("Coût péages"), 1,0,"C",true);
+$pdf->Cell(25, 8, utf8_decode("Coût repas"), 1,0,"C",true);
+$pdf->Cell(30, 8, utf8_decode("Coût hébergement"), 1,0,"C",true);
+$pdf->Cell(16, 8, utf8_decode("Total"), 1,1,"C",true);
+// Contenu
 foreach ($lignes as $ligne) {
     $pdf->SetFont('', '');
-    $pdf->SetX(20);
-    $pdf->Cell(50, 5, utf8_decode($ligne["dat_ligne"]),1,1,"C");   
-    $pdf->Cell(20,10, utf8_decode($ligne["lib_trajet"]),1,0,"C");
-    $pdf->Cell(20,10, utf8_decode($ligne["nb_km"]),1,0,"C"); 
-    $pdf->Cell(20,10, utf8_decode($ligne["mt_km"]),1,0,"C");
-    $pdf->Cell(20,10, utf8_decode($ligne["mt_peage"]),1,0,"C");
-    $pdf->Cell(20,10, utf8_decode($ligne["mt_repas"]),1,0,"C");
-    $pdf->Cell(20,10, utf8_decode($ligne["mt_hebergement	"]),1,0,"C");
-    $pdf->Cell(20,10, utf8_decode($ligne["mt_total"]),1,1,"C");
+    $pdf->SetX(2.5);
+    $pdf->Cell(31,10, utf8_decode($ligne["dat_ligne"]),1,0,"C");   
+    $pdf->Cell(18,10, utf8_decode($ligne["lib_trajet"]),1,0,"C");
+    $pdf->Cell(30,10, utf8_decode($ligne["nb_km"]),1,0,"C"); 
+    $pdf->Cell(30,10, utf8_decode($ligne["mt_km"]),1,0,"C");
+    $pdf->Cell(25,10, utf8_decode($ligne["mt_peage"]),1,0,"C");
+    $pdf->Cell(25,10, utf8_decode($ligne["mt_repas"]),1,0,"C");
+    $pdf->Cell(30,10, utf8_decode($ligne["mt_hebergement"]),1,0,"C");
+    $pdf->Cell(16,10, utf8_decode($ligne["mt_total"]),1,1,"C");
 }
+$pdf->SetFont('Times', '', 12);
 
 // Licence
 $pdf->Ln(10); // saut de ligne
