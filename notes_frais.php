@@ -67,7 +67,8 @@ foreach ($roows as $row) {
   <h1>Affichage de la note de frais</h1>
   <img src="img/logo.png">
   <?php
-  echo '<p>Je sousigné(e) ' . $_SESSION['user']['nom'] . ' ' . $_SESSION['user']['prenom'] . '</p>';
+  print_r();
+  echo '<p>Je sousigné(e) ' . $_SESSION['id_utilisateur']['nom'] . ' ' . $_SESSION['id_utilisateur']['prenom'] . '</p>';
   echo '<p>Demeurant au ' . $tableau['adr1'] . $tableau['adr2'] . $tableau['adr3'] . '</p>';
   echo '<p>Certifie renoncer au remboursement des frais ci dessous et les laisser à l association (mettre le nom + adresse) en tant que don </p>';
   ?>
