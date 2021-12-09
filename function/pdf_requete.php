@@ -26,7 +26,7 @@ try {
   die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
 }
 
-// Requete pour afficher l'adresse du user'
+// Requete pour afficher l'adresse du user
 $sql = 'select * from adherent ,utilisateur where adherent.id_utilisateur=utilisateur.id_utilisateur and utilisateur.id_utilisateur=:id_utilisateur;';
 
 try {
@@ -80,6 +80,43 @@ try {
 } catch (PDOException $e) {
   die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
 }
+
+// Requete num ordre recu
+$sql = "select concat(lib_periode,id_note) as num_recu from note, periode where id_utilisateur = :id_utilisateur";
+try {
+  $sth = $dbh->prepare($sql);
+
+  $sth->execute(array(
+  ":id_utilisateur" => $_SESSION["user"]["id_utilisateur"]
+));
+  $utilisateurs = $sth->fetch(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+  die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
+}
+// Requete num ordre recu
+$sql = "SELECT sum(mt_total) as sum_montant from note where id_utilisateur=:id_utilisateur group by id_utilisateur";
+try {
+  $sth = $dbh->prepare($sql);
+
+  $sth->execute(array(
+  ":id_utilisateur" => $_SESSION["user"]["id_utilisateur"]
+));
+  $montant = $sth->fetch(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+  die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
+}
+
+$sql = "SELECT ligue.id_ligue, ligue.lib_ligue, club.id_club, club.lib_club FROM club, ligue, motif WHERE ligue.id_ligue = club.id_ligue GROUP by id_club";
+try {
+  $sth = $dbh->prepare($sql);
+  $sth->execute();
+  $club1 = $sth->fetch(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+  die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
+}
+
+
+
 
 
 ?>
