@@ -517,6 +517,13 @@ $this->enLettre.=($this->chiffre[$unite]).' ';
 }
 
 }
+
+function separationAdresse($adresse){
+$tab = preg_split('([0-9]{5})', $adresse, -1, PREG_SPLIT_OFFSET_CAPTURE);
+
+return $tab[0][0] ;
+   
+}
 ?>
 
 

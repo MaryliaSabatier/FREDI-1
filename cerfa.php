@@ -32,29 +32,34 @@ $pdf->Cell(25, 5, utf8_decode($lignes['0']['nr_ordre']),  0, "R", true);
 
 //NOM OU DENOMINATION
 $pdf->setY(37);
-$pdf->Cell(25, 3, utf8_decode($lignes['0']['nr_ordre']),  0, "R", true);
+$pdf->Cell(25, 3, utf8_decode($club['lib_club']),  0, "R", true);
 //CODE ADRESSE
 //N°
+
+$numero =preg_match_all('!\d+!', $club['adr1'], $matches);
 $pdf->setY(46);
-$pdf->setX(12);
-$pdf->Cell(16, 3, utf8_decode($lignes['0']['nr_ordre']),  0, "R", true);
+$pdf->setX(20);
+$pdf->Cell(5, 3, utf8_decode($numero),  0, "R", true);
 //CODE ADRESSE
 //RUE
+ 
+$adresse= preg_replace('/\-?\d+/', '', $club['adr1']);
+
 $pdf->setY(46);
-$pdf->setX(45);
-$pdf->Cell(16, 3, utf8_decode($lignes['0']['nr_ordre']),  0, "R", true);
+$pdf->setX(55);
+$pdf->Cell(16, 3, utf8_decode($adresse),  0, "R", true);
 //CODE POSTAL
-$pdf->setY(51);
+$pdf->setY(52);
 $pdf->setX(30);
-$pdf->Cell(19, 3, utf8_decode($lignes['0']['nr_ordre']),  0, "R", true);
+$pdf->Cell(13, 3, utf8_decode($club['adr2']),  0, "R", true);
 //COMMUNE
-$pdf->setY(51);
-$pdf->setX(70);
-$pdf->Cell(100, 3, utf8_decode($lignes['0']['nr_ordre']),  0, "R", true);
+$pdf->setY(52);
+$pdf->setX(80);
+$pdf->Cell(17, 3, utf8_decode($club['adr3']),  0, "R", true);
 //OBJET
-$pdf->setY(60);
+$pdf->setY(61);
 $pdf->setX(30);
-$pdf->Cell(100, 3, utf8_decode($lignes['0']['nr_ordre']),  0, "R", true);
+$pdf->Cell(4, 3, utf8_decode($lignes['0']['nr_ordre']),  0, "R", true);
 //coche la case 
 $pdf->SetTextColor(0, 0, 0);
 $pdf->setY(79.8);
