@@ -10,3 +10,5 @@ set max = max + '1' ;
 SET NEW.nr_ordre = CONCAT(max,' ', libeperiode);
 END |
 DELIMITER ;
+
+//modifier la table note et mettre nr_ordre en varchar(50) 
