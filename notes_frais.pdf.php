@@ -79,20 +79,20 @@ $pdf->Ln(8); // saut de ligne
 // Entête
 $pdf->SetFont('Times', '', 9);
 $pdf->SetFont('', 'B');
-$pdf->SetX(3);
+$pdf->SetX(8);
 $pdf->SetFillColor(211,211,211);
 $pdf->Cell(29, 8, utf8_decode("Date jj/mm/aaaa"), 1,0,"C");
 $pdf->Cell(15, 8, utf8_decode("Motif"), 1,0,"C");
 $pdf->Cell(30, 8, utf8_decode("Kms parcourus"), 1,0,"C");
 $pdf->Cell(30, 8, utf8_decode("Total frais Kms"), 1,0,"C");
-$pdf->Cell(25, 8, utf8_decode("Coût péages"), 1,0,"C");
-$pdf->Cell(25, 8, utf8_decode("Coût repas"), 1,0,"C");
+$pdf->Cell(20, 8, utf8_decode("Coût péages"), 1,0,"C");
+$pdf->Cell(20, 8, utf8_decode("Coût repas"), 1,0,"C");
 $pdf->Cell(34, 8, utf8_decode("Coût hébergement"), 1,0,"C");
 $pdf->Cell(16, 8, utf8_decode("Total"), 1,1,"C");
 // Contenu
 foreach ($lignes as $ligne) {
     $pdf->SetFont('', '');
-    $pdf->SetX(3);
+    $pdf->SetX(8);
     $pdf->SetFillColor(177,254,152);
     $pdf->Cell(29,8, utf8_decode($ligne["dat_ligne"]),1,0,"C",true);   
     $pdf->Cell(15,8, utf8_decode($ligne["lib_trajet"]),1,0,"C",true);
@@ -100,16 +100,17 @@ foreach ($lignes as $ligne) {
     $pdf->SetFillColor(133,241,238); 
     $pdf->Cell(30,8, utf8_decode($ligne["mt_km"]),1,0,"C",true);
     $pdf->SetFillColor(177,254,152);
-    $pdf->Cell(25,8, utf8_decode($ligne["mt_peage"]),1,0,"C",true);
-    $pdf->Cell(25,8, utf8_decode($ligne["mt_repas"]),1,0,"C",true);
+    $pdf->Cell(20,8, utf8_decode($ligne["mt_peage"]),1,0,"C",true);
+    $pdf->Cell(20,8, utf8_decode($ligne["mt_repas"]),1,0,"C",true);
     $pdf->Cell(34,8, utf8_decode($ligne["mt_hebergement"]),1,0,"C",true);
     $pdf->SetFillColor(133,241,238); 
     $pdf->Cell(16,8, utf8_decode($ligne["mt_total"]),1,1,"C",true);
     $pdf->SetFillColor(177,254,152);
 }
-$pdf->SetX(3);
-$pdf->Cell(188, 8, utf8_decode("Montant total des frais de déplacement"), 1,0,"C");
-//foreach ()
+$pdf->SetX(8);
+$pdf->SetFont('Times', 'B', 9);
+$pdf->Cell(178, 8, utf8_decode("Montant total des frais de déplacement"), 1,0,"C");
+$pdf->SetFont('Times', '', 9);
 $pdf->SetFillColor(133,241,238); 
 $pdf->Cell(16,8, utf8_decode($montant["sum_montant"]),1,1,"C",true);
 

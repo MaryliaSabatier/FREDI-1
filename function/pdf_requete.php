@@ -105,7 +105,7 @@ try {
 } catch (PDOException $e) {
   die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
 }
-=======
+
 $sql = "SELECT ligue.id_ligue, ligue.lib_ligue, club.id_club, club.lib_club FROM club, ligue, motif WHERE ligue.id_ligue = club.id_ligue GROUP by id_club";
 try {
   $sth = $dbh->prepare($sql);
@@ -116,7 +116,7 @@ try {
 }
 
 
->>>>>>> 52cfb47e247e5d71530793142bbd679bbefac608
+
 
 
 ?>
