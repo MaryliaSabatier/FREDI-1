@@ -1,7 +1,16 @@
 <?php 
 require_once "init.php";
 require_once "fpdf/fpdf.php";
-require_once "function\pdf_requete.php";
+include "sql.php";
+
+$sql = "SELECT ligue.id_ligue, ligue.lib_ligue, club.id_club, club.lib_club FROM club, ligue, motif WHERE ligue.id_ligue = club.id_ligue GROUP by id_club";
+try {
+  $sth = $dbh->prepare($sql);
+  $sth->execute();
+  $club1 = $sth->fetch(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+  die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
+}
 
 $pdf = new FPDF();
 $pdf->SetTitle('Exemple pdf ', true);
@@ -38,7 +47,6 @@ foreach ($club1 as $club) {
     $pdf->SetFont('', '');
     $pdf->SetX(20);
     $pdf->Cell(25, 3, utf8_decode($club['0']['id_ligue']),  0, "C", true);
-    $fill=!$fill;  // Inverse le panachage
 }
 
 
@@ -46,6 +54,6 @@ foreach ($club1 as $club) {
 
 
 $pdf->Output('f','outfiles/'.$pdf->mon_fichier);
-//header('Location: index.php');
+header('Location: index.php');
 
 ?>
