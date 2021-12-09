@@ -5,7 +5,8 @@
  */
 require_once "init.php";
 require_once "fpdf/fpdf.php";
-require_once "function\pdf_requete.php";
+require_once "function/pdf_requete.php";
+require_once "function/function.php";
 // Crée le tableau d'objets métier "Pays"
 
 
@@ -27,27 +28,33 @@ $pdf->SetTextColor(0, 0, 0); // Noir
 $pdf->SetFont('', 'B');
 //NM ORDRE DE RECU
 $pdf->SetFillColor(255,255,255);
-$pdf->Cell(25, 5, utf8_decode($lignes['0']['nr_ordre']), 1, 0, "R");
+$pdf->Cell(25, 5, utf8_decode($lignes['0']['nr_ordre']),  0, "R", true);
 
 //NOM OU DENOMINATION
 $pdf->setY(37);
-$pdf->Cell(25, 3, utf8_decode($lignes['0']['nr_ordre']), 1, 0, "R");
+$pdf->Cell(25, 3, utf8_decode($lignes['0']['nr_ordre']),  0, "R", true);
 //CODE ADRESSE
-
+//N°
 $pdf->setY(46);
-$pdf->Cell(16, 3, utf8_decode($lignes['0']['nr_ordre']), 1, 0, "R");
+$pdf->setX(12);
+$pdf->Cell(16, 3, utf8_decode($lignes['0']['nr_ordre']),  0, "R", true);
+//CODE ADRESSE
+//RUE
+$pdf->setY(46);
+$pdf->setX(45);
+$pdf->Cell(16, 3, utf8_decode($lignes['0']['nr_ordre']),  0, "R", true);
 //CODE POSTAL
-$pdf->setY(50);
+$pdf->setY(51);
 $pdf->setX(30);
-$pdf->Cell(19, 3, utf8_decode($lignes['0']['nr_ordre']), 1, 0, "R");
+$pdf->Cell(19, 3, utf8_decode($lignes['0']['nr_ordre']),  0, "R", true);
 //COMMUNE
 $pdf->setY(51);
 $pdf->setX(70);
-$pdf->Cell(100, 3, utf8_decode($lignes['0']['nr_ordre']), 1, 0, "R");
+$pdf->Cell(100, 3, utf8_decode($lignes['0']['nr_ordre']),  0, "R", true);
 //OBJET
 $pdf->setY(60);
-$pdf->setX(50);
-$pdf->Cell(100, 3, utf8_decode($lignes['0']['nr_ordre']), 1, 0, "R", true);
+$pdf->setX(30);
+$pdf->Cell(100, 3, utf8_decode($lignes['0']['nr_ordre']),  0, "R", true);
 //coche la case 
 $pdf->SetTextColor(0, 0, 0);
 $pdf->setY(79.8);
@@ -85,6 +92,78 @@ $pdf->Cell(4, 3,  'X', 0, "R", true);
 $pdf->setY(138.0);
 $pdf->setX(12);
 $pdf->Cell(4, 3,  'X', 0, "R", true);
+
+$pdf->setY(148.0);
+$pdf->setX(12);
+$pdf->Cell(4, 3,  'X', 0, "R", true);
+
+$pdf->setY(153.0);
+$pdf->setX(12);
+$pdf->Cell(4, 3,  'X', 0, "R", true);
+
+$pdf->setY(158.0);
+$pdf->setX(12);
+$pdf->Cell(4, 3,  'X', 0, "R", true);
+
+//donateur
+//nom
+$pdf->setY(178.0);
+$pdf->setX(12);
+$pdf->Cell(4, 3,  'X', 0, "R", true);
+//adresse
+$pdf->setY(187.0);
+$pdf->setX(12);
+$pdf->Cell(4, 3,  'X', 0, "R", true);
+//code postal
+$pdf->setY(193.0);
+$pdf->setX(29);
+$pdf->Cell(4, 3,  'X', 0, "R", true);
+//commune
+$pdf->setY(193.0);
+$pdf->setX(69);
+$pdf->Cell(4, 3,  'X', 0, "R", true);
+//la somme de 
+$pdf->setY(201.50);
+$pdf->setX(167);
+$pdf->Cell(4, 3,  'X', 0, "R", true);
+//somme en toute lettres
+
+$ChiffreEnLettre=new ChiffreEnLettre ;
+$saisie="180";
+
+
+$pdf->setY(207.50);
+$pdf->setX(70);
+$pdf->Cell(4, 3,  $ChiffreEnLettre->Conversion($saisie), 0, "R", true);
+
+//date du paiment
+
+$pdf->setY(216.0);
+$pdf->setX(40);
+$pdf->Cell(4, 3,  'X', 0, "R", true);
+
+
+//Mode de versement
+
+$pdf->setY(158.0);
+$pdf->setX(12);
+$pdf->Cell(4, 3,  'X', 0, "R", true);
+
+//mode versement
+
+$pdf->setY(232.5);
+$pdf->setX(12);
+$pdf->Cell(4, 3,  'X', 0, "R", true);
+
+$pdf->setY(232.5);
+$pdf->setX(50);
+$pdf->Cell(4, 3,  'X', 0, "R", true);
+
+$pdf->setY(241.0);
+$pdf->setX(12);
+$pdf->Cell(4, 3,  'X', 0, "R", true);
+
+//
 
 $pdf->Output('f','outfiles/'.$pdf->mon_fichier);
 //header('Location: index.php');
