@@ -82,17 +82,19 @@ try {
 }
 
 // Requete num ordre recu
-$sql = "select concat(lib_periode,id_note) as num_recu from note, periode where id_utilisateur = :id_utilisateur";
+$sql = "select * from note where id_utilisateur = :id_utilisateur";
 try {
   $sth = $dbh->prepare($sql);
 
   $sth->execute(array(
   ":id_utilisateur" => $_SESSION["user"]["id_utilisateur"]
 ));
-  $utilisateurs = $sth->fetch(PDO::FETCH_ASSOC);
+  $note = $sth->fetch(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
   die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
 }
+
+
 // Requete num ordre recu
 $sql = "SELECT sum(mt_total) as sum_montant from note where id_utilisateur=:id_utilisateur group by id_utilisateur";
 try {
@@ -114,9 +116,5 @@ try {
 } catch (PDOException $e) {
   die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
 }
-
-
-
-
 
 ?>

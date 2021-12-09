@@ -162,13 +162,13 @@ $pdf->SetFillColor(245,129,182);
 $pdf->SetFont('Times', 'B', 11);
 $pdf->MultiCell(90, 10, utf8_decode("Partie réservée à l'association"),0,'C',true);
 $pdf->SetFont('Times', '', 11);
-$pdf->MultiCell(90, 10, utf8_decode("N° d'ordre du Reçu :"),0,1,'L',true);
+$pdf->MultiCell(90, 10, utf8_decode("N° d'ordre du Reçu : ".$note["nr_ordre"]),0,1,'L',true);
 $pdf->MultiCell(90, 10, utf8_decode("Remis le :"),0,1,'L',true);
 $pdf->MultiCell(90, 10, utf8_decode("Signature du Trésorier :"),0,1,'L',true);
 
 // Génération du document PDF dans le dossier outfiles
 $pdf->Output('outfiles/notes_frais.pdf','f');  // f=fichier local
-header('Location: notes_frais.php');
+//header('Location: notes_frais.php');
 ?>
 
     </body>
