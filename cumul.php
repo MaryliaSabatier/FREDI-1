@@ -41,7 +41,7 @@ $pdf->Cell(80, 10, utf8_decode("Nom Ligue"), 1,0,"C",true);
 $pdf->Cell(20, 10, utf8_decode("ID Club"), 1,0,"C",true);
 $pdf->Cell(80, 10, utf8_decode("Nom Club"), 1,0,"C",true);
 
-$fill=false;  // panachage pour la couleur du fond
+
 $pdf->SetFillColor(224,235,255);  // bleu clair
 foreach ($club1 as $club) {
     $pdf->SetFont('', '');
