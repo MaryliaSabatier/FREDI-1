@@ -26,7 +26,7 @@ try {
   die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
 }
 
-// Requete pour afficher l'adresse du user'
+// Requete pour afficher l'adresse du user
 $sql = 'select * from adherent ,utilisateur where adherent.id_utilisateur=utilisateur.id_utilisateur and utilisateur.id_utilisateur=:id_utilisateur;';
 
 try {
