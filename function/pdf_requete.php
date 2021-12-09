@@ -68,4 +68,18 @@ try {
   die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
 }
 
+// Requete license
+$sql = "select * from adherent where id_utilisateur = :id_utilisateur";
+try {
+  $sth = $dbh->prepare($sql);
+
+  $sth->execute(array(
+  ":id_utilisateur" => $_SESSION["user"]["id_utilisateur"]
+));
+  $utilisateurs = $sth->fetch(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+  die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
+}
+
+
 ?>
