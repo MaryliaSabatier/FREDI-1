@@ -30,17 +30,18 @@ $pdf->SetFillColor(211,211,211);
 $pdf->Cell(20, 10, utf8_decode("ID Ligue"), 1,0,"C",true);
 $pdf->Cell(80, 10, utf8_decode("Nom Ligue"), 1,0,"C",true);
 $pdf->Cell(20, 10, utf8_decode("ID Club"), 1,0,"C",true);
-$pdf->Cell(20, 10, utf8_decode("Nom Club"), 1,0,"C",true);
-$pdf->Cell(20, 10, utf8_decode("ID motif"), 1,0,"C",true);
-$pdf->Cell(80, 10, utf8_decode("Motif"), 1,1,"C",true);
+$pdf->Cell(80, 10, utf8_decode("Nom Club"), 1,0,"C",true);
+
+$fill=false;  // panachage pour la couleur du fond
+$pdf->SetFillColor(224,235,255);  // bleu clair
+foreach ($club1 as $club) {
+    $pdf->SetFont('', '');
+    $pdf->SetX(20);
+    $pdf->Cell(25, 3, utf8_decode($club['0']['id_ligue']),  0, "C", true);
+    $fill=!$fill;  // Inverse le panachage
+}
 
 
-// Nb de pays
-
-
-// Génération du document PDF
-$pdf->Output('f','outfiles/'.$pdf->mon_fichier);
-header('Location: liste_pays.php');
 
 
 
