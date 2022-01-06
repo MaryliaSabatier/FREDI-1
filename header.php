@@ -47,7 +47,11 @@ include 'sql.php';
 
                 ?>
                 <li class="ligne left"><a class=active" href="notes_frais.php">Notes de frais</a></li>
-                <li class="ligne left"><a class=active" href="cumul.php">Cumul de frais</a></li>
+
+                <?php
+                if ($_SESSION['user']['role'] == 2) {
+                ?>
+                <li class="ligne left"><a class=active" href="cumul.php">Cumul de frais</a></li> }
 
             <?php } else {
                 //Si user non connecté alors seulement connexion et inscription visibles 
