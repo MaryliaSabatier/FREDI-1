@@ -58,7 +58,7 @@ $pdf->setX(80);
 $pdf->Cell(17, 3, utf8_decode($club['adr3']),  0, "R", true);
 //OBJET
 
-$phrase  = "You should eat fruits, vegetables, and fiber every day.";
+$phrase  = $ligue1["libelle"];
 $healthy = array("fruits", "vegetables", "fiber");
 $yummy   = array("pizza", "beer", "ice cream");
 

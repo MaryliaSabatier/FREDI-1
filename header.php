@@ -51,9 +51,9 @@ include 'sql.php';
                 <?php
                 if ($_SESSION['user']['role'] == 2) {
                 ?>
-                <li class="ligne left"><a class=active" href="cumul.php">Cumul de frais</a></li> }
+                <li class="ligne left"><a class=active" href="cumul.php">Cumul de frais</a></li> 
 
-            <?php } else {
+            <?php } } else {
                 //Si user non connecté alors seulement connexion et inscription visibles 
             ?>
                 <li class="ligne right"><a class="<?php if ($active == 3) {

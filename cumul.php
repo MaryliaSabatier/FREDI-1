@@ -18,7 +18,7 @@ try {
   $sth = $dbh->prepare($sql);
 
   $sth->execute(array(":id" => $id));
-  $rows = $sth->fetchall(PDO::FETCH_ASSOC);
+  $rows = $sth->fetch(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
   die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
 }
@@ -86,9 +86,7 @@ foreach ($roows as $row) {
       echo '<td>' . $row['id_periode'] . '</td>';
       echo '<td>' . $row['mtperiode'] . '</td>';
 
-      $sql = 'SELECT ligue.lib_ligue AS NomLigue, club.lib_club AS NomClub, motif.lib_motif AS NomMotif, periode.lib_periode AS Periode, SUM(ligne.mt_total) AS MtPeriode
-      FROM note,periode,club,adherent,motif,ligue,ligne
-      WHERE periode.est_active=1
+      $sql = "SELECT ligue.lib_ligue AS NomLigue, club.lib_club AS NomClub, motif.lib_motif AS NomMotif, periode.lib_periode AS Periode, SUM(ligne.mt_total) AS MtPeriode FROM note,periode,club,adherent,motif,ligue,ligne WHERE periode.est_active=1
       AND ligne.id_note=note.id_note
       AND ligne.id_motif=motif.id_motif
       AND periode.id_periode=note.id_periode

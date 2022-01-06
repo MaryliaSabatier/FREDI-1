@@ -39,7 +39,7 @@ try {
   $sth->execute(array( 
     ":id_utilisateur" => $_SESSION["user"]["id_utilisateur"]
 ));
-  $adherent = $sth->fetch(PDO::FETCH_ASSOC);
+  $ligue1 = $sth->fetch(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
   die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
 }
