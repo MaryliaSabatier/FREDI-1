@@ -3,9 +3,6 @@
 include "fpdf/fpdf.php";
 include "function/pdf_requete.php";
 
-
-?>
-<?php
 // Instanciation de l'objet FDPF
 $pdf = new FPDF();
 
