@@ -57,6 +57,14 @@ $pdf->setY(52);
 $pdf->setX(80);
 $pdf->Cell(17, 3, utf8_decode($club['adr3']),  0, "R", true);
 //OBJET
+
+$phrase  = "You should eat fruits, vegetables, and fiber every day.";
+$healthy = array("fruits", "vegetables", "fiber");
+$yummy   = array("pizza", "beer", "ice cream");
+
+$newphrase = str_replace($healthy, $yummy, $phrase);
+
+
 $pdf->setY(61);
 $pdf->setX(30);
 $pdf->Cell(4, 3, utf8_decode($lignes['0']['nr_ordre']),  0, "R", true);
@@ -113,39 +121,39 @@ $pdf->Cell(4, 3,  'X', 0, "R", true);
 //donateur
 //nom
 $pdf->setY(178.0);
-$pdf->setX(12);
-$pdf->Cell(4, 3,  'X', 0, "R", true);
+$pdf->setX(20);
+$pdf->Cell(4, 3,  $utilisateur["prenom"], 0, "R", true);
 //adresse
 $pdf->setY(187.0);
-$pdf->setX(12);
-$pdf->Cell(4, 3,  'X', 0, "R", true);
+$pdf->setX(60);
+$pdf->Cell(4, 3,  $adherent["adr1"], 0, "R", true);
 //code postal
-$pdf->setY(193.0);
-$pdf->setX(29);
-$pdf->Cell(4, 3,  'X', 0, "R", true);
+$pdf->setY(193.2);
+$pdf->setX(35);
+$pdf->Cell(4, 3,  $adherent["adr2"], 0, "R", true);
 //commune
-$pdf->setY(193.0);
-$pdf->setX(69);
-$pdf->Cell(4, 3,  'X', 0, "R", true);
+$pdf->setY(193.2);
+$pdf->setX(80);
+$pdf->Cell(4, 3,  $adherent["adr3"], 0, "R", true);
 //la somme de 
 $pdf->setY(201.50);
-$pdf->setX(167);
-$pdf->Cell(4, 3,  'X', 0, "R", true);
+$pdf->setX(175);
+$pdf->Cell(4, 3,  $montant['sum_montant'], 0, "R", true);
 //somme en toute lettres
 
 $ChiffreEnLettre=new ChiffreEnLettre ;
-$saisie="180";
 
+ $saisie = intval($montant['sum_montant']);
 
 $pdf->setY(207.50);
-$pdf->setX(70);
-$pdf->Cell(4, 3,  $ChiffreEnLettre->Conversion($saisie), 0, "R", true);
+$pdf->setX(100);
+$pdf->Cell(4, 3,  $ChiffreEnLettre->Conversion($saisie), 0, "L", true);
 
 //date du paiment
 
-$pdf->setY(216.0);
-$pdf->setX(40);
-$pdf->Cell(4, 3,  'X', 0, "R", true);
+$pdf->setY(215.2);
+$pdf->setX(60);
+$pdf->Cell(4, 3,  date("d-m-Y"), 0, "R", true);
 
 
 //Mode de versement
