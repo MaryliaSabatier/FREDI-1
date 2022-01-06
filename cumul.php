@@ -6,12 +6,11 @@ include "sql.php";
 $sql = "SELECT ligue.id_ligue, ligue.lib_ligue, club.id_club, club.lib_club, motif.id_motif 
 FROM club, ligue, motif, adherent, utilisateur, note, ligne  
 WHERE ligue.id_ligue = club.id_ligue 
-and club.id_club = adherent.id_club
+AND club.id_club = adherent.id_club
 AND adherent.id_utilisateur = utilisateur.id_utilisateur
 AND utilisateur.id_utilisateur = note.id_utilisateur
 AND note.id_note = ligne.id_note
-AND ligne.id_motif = motif.id_motif
-GROUP by id_club ";
+AND ligne.id_motif = motif.id_motif";
 try {
   $sth = $dbh->prepare($sql);
   $sth->execute();
