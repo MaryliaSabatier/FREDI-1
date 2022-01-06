@@ -26,6 +26,25 @@ try {
   die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
 }
 
+
+
+
+
+
+$sql='SELECT * FROM ligue ,club ,utilisateur ,adherent WHERE ligue.id_ligue=club.id_ligue AND adherent.id_club=club.id_club and adherent.id_utilisateur=utilisateur.id_utilisateur and id_utilisateur=:id_utilisateur GROUP by utilisateur.id_utilisateur;';
+
+try {
+  $sth = $dbh->prepare($sql);
+
+  $sth->execute(array( 
+    ":id_utilisateur" => $_SESSION["user"]["id_utilisateur"]
+));
+  $adherent = $sth->fetch(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+  die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
+}
+
+
 // Requete pour afficher l'adresse du user
 $sql = 'select * from adherent ,utilisateur where adherent.id_utilisateur=utilisateur.id_utilisateur and utilisateur.id_utilisateur=:id_utilisateur;';
 

@@ -15,11 +15,12 @@ CREATE TABLE `club` (
   `id_ligue` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+ALTER TABLE club
+ADD FOREIGN KEY (id_club) REFERENCES adherent(id_club);
+
+ALTER TABLE club
+ADD FOREIGN KEY (id_ligue) REFERENCES ligue(id_ligue);
 
 
-ALTER TABLE `club` MODIFY `id_club` int(11) NOT NULL AUTO_INCREMENT;
 
 
-
-ALTER TABLE`club` ADD CONSTRAINT `fk_id_ligue` FOREIGN KEY (`id_ligue`) REFERENCES `ligue` (`id_ligue`); 
-ALTER TABLE`adherent` ADD CONSTRAINT `fk_id_club` FOREIGN KEY (`id_club`) REFERENCES `club` (`id_club`);
