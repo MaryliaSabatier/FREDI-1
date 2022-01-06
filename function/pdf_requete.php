@@ -135,7 +135,7 @@ try {
 } catch (PDOException $e) {
   die("<p>Erreur lors de la requête SQL 10: " . $e->getMessage() . "</p>");
 }
-/*
+
 // Requete cumul des frais 
 $sql = "SELECT ligue.lib_ligue AS NomLigue, club.lib_club AS NomClub, motif.lib_motif AS NomMotif, periode.lib_periode AS Periode, SUM(ligne.mt_total) AS MtPeriode
 FROM note,periode,club,adherent,motif,ligue,ligne
@@ -146,7 +146,7 @@ AND periode.id_periode=note.id_periode
 AND note.id_utilisateur=adherent.id_utilisateur
 AND adherent.id_club=club.id_club
 AND club.id_ligue=ligue.id_ligue
-GROUP BY NomLigue,NomClub,NomMotif";
+GROUP BY NomLigue,NomClub,NomMotif;";
 try {
   $sth = $dbh->prepare($sql);
   $sth->execute();
@@ -154,6 +154,6 @@ try {
 } catch (PDOException $e) {
   die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
 }
-*/
+
 ?>
 
