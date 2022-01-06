@@ -12,10 +12,10 @@ require_once "function/function.php";
 
 
 $pdf = new FPDF();
-$pdf->SetTitle('Exemple pdf ', true);
-$pdf->SetAuthor('D.D', true);
-$pdf->SetSubject('Liste des PAYS', true);
-$pdf->mon_fichier = "liste_pays.pdf";
+$pdf->SetTitle('PDF', true);
+$pdf->SetAuthor('dd', true);
+$pdf->SetSubject('cerfa', true);
+$pdf->mon_fichier = "cerfa.pdf";
 
 $pdf->AddPage();
 
