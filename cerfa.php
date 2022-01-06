@@ -58,16 +58,12 @@ $pdf->setX(80);
 $pdf->Cell(17, 3, utf8_decode($club['adr3']),  0, "R", true);
 //OBJET
 
-$phrase  = $ligue1["libelle"];
-$healthy = array("fruits", "vegetables", "fiber");
-$yummy   = array("pizza", "beer", "ice cream");
-
-$newphrase = str_replace($healthy, $yummy, $phrase);
+echo $newphrase= str_replace("Ligue de","Club",$ligue1["lib_ligue"]);
 
 
 $pdf->setY(61);
-$pdf->setX(30);
-$pdf->Cell(4, 3, utf8_decode($lignes['0']['nr_ordre']),  0, "R", true);
+$pdf->setX(60);
+$pdf->Cell(4, 3, $newphrase,  0, "R", true);
 //coche la case 
 $pdf->SetTextColor(0, 0, 0);
 $pdf->setY(79.8);
