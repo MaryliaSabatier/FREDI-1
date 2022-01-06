@@ -51,7 +51,7 @@ if ($submit) {
 </head>
 
 <body>
-  <h1>Freddi</h1>
+  <h1>Fredi</h1>
   <h2>Modification de l'utilisateur</h2>
   <p><?php echo $message; ?>
   </p>

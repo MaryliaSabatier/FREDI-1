@@ -10,7 +10,7 @@ try {
   $sth->execute();
   $periode = $sth->fetch(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
-  die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
+  die("<p>Erreur lors de la requête SQL 1: " . $e->getMessage() . "</p>");
 }
 
 // Requete pour afficher le nom et prénom du user
@@ -23,7 +23,7 @@ try {
 ));
   $utilisateur = $sth->fetch(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
-  die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
+  die("<p>Erreur lors de la requête SQL 2: " . $e->getMessage() . "</p>");
 }
 
 
@@ -31,7 +31,7 @@ try {
 
 
 
-$sql='SELECT * FROM ligue ,club ,utilisateur ,adherent WHERE ligue.id_ligue=club.id_ligue AND adherent.id_club=club.id_club and adherent.id_utilisateur=utilisateur.id_utilisateur and id_utilisateur=:id_utilisateur GROUP by utilisateur.id_utilisateur;';
+$sql='SELECT utilisateur.id_utilisateur, pseudo, mdp, mail, nom, prenom, role ,id_adherent, nr_licence, adherent.adr1, adherent.adr2, adherent.adr3, club.id_club , lib_ligue, lib_club, club.adr1, club.adr2, club.adr3, ligue.id_ligue FROM ligue ,club ,utilisateur ,adherent WHERE ligue.id_ligue=club.id_ligue AND adherent.id_club=club.id_club and adherent.id_utilisateur=utilisateur.id_utilisateur and utilisateur.id_utilisateur=:id_utilisateur GROUP by utilisateur.id_utilisateur;';
 
 try {
   $sth = $dbh->prepare($sql);
@@ -41,12 +41,12 @@ try {
 ));
   $ligue1 = $sth->fetch(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
-  die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
+  die("<p>Erreur lors de la requête SQL 3: " . $e->getMessage() . "</p>");
 }
 
 
 // Requete pour afficher l'adresse du user
-$sql = 'select * from adherent ,utilisateur where adherent.id_utilisateur=utilisateur.id_utilisateur and utilisateur.id_utilisateur=:id_utilisateur;';
+$sql = 'select utilisateur.id_utilisateur, pseudo, mdp, mail, nom, prenom, role ,id_adherent, nr_licence, adr1, adr2, adr3,  id_club from adherent ,utilisateur where adherent.id_utilisateur=utilisateur.id_utilisateur and utilisateur.id_utilisateur=:id_utilisateur;';
 
 try {
   $sth = $dbh->prepare($sql);
@@ -56,7 +56,7 @@ try {
 ));
   $adherent = $sth->fetch(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
-  die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
+  die("<p>Erreur lors de la requête SQL 4: " . $e->getMessage() . "</p>");
 }
 
 // Requete pour afficher le tableau
@@ -70,7 +70,7 @@ try {
 ));
   $lignes = $sth->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
-  die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
+  die("<p>Erreur lors de la requête SQL 5: " . $e->getMessage() . "</p>");
 }
 
 // Requete pour afficher l'adresse des clubs
@@ -84,7 +84,7 @@ try {
 ));
   $club = $sth->fetch(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
-  die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
+  die("<p>Erreur lors de la requête SQL 6: " . $e->getMessage() . "</p>");
 }
 
 // Requete license
@@ -97,7 +97,7 @@ try {
 ));
   $utilisateurs = $sth->fetch(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
-  die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
+  die("<p>Erreur lors de la requête SQL 7: " . $e->getMessage() . "</p>");
 }
 
 // Requete num ordre recu
@@ -110,7 +110,7 @@ try {
 ));
   $note = $sth->fetch(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
-  die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
+  die("<p>Erreur lors de la requête SQL 8: " . $e->getMessage() . "</p>");
 }
 
 
@@ -124,7 +124,7 @@ try {
 ));
   $montant = $sth->fetch(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
-  die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
+  die("<p>Erreur lors de la requête SQL 9: " . $e->getMessage() . "</p>");
 }
 
 $sql = "SELECT ligue.id_ligue, ligue.lib_ligue, club.id_club, club.lib_club FROM club, ligue, motif WHERE ligue.id_ligue = club.id_ligue GROUP by id_club";
@@ -133,9 +133,9 @@ try {
   $sth->execute();
   $club1 = $sth->fetch(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
-  die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
+  die("<p>Erreur lors de la requête SQL 10: " . $e->getMessage() . "</p>");
 }
-
+/*
 // Requete cumul des frais 
 $sql = "SELECT ligue.lib_ligue AS NomLigue, club.lib_club AS NomClub, motif.lib_motif AS NomMotif, periode.lib_periode AS Periode, SUM(ligne.mt_total) AS MtPeriode
 FROM note,periode,club,adherent,motif,ligue,ligne
@@ -154,5 +154,6 @@ try {
 } catch (PDOException $e) {
   die("<p>Erreur lors de la requête SQL : " . $e->getMessage() . "</p>");
 }
+*/
 ?>
 

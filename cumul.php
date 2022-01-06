@@ -86,14 +86,7 @@ foreach ($roows as $row) {
       echo '<td>' . $row['id_periode'] . '</td>';
       echo '<td>' . $row['mtperiode'] . '</td>';
 
-      $sql = "SELECT ligue.lib_ligue AS NomLigue, club.lib_club AS NomClub, motif.lib_motif AS NomMotif, periode.lib_periode AS Periode, SUM(ligne.mt_total) AS MtPeriode FROM note,periode,club,adherent,motif,ligue,ligne WHERE periode.est_active=1
-      AND ligne.id_note=note.id_note
-      AND ligne.id_motif=motif.id_motif
-      AND periode.id_periode=note.id_periode
-      AND note.id_utilisateur=adherent.id_utilisateur
-      AND adherent.id_club=club.id_club
-      AND club.id_ligue=ligue.id_ligue
-      GROUP BY NomLigue,NomClub,NomMotif';
+      $sql = "SELECT ligue.lib_ligue AS NomLigue, club.lib_club AS NomClub, motif.lib_motif AS NomMotif, periode.lib_periode AS Periode, SUM(ligne.mt_total) AS MtPeriode FROM note,periode,club,adherent,motif,ligue,ligne WHERE periode.est_active=1 AND ligne.id_note=note.id_note AND ligne.id_motif=motif.id_motif AND periode.id_periode=note.id_periode AND note.id_utilisateur=adherent.id_utilisateur AND adherent.id_club=club.id_club AND club.id_ligue=ligue.id_ligue GROUP BY NomLigue,NomClub,NomMotif ;";
       try {
         $sth = $dbh->prepare($sql);
 
