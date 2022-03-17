@@ -6,14 +6,22 @@ Damien Dutertre
 Achille Monteil  
 
 ## Installation du projet : 
-__1. La base de données__
-* La base de donnée se trouve dans le fichier sql au chemin FREDI/BDD/fredi21.sql
+
+__1. Télecharger le projet__
+Afin de faire fonctionner le sujet, placer le dossier dans votre fichier htdocs XAMPP 
+Ouvrir l'interface XAMPP -> Admin
+Une fois la fenetre ouverte, taper dans la barre de l'URL "localhost/FREDI
+Le projet est désormais ouvert mais il manque la base à installer
+
+__2. La base de données__
+* La base de donnée se trouve dans le fichier sql au chemin fredi/BDD/fredi21.sql
+Créer une BDD fredi et y copier coller la BDD frede21
 
 __2. Jeux de données__  
-Les utilisateurs sont a rajouter depuis le fichier BDD UTILISATEUR.SQL
+Les utilisateurs sont a rajouter depuis le fichier fredi/BDD/utilisateur.sql
 
 __3. CSV__
-Les fichiers CSV sont disponibles dans le dossier FREDI/files/...  
+Les fichiers CSV sont disponibles dans le dossier FREDI/files/...
 
 __4. Test avec données__
 Connexion en adhérent
@@ -34,6 +42,7 @@ Connexion en controleur
 Rôles dans la base utilisateur : 
 * Administrateur: 1
 * Contrôleur: 2
+
 # 5. Le projet FREDI  web  
 
 Le site FREDI consiste à saisir des bordereaux ( lignes de frais ) sur un site web une fois authentifié. 4 acteurs sont présents, l'adhérent, le responsable légal, le trésorier et le responsable du CRIB.
